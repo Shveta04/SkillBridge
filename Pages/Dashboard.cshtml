@@ -1,0 +1,332 @@
+﻿@page
+@model SkillBridge.Pages.DashboardModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="dashboard-page">
+
+    <div class="container-fluid dashboard-container">
+
+        <!-- =====================================================
+             WELCOME SECTION
+        ====================================================== -->
+
+        <div class="dashboard-welcome">
+
+            <div class="dashboard-label">
+                <i class="bi bi-grid-1x2-fill"></i>
+                SKILLBRIDGE DASHBOARD
+            </div>
+
+            <h1>Build Your Career</h1>
+
+            <p>
+                Analyze your resume and discover personalized career opportunities.
+            </p>
+
+        </div>
+
+
+        <!-- =====================================================
+             MAIN RESUME ANALYZER
+        ====================================================== -->
+
+        <div class="resume-main-card">
+
+            <div class="resume-content">
+
+                <div class="resume-icon">
+                    <i class="bi bi-file-earmark-person-fill"></i>
+                </div>
+
+                <div class="resume-text">
+
+                    <span class="resume-badge">
+                        START HERE
+                    </span>
+
+                    <h2>
+                        Analyze Your Resume
+                    </h2>
+
+                    <p>
+                        Upload your resume and let SkillBridge analyze your
+                        skills, experience and career profile. Your analysis
+                        becomes the foundation for personalized career guidance.
+                    </p>
+
+                    <a asp-page="/ResumeAnalyzer" class="analyze-btn">
+                        <span>Analyze My Resume</span>
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Decorative shapes -->
+
+            <div class="resume-decoration decoration-one"></div>
+            <div class="resume-decoration decoration-two"></div>
+
+        </div>
+
+
+        <!-- =====================================================
+             CAREER OPTIONS SECTION
+        ====================================================== -->
+
+        <div class="dashboard-section-title">
+
+            <div>
+
+                <h3>
+                    Explore Your Career Options
+                </h3>
+
+                <p>
+                    Use your resume analysis to discover the right opportunities.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             FEATURE CARDS
+        ====================================================== -->
+
+        <div class="row g-4">
+
+            <!-- =================================================
+                 CAREER PATH
+            ================================================== -->
+
+            <div class="col-lg-6 col-md-6">
+
+                <a asp-page="/CareerPath" class="feature-card">
+
+                    <div class="feature-top">
+
+                        <div class="feature-icon career-icon">
+                            <i class="bi bi-signpost-2-fill"></i>
+                        </div>
+
+                        <div class="feature-arrow">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature-content">
+
+                        <h4>
+                            View Career Path
+                        </h4>
+
+                        <p>
+                            Explore career directions that match your
+                            skills, interests and experience.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-link">
+
+                        Explore Career Path
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <!-- =================================================
+                 SKILL GAP
+            ================================================== -->
+
+            <div class="col-lg-6 col-md-6">
+
+                <a asp-page="/SkillGap" class="feature-card">
+
+                    <div class="feature-top">
+
+                        <div class="feature-icon skillgap-icon">
+                            <i class="bi bi-bar-chart-fill"></i>
+                        </div>
+
+                        <div class="feature-arrow">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature-content">
+
+                        <h4>
+                            Skill Gap Analysis
+                        </h4>
+
+                        <p>
+                            Identify the skills you already have and
+                            discover the skills you need to improve.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-link">
+
+                        View Skill Gap
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <!-- =================================================
+                 RECOMMENDED JOBS
+            ================================================== -->
+
+            <div class="col-lg-6 col-md-6">
+
+                <a asp-page="/Jobs" class="feature-card">
+
+                    <div class="feature-top">
+
+                        <div class="feature-icon job-icon">
+                            <i class="bi bi-briefcase-fill"></i>
+                        </div>
+
+                        <div class="feature-arrow">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature-content">
+
+                        <h4>
+                            Recommended Jobs
+                        </h4>
+
+                        <p>
+                            Discover job opportunities that match your
+                            skills and career interests.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-link">
+
+                        Explore Jobs
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <!-- =================================================
+                 RECOMMENDED COURSES
+            ================================================== -->
+
+            <div class="col-lg-6 col-md-6">
+
+                <a asp-page="/Courses" class="feature-card">
+
+                    <div class="feature-top">
+
+                        <div class="feature-icon course-icon">
+                            <i class="bi bi-book-fill"></i>
+                        </div>
+
+                        <div class="feature-arrow">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </div>
+
+                    </div>
+
+
+                    <div class="feature-content">
+
+                        <h4>
+                            Recommended Courses
+                        </h4>
+
+                        <p>
+                            Improve your skills with courses related
+                            to your career goals and skill gaps.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-link">
+
+                        Explore Courses
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             HOW SKILLBRIDGE WORKS
+        ====================================================== -->
+
+        <div class="how-it-works">
+
+            <div class="how-icon">
+                <i class="bi bi-lightbulb-fill"></i>
+            </div>
+
+
+            <div class="how-content">
+
+                <h4>
+                    How SkillBridge Works
+                </h4>
+
+                <p>
+                    Analyze your resume
+                    <span>→</span>
+                    identify your skills
+                    <span>→</span>
+                    explore your career path
+                    <span>→</span>
+                    find jobs and courses.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

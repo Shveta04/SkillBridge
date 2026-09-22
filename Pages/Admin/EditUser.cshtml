@@ -1,0 +1,586 @@
+﻿@page "{id:int}"
+@model SkillBridge.Pages.Admin.EditUserModel
+
+@{
+    Layout = "/Pages/Admin/_AdminLayout.cshtml";
+    ViewData["Title"] = "Edit User";
+}
+
+<style>
+    .edit-user-page {
+        padding: 10px 5px 40px;
+        color: #163b38;
+    }
+
+    /* HEADER */
+
+    .edit-header {
+        background: #ffffff;
+        border: 1px solid #dcefeb;
+        border-radius: 22px;
+        padding: 32px 36px;
+        margin-bottom: 24px;
+        box-shadow: 0 10px 28px rgba(22, 59, 56, 0.05);
+    }
+
+    .edit-header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .edit-label {
+        display: inline-block;
+        color: #10b5a4;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 1.8px;
+        margin-bottom: 7px;
+    }
+
+    .edit-header h1 {
+        margin: 0;
+        color: #163b38;
+        font-size: 34px;
+        font-weight: 800;
+    }
+
+    .edit-header p {
+        margin: 7px 0 0;
+        color: #688783;
+        font-size: 15px;
+    }
+
+
+    /* BACK BUTTON */
+
+    .back-users-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        background: #ffffff;
+        color: #087f73;
+        border: 1px solid #bfe6df;
+        padding: 11px 17px;
+        border-radius: 11px;
+        font-weight: 700;
+        white-space: nowrap;
+        transition: all 0.2s ease;
+    }
+
+        .back-users-btn:hover {
+            background: #e8f8f5;
+            color: #087f73;
+            border-color: #10b5a4;
+            transform: translateY(-1px);
+        }
+
+
+    /* FORM CARD */
+
+    .edit-card {
+        background: #ffffff;
+        border: 1px solid #dcefeb;
+        border-radius: 22px;
+        padding: 34px;
+        box-shadow: 0 10px 28px rgba(22, 59, 56, 0.05);
+    }
+
+    .edit-card-heading {
+        margin-bottom: 28px;
+    }
+
+        .edit-card-heading h2 {
+            margin: 0;
+            color: #163b38;
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .edit-card-heading p {
+            margin: 6px 0 0;
+            color: #78928f;
+            font-size: 14px;
+        }
+
+
+    /* FORM */
+
+    .form-label {
+        color: #35645f;
+        font-size: 13px;
+        font-weight: 800;
+        margin-bottom: 8px;
+    }
+
+    .form-control,
+    .form-select {
+        min-height: 48px;
+        border: 1px solid #d5e8e4;
+        border-radius: 11px;
+        color: #163b38;
+        background: #fbfefd;
+        padding: 10px 14px;
+        transition: all 0.2s ease;
+    }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #10b5a4;
+            box-shadow: 0 0 0 4px rgba(16, 181, 164, 0.10);
+            background: #ffffff;
+        }
+
+        .form-control::placeholder {
+            color: #9aafac;
+        }
+
+
+    /* USER ID */
+
+    .user-id-box {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #e8f8f5;
+        border: 1px solid #c7eee8;
+        color: #087f73;
+        padding: 7px 12px;
+        border-radius: 9px;
+        font-size: 12px;
+        font-weight: 800;
+        margin-bottom: 25px;
+    }
+
+
+    /* ERROR */
+
+    .edit-error {
+        background: #fff6f6;
+        border: 1px solid #f0cccc;
+        color: #b23b3b;
+        border-radius: 11px;
+        padding: 12px 15px;
+        margin-bottom: 22px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+
+    /* BUTTONS */
+
+    .edit-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 30px;
+        padding-top: 25px;
+        border-top: 1px solid #e5f1ef;
+    }
+
+    .save-user-btn {
+        border: none;
+        background: #10b5a4;
+        color: #ffffff;
+        padding: 12px 22px;
+        border-radius: 11px;
+        font-weight: 800;
+        transition: all 0.2s ease;
+    }
+
+        .save-user-btn:hover {
+            background: #07998c;
+            color: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(16, 181, 164, 0.18);
+        }
+
+    .cancel-user-btn {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        background: #f1faf8;
+        color: #4c7771;
+        border: 1px solid #d5e8e4;
+        padding: 12px 22px;
+        border-radius: 11px;
+        font-weight: 800;
+        transition: all 0.2s ease;
+    }
+
+        .cancel-user-btn:hover {
+            background: #e8f8f5;
+            color: #087f73;
+            border-color: #bfe6df;
+        }
+
+
+    /* RESPONSIVE */
+
+    @@media (max-width: 700px) {
+
+        .edit-header-content {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .edit-header {
+            padding: 25px;
+        }
+
+            .edit-header h1 {
+                font-size: 28px;
+            }
+
+        .edit-card {
+            padding: 24px;
+        }
+
+        .edit-actions {
+            flex-direction: column;
+        }
+
+        .save-user-btn,
+        .cancel-user-btn {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
+    .delete-user-btn {
+        border: none;
+        background: #e8f8f5;
+        color: #087f73;
+        padding: 12px 22px;
+        border-radius: 10px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+        .delete-user-btn:hover {
+            background: #10b5a4;
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+    /* REMOVE USER MODAL */
+
+    .remove-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(23, 32, 51, 0.45);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .remove-modal-box {
+        width: 420px;
+        max-width: 90%;
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 15px 45px rgba(0, 0, 0, 0.18);
+    }
+
+    .remove-modal-icon {
+        width: 58px;
+        height: 58px;
+        margin: 0 auto 18px;
+        border-radius: 50%;
+        background: #e8f8f5;
+        color: #087f73;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+    }
+
+    .remove-modal-box h3 {
+        margin-bottom: 10px;
+        color: #172033;
+        font-weight: 700;
+    }
+
+    .remove-modal-box p {
+        margin-bottom: 25px;
+        color: #667085;
+        line-height: 1.6;
+    }
+
+    .remove-modal-actions {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .modal-cancel-btn,
+    .modal-remove-btn {
+        border: none;
+        padding: 11px 22px;
+        border-radius: 10px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .modal-cancel-btn {
+        background: #f1faf8;
+        color: #087f73;
+    }
+
+        .modal-cancel-btn:hover {
+            background: #e8f8f5;
+        }
+
+    .modal-remove-btn {
+        background: #10b5a4;
+        color: #ffffff;
+    }
+
+        .modal-remove-btn:hover {
+            background: #087f73;
+        }
+</style>
+
+
+<div class="edit-user-page">
+
+    <!-- HEADER -->
+
+    <section class="edit-header">
+
+        <div class="edit-header-content">
+
+            <div>
+
+                <span class="edit-label">
+                    USER MANAGEMENT
+                </span>
+
+                <h1>Edit User</h1>
+
+                <p>
+                    Update this user's SkillBridge account information.
+                </p>
+
+            </div>
+
+            <a asp-page="/Admin/Users"
+               class="back-users-btn">
+                ← Manage Users
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- FORM -->
+
+    <section class="edit-card">
+
+        <div class="edit-card-heading">
+
+            <h2>Account Information</h2>
+
+            <p>
+                Update the details below and save your changes.
+            </p>
+
+        </div>
+
+
+        <div class="user-id-box">
+            User ID: #@Model.User.UserID
+        </div>
+
+
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="edit-error">
+                @Model.ErrorMessage
+            </div>
+        }
+
+
+        <form method="post">
+
+            <input type="hidden"
+                   asp-for="User.UserID" />
+
+            <div class="row g-4">
+
+                <!-- FULL NAME -->
+                <div class="col-md-6">
+
+                    <label asp-for="User.FullName"
+                           class="form-label">
+                        Full Name
+                    </label>
+
+                    <input asp-for="User.FullName"
+                           class="form-control"
+                           placeholder="Enter full name" />
+
+                    <span asp-validation-for="User.FullName"
+                          class="text-danger small">
+                    </span>
+
+                </div>
+
+
+                <!-- EMAIL -->
+                <div class="col-md-6">
+
+                    <label asp-for="User.Email"
+                           class="form-label">
+                        Email Address
+                    </label>
+
+                    <input asp-for="User.Email"
+                           class="form-control"
+                           placeholder="Enter email address" />
+
+                    <span asp-validation-for="User.Email"
+                          class="text-danger small">
+                    </span>
+
+                </div>
+
+
+                <!-- PHONE -->
+                <div class="col-md-6">
+
+                    <label asp-for="User.Phone"
+                           class="form-label">
+                        Phone Number
+                    </label>
+
+                    <input asp-for="User.Phone"
+                           class="form-control"
+                           placeholder="10-digit phone number" />
+
+                    <span asp-validation-for="User.Phone"
+                          class="text-danger small">
+                    </span>
+
+                </div>
+
+
+                <!-- ROLE -->
+                <div class="col-md-6">
+
+                    <label asp-for="User.Role"
+                           class="form-label">
+                        Account Role
+                    </label>
+
+                    <select asp-for="User.Role"
+                            class="form-select">
+
+                        <option value="User">
+                            User
+                        </option>
+
+                        <option value="Admin">
+                            Admin
+                        </option>
+
+                    </select>
+
+                    <span asp-validation-for="User.Role"
+                          class="text-danger small">
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="edit-actions">
+
+                <button type="submit"
+                        class="save-user-btn">
+                    Save Changes
+                </button>
+
+                <a asp-page="/Admin/Users"
+                   class="cancel-user-btn">
+                    Cancel
+                </a>
+
+                <button type="button"
+                        class="delete-user-btn"
+                        onclick="openRemoveUserModal()">
+                    Remove User
+                </button>
+
+            </div>
+
+        </form>
+
+        <!-- REMOVE USER MODAL -->
+        <div id="removeUserModal" class="remove-modal">
+
+            <div class="remove-modal-box">
+
+                <div class="remove-modal-icon">
+                    ⚠
+                </div>
+
+                <h3>Remove User?</h3>
+
+                <p>
+                    Are you sure you want to remove this user?
+                    This action cannot be undone.
+                </p>
+
+                <div class="remove-modal-actions">
+
+                    <button type="button"
+                            class="modal-cancel-btn"
+                            onclick="closeRemoveUserModal()">
+                        Cancel
+                    </button>
+
+                    <form method="post"
+                          asp-page-handler="Delete"
+                          asp-route-id="@Model.User.UserID">
+
+                        <button type="submit"
+                                class="modal-remove-btn">
+                            Remove User
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        
+
+
+        @section Scripts {
+
+            <partial name="_ValidationScriptsPartial" />
+            <script>
+
+                        function openRemoveUserModal() {
+                            document.getElementById("removeUserModal").style.display = "flex";
+                        }
+
+                        function closeRemoveUserModal() {
+                            document.getElementById("removeUserModal").style.display = "none";
+                        }
+
+            </script>
+
+        }

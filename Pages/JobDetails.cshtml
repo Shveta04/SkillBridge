@@ -1,0 +1,380 @@
+﻿@page
+@model SkillBridge.Pages.JobDetailsModel
+
+@{
+    ViewData["Title"] = "Job Details";
+}
+
+<link rel="stylesheet" href="~/css/jobs.css" />
+
+<div class="job-details-page">
+
+    @if (Model.Job != null)
+    {
+        <div class="job-details-container">
+
+            <!-- =====================================================
+                 HEADER
+            ===================================================== -->
+
+            <div class="job-details-header">
+
+                <div class="job-details-title-row">
+
+                    <div class="job-details-logo">
+                        <i class="bi bi-briefcase-fill"></i>
+                    </div>
+
+                    <div class="job-details-title-content">
+
+                        <span class="details-label">
+                            RECOMMENDED FOR YOU
+                        </span>
+
+                        <h1>
+                            @Model.Job.Title
+                        </h1>
+
+                        <h3>
+                            @Model.Job.Company
+                        </h3>
+
+                        <p>
+                            <i class="bi bi-geo-alt-fill"></i>
+                            @Model.Job.Location
+
+                            <span class="separator">•</span>
+
+                            <i class="bi bi-clock-fill"></i>
+                            @Model.Job.JobType
+                        </p>
+
+                    </div>
+
+                    <!-- ONE RESUME MATCH ONLY -->
+
+                    <div class="details-match">
+
+                        <strong>
+                            @Model.Job.MatchPercentage%
+                        </strong>
+
+                        <span>
+                            RESUME MATCH
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+                 MAIN CONTENT
+            ===================================================== -->
+
+            <div class="job-details-grid">
+
+                <!-- =================================================
+                     LEFT SIDE
+                ================================================= -->
+
+                <div class="job-details-main">
+
+
+                    <!-- ABOUT ROLE -->
+
+                    <section class="details-card">
+
+                        <div class="details-card-heading">
+
+                            <i class="bi bi-file-text-fill"></i>
+
+                            <h2>
+                                About This Role
+                            </h2>
+
+                        </div>
+
+                        <p>
+                            @Model.Job.Description
+                        </p>
+
+                    </section>
+
+
+                    <!-- WHY RECOMMENDED -->
+
+                    <section class="details-card recommended-details-card">
+
+                        <div class="details-card-heading">
+
+                            <i class="bi bi-stars"></i>
+
+                            <h2>
+                                Why SkillBridge Recommended This Job
+                            </h2>
+
+                        </div>
+
+                        <p>
+                            @Model.Job.WhyRecommended
+                        </p>
+
+                    </section>
+
+
+                    <!-- MATCHING SKILLS -->
+
+                    <section class="details-card">
+
+                        <div class="details-card-heading">
+
+                            <i class="bi bi-check-circle-fill"></i>
+
+                            <h2>
+                                Skills That Match
+                            </h2>
+
+                        </div>
+
+                        <p class="details-description">
+                            These skills from your resume are relevant
+                            to this role.
+                        </p>
+
+                        <div class="details-skills">
+
+                            @if (Model.Job.Skills != null &&
+                                 Model.Job.Skills.Count > 0)
+                            {
+                                @foreach (var skill in Model.Job.Skills)
+                                {
+                                    <span>
+                                        <i class="bi bi-check"></i>
+                                        @skill
+                                    </span>
+                                }
+                            }
+                            else
+                            {
+                                <span>
+                                    No matching skills found.
+                                </span>
+                            }
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- SKILLS TO IMPROVE -->
+
+                    <section class="details-card">
+
+                        <div class="details-card-heading">
+
+                            <i class="bi bi-lightbulb-fill"></i>
+
+                            <h2>
+                                Skills You Could Improve
+                            </h2>
+
+                        </div>
+
+                        <p class="details-description">
+                            Improving these areas can make your profile
+                            stronger for similar opportunities.
+                        </p>
+
+                        <div class="details-skills improve-skills">
+
+                            @if (Model.Job.MissingSkills != null &&
+                                 Model.Job.MissingSkills.Count > 0)
+                            {
+                                @foreach (var skill in Model.Job.MissingSkills)
+                                {
+                                    <span>
+                                        <i class="bi bi-arrow-up-circle"></i>
+                                        @skill
+                                    </span>
+                                }
+                            }
+                            else
+                            {
+                                <span>
+                                    <i class="bi bi-check-circle"></i>
+                                    Your resume covers the main skills
+                                    required for this role.
+                                </span>
+                            }
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+
+                <!-- =================================================
+                     RIGHT SIDE
+                ================================================= -->
+
+                <aside class="job-details-sidebar">
+
+
+                    <!-- JOB SUMMARY -->
+
+                    <div class="quick-info-card">
+
+                        <h3>
+                            Job Summary
+                        </h3>
+
+
+                        <div class="quick-info-row">
+
+                            <i class="bi bi-briefcase"></i>
+
+                            <div>
+
+                                <small>
+                                    Position
+                                </small>
+
+                                <strong>
+                                    @Model.Job.Title
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="quick-info-row">
+
+                            <i class="bi bi-building"></i>
+
+                            <div>
+
+                                <small>
+                                    Company
+                                </small>
+
+                                <strong>
+                                    @Model.Job.Company
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="quick-info-row">
+
+                            <i class="bi bi-geo-alt"></i>
+
+                            <div>
+
+                                <small>
+                                    Location
+                                </small>
+
+                                <strong>
+                                    @Model.Job.Location
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="quick-info-row">
+
+                            <i class="bi bi-clock"></i>
+
+                            <div>
+
+                                <small>
+                                    Job Type
+                                </small>
+
+                                <strong>
+                                    @Model.Job.JobType
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+
+            <!-- =====================================================
+                 BOTTOM NAVIGATION
+            ===================================================== -->
+
+            <div class="job-details-bottom-navigation">
+
+                <!-- BACK TO RECOMMENDED JOBS -->
+
+                <a asp-page="/Jobs"
+                   class="job-action-btn">
+
+                    <i class="bi bi-arrow-left"></i>
+
+                    Back to Recommended Jobs
+
+                </a>
+
+
+                <!-- MOVE TO COURSES -->
+
+                <a asp-page="/Courses"
+                   class="job-navigation-btn courses-navigation-btn">
+
+                    View Recommended Courses
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+    }
+    else
+    {
+        <!-- =====================================================
+             JOB NOT FOUND
+        ===================================================== -->
+
+        <div class="job-not-found">
+
+            <i class="bi bi-search"></i>
+
+            <h2>
+                Job Details Not Available
+            </h2>
+
+            <p>
+                We couldn't find the selected recommended job.
+            </p>
+
+            <a asp-page="/Jobs">
+
+                <i class="bi bi-arrow-left"></i>
+
+                Back to Recommended Jobs
+
+            </a>
+
+        </div>
+    }
+
+</div>

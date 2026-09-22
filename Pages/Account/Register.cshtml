@@ -1,0 +1,218 @@
+﻿@page
+@model SkillBridge.Pages.Account.RegisterModel
+
+@{
+    ViewData["Title"] = "Create Account";
+}
+
+<section class="register-page">
+
+    <div class="register-container">
+
+        <!-- LEFT SIDE -->
+        <div class="register-left">
+
+            <div class="register-badge">
+                <i class="bi bi-stars"></i>
+                AI Powered Career Platform
+            </div>
+
+            <h1>
+                Build Your Career
+                <span>With SkillBridge AI</span>
+            </h1>
+
+            <p class="register-description">
+                Create your SkillBridge account and get access to
+                AI-powered resume analysis, skill gap insights,
+                career recommendations, and personalized guidance.
+            </p>
+
+            <div class="feature-list">
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="bi bi-file-earmark-text-fill"></i>
+                    </div>
+
+                    <div>
+                        <h5>Resume Analyzer</h5>
+                        <span>Get intelligent resume insights</span>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="bi bi-speedometer2"></i>
+                    </div>
+
+                    <div>
+                        <h5>ATS Score</h5>
+                        <span>Understand and improve your ATS readiness</span>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="bi bi-briefcase-fill"></i>
+                    </div>
+
+                    <div>
+                        <h5>Career Opportunities</h5>
+                        <span>Discover roles that match your skills</span>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="bi bi-graph-up-arrow"></i>
+                    </div>
+
+                    <div>
+                        <h5>Career Growth</h5>
+                        <span>Identify your next skills and career steps</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+        <div class="register-card">
+
+            <div class="register-icon">
+                <i class="bi bi-person-plus-fill"></i>
+            </div>
+
+            <h2>Create Account</h2>
+
+            <p class="register-subtitle">
+                Start your AI-powered career journey today.
+            </p>
+
+            <form method="post">
+
+                <!-- FULL NAME -->
+                <div class="form-group">
+
+                    <label asp-for="NewUser.FullName">
+                        Full Name
+                    </label>
+
+                    <div class="input-box">
+                        <i class="bi bi-person"></i>
+
+                        <input asp-for="NewUser.FullName"
+                               placeholder="Enter your full name" />
+                    </div>
+
+                    <span asp-validation-for="NewUser.FullName"
+                          class="validation-message">
+                    </span>
+
+                </div>
+
+
+                <!-- EMAIL -->
+                <div class="form-group">
+
+                    <label asp-for="NewUser.Email">
+                        Email Address
+                    </label>
+
+                    <div class="input-box">
+                        <i class="bi bi-envelope"></i>
+
+                        <input asp-for="NewUser.Email"
+                               type="email"
+                               placeholder="Enter your email address" />
+                    </div>
+
+                    <span asp-validation-for="NewUser.Email"
+                          class="validation-message">
+                    </span>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+                <div class="form-group">
+
+                    <label asp-for="NewUser.Password">
+                        Password
+                    </label>
+
+                    <div class="input-box">
+                        <i class="bi bi-lock"></i>
+
+                        <input asp-for="NewUser.Password"
+                               type="password"
+                               placeholder="Create a strong password" />
+                    </div>
+
+                    <span asp-validation-for="NewUser.Password"
+                          class="validation-message">
+                    </span>
+
+                </div>
+
+
+                <!-- PHONE -->
+                <div class="form-group">
+
+                    <label asp-for="NewUser.Phone">
+                        Contact Number
+                    </label>
+
+                    <div class="input-box">
+                        <i class="bi bi-telephone"></i>
+
+                        <input asp-for="NewUser.Phone"
+                               type="tel"
+                               placeholder="Enter your contact number" />
+                    </div>
+
+                    <span asp-validation-for="NewUser.Phone"
+                          class="validation-message">
+                    </span>
+
+                </div>
+
+
+                <!-- REGISTER BUTTON -->
+                <button type="submit"
+                        class="register-btn">
+
+                    <i class="bi bi-person-check-fill"></i>
+
+                    Create My Account
+
+                </button>
+
+            </form>
+
+
+            <!-- LOGIN LINK -->
+            <div class="login-area">
+
+                <span>Already have an account?</span>
+
+                <a asp-page="/Account/Login">
+                    Login Here
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

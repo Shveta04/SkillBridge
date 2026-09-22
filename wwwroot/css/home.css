@@ -1,0 +1,857 @@
+﻿/* =========================================================
+        SKILLBRIDGE HOME PAGE
+        WHITE + SOFT MINT / TEAL THEME
+========================================================= */
+
+
+/* =========================================================
+                        GENERAL
+========================================================= */
+
+body {
+    background: #FFFFFF !important;
+}
+
+main {
+    background: #FFFFFF !important;
+}
+
+section {
+    overflow: hidden;
+}
+
+.home-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+
+/* =========================================================
+                        HERO
+========================================================= */
+
+.hero-section {
+    min-height: 62vh;
+    display: flex;
+    align-items: center;
+    padding: 48px 0;
+    background: radial-gradient( circle at 85% 20%, rgba(20, 184, 166, .12), transparent 28% ), linear-gradient( 135deg, #F7FCFB 0%, #FFFFFF 58%, #F0FDFA 100% );
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    gap: 50px;
+    align-items: center;
+}
+
+
+/* =========================================================
+                        HERO LEFT
+========================================================= */
+
+.hero-left {
+    animation: slideLeft .8s ease;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 17px;
+    margin-bottom: 20px;
+    border-radius: 50px;
+    background: #CCFBF1;
+    color: #0F766E;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .6px;
+}
+
+.hero-left h1 {
+    max-width: 720px;
+    margin: 0 0 18px;
+    color: #18312F;
+    font-size: clamp(42px, 4.2vw, 62px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -2.2px;
+}
+
+    .hero-left h1 span {
+        display: block;
+        color: #0F766E;
+    }
+
+.hero-description {
+    max-width: 650px;
+    margin: 0;
+    color: #64748B;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+                    HERO HIGHLIGHTS
+========================================================= */
+
+.hero-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+    .hero-highlights div {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 13px;
+        border: 1px solid #D9E7E5;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, .8);
+        color: #18312F;
+        font-size: 12px;
+        font-weight: 700;
+        box-shadow: 0 5px 15px rgba(15, 118, 110, .04);
+    }
+
+    .hero-highlights i {
+        color: #0F766E;
+        font-size: 15px;
+    }
+
+
+/* =========================================================
+                        HERO RIGHT
+========================================================= */
+
+.hero-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: slideRight .8s ease;
+}
+
+
+/* =========================================================
+                    DASHBOARD PREVIEW
+========================================================= */
+
+.dashboard-preview {
+    width: 100%;
+    max-width: 520px;
+    padding: 15px;
+    border: 1px solid #D9E7E5;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, .88);
+    box-shadow: 0 22px 55px rgba(15, 118, 110, .12);
+    backdrop-filter: blur(12px);
+    animation: floatCard 5s ease-in-out infinite;
+}
+
+
+/* =========================================================
+                    BROWSER HEADER
+========================================================= */
+
+.dashboard-header {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0 8px 8px;
+}
+
+.circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+    .circle.red {
+        background: #FCA5A5;
+    }
+
+    .circle.yellow {
+        background: #FCD34D;
+    }
+
+    .circle.green {
+        background: #86EFAC;
+    }
+
+.preview-window-title {
+    margin-left: 7px;
+    color: #94A3B8;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+                CAREER PREVIEW
+========================================================= */
+
+.career-preview-card {
+    position: relative;
+    min-height: 165px;
+    overflow: hidden;
+    padding: 25px;
+    border-radius: 21px;
+    background: linear-gradient( 135deg, #0F766E 0%, #0D9488 55%, #14B8A6 100% );
+    color: #FFFFFF;
+    box-shadow: 0 15px 35px rgba(15, 118, 110, .18);
+}
+
+    .career-preview-card::after {
+        content: "";
+        position: absolute;
+        width: 210px;
+        height: 210px;
+        right: -95px;
+        top: -105px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, .08);
+    }
+
+.career-preview-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+}
+
+.preview-label {
+    display: block;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, .75);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.career-preview-card h2 {
+    margin: 0 0 8px;
+    color: #FFFFFF;
+    font-size: 26px;
+    font-weight: 800;
+}
+
+.career-preview-card p {
+    max-width: 320px;
+    margin: 0;
+    color: rgba(255, 255, 255, .88);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.career-preview-icon {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, .30);
+    border-radius: 17px;
+    background: rgba(255, 255, 255, .14);
+    font-size: 27px;
+}
+
+
+/* =========================================================
+                    MINI CARDS
+========================================================= */
+
+.mini-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 11px;
+    margin-top: 11px;
+}
+
+.mini-card {
+    min-height: 82px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 13px;
+    border: 1px solid #D9E7E5;
+    border-radius: 17px;
+    background: #FFFFFF;
+    box-shadow: 0 7px 20px rgba(15, 118, 110, .04);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+    .mini-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 25px rgba(15, 118, 110, .09);
+    }
+
+
+/* =========================================================
+                    MINI ICONS
+========================================================= */
+
+.mini-card-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 13px;
+    font-size: 18px;
+}
+
+.resume-icon {
+    background: #CCFBF1;
+    color: #0F766E;
+}
+
+.gap-icon {
+    background: #ECFDF5;
+    color: #0D9488;
+}
+
+.job-icon {
+    background: #E8F7F5;
+    color: #087F78;
+}
+
+.course-icon {
+    background: #F0FDFA;
+    color: #0F766E;
+}
+
+
+/* =========================================================
+                    MINI TEXT
+========================================================= */
+
+.mini-card-content h5 {
+    margin: 0 0 4px;
+    color: #18312F;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.mini-card-content p {
+    margin: 0;
+    color: #64748B;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+                    HOW IT WORKS
+========================================================= */
+
+.how-section {
+    padding: 48px 0;
+    background: #F5FCFA;
+}
+
+    .how-section .home-container {
+        padding-top: 38px;
+        padding-bottom: 38px;
+        background: #FFFFFF;
+        border: 1px solid #DCEDEA;
+        border-radius: 28px;
+        box-shadow: 0 12px 35px rgba(15, 118, 110, .06);
+    }
+
+
+/* =========================================================
+                    SECTION HEADING
+========================================================= */
+
+.section-heading {
+    margin-bottom: 30px;
+}
+
+    .section-heading span {
+        display: block;
+        margin-bottom: 8px;
+        color: #0F766E;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 2px;
+    }
+
+    .section-heading h2 {
+        margin: 0 0 8px;
+        color: #18312F;
+        font-size: 36px;
+        font-weight: 800;
+        letter-spacing: -.8px;
+    }
+
+    .section-heading p {
+        margin: 0;
+        color: #64748B;
+        font-size: 15px;
+    }
+
+
+/* =========================================================
+                    STEPS ROW
+========================================================= */
+
+.steps-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-height: 88px;
+    padding: 17px;
+    border: 1px solid #D9E7E5;
+    border-radius: 18px;
+    background: #FFFFFF;
+    box-shadow: 0 6px 20px rgba(15, 118, 110, .04);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+    .step-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(15, 118, 110, .08);
+    }
+
+.step-number {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    background: #CCFBF1;
+    color: #0F766E;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.step-content h3 {
+    margin: 0 0 4px;
+    color: #18312F;
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.step-content p {
+    margin: 0;
+    color: #64748B;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+                    FEATURES
+========================================================= */
+
+.features-section {
+    padding: 55px 0;
+    background: #F0FDFA;
+}
+
+    .features-section .home-container {
+        padding-top: 38px;
+        padding-bottom: 38px;
+        background: rgba(255, 255, 255, .42);
+        border: 1px solid rgba(217, 231, 229, .85);
+        border-radius: 28px;
+    }
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+}
+
+.feature-card {
+    min-height: 210px;
+    padding: 22px;
+    border: 1px solid #D9E7E5;
+    border-radius: 20px;
+    background: #FFFFFF;
+    box-shadow: 0 8px 25px rgba(15, 118, 110, .05);
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 18px 35px rgba(15, 118, 110, .10);
+    }
+
+
+/* =========================================================
+                    FEATURE ICONS
+========================================================= */
+
+.feature-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 17px;
+    border-radius: 15px;
+    font-size: 20px;
+}
+
+.resume-feature {
+    background: #CCFBF1;
+    color: #0F766E;
+}
+
+.gap-feature {
+    background: #ECFDF5;
+    color: #0D9488;
+}
+
+.career-feature {
+    background: #DFF7F3;
+    color: #087F78;
+}
+
+.job-feature {
+    background: #E8F7F5;
+    color: #0F766E;
+}
+
+.course-feature {
+    background: #EAFBF8;
+    color: #0D9488;
+}
+
+
+/* =========================================================
+                    FEATURE TEXT
+========================================================= */
+
+.feature-card h3 {
+    margin: 0 0 9px;
+    color: #18312F;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.feature-card p {
+    margin: 0;
+    color: #64748B;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+                    BOTTOM CTA
+========================================================= */
+
+.cta-section {
+    padding: 55px 0 65px;
+    background: #FFFFFF;
+}
+
+.cta-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 35px;
+    padding: 42px 50px;
+    border-radius: 27px;
+    background: linear-gradient( 135deg, #0F766E 0%, #0D9488 55%, #14B8A6 100% );
+    color: #FFFFFF;
+    box-shadow: 0 25px 60px rgba(15, 118, 110, .18);
+}
+
+.cta-content span {
+    display: block;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, .72);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.cta-content h2 {
+    margin: 0 0 8px;
+    color: #FFFFFF;
+    font-size: 32px;
+    font-weight: 800;
+}
+
+.cta-content p {
+    max-width: 620px;
+    margin: 0;
+    color: rgba(255, 255, 255, .88);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+                    CTA BUTTONS
+========================================================= */
+
+.cta-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.cta-primary,
+.cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-width: 130px;
+    padding: 12px 22px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+    transition: .25s ease;
+}
+
+.cta-primary {
+    background: #FFFFFF;
+    color: #0F766E;
+}
+
+    .cta-primary:hover {
+        color: #0F766E;
+        text-decoration: none;
+        transform: translateY(-3px);
+        background: #F0FDFA;
+    }
+
+.cta-secondary {
+    border: 1px solid rgba(255, 255, 255, .45);
+    background: rgba(255, 255, 255, .10);
+    color: #FFFFFF;
+}
+
+    .cta-secondary:hover {
+        color: #FFFFFF;
+        text-decoration: none;
+        transform: translateY(-3px);
+        background: rgba(255, 255, 255, .18);
+    }
+
+
+/* =========================================================
+                    ANIMATIONS
+========================================================= */
+
+@keyframes slideLeft {
+
+    from {
+        opacity: 0;
+        transform: translateX(-25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideRight {
+
+    from {
+        opacity: 0;
+        transform: translateX(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes floatCard {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+                    RESPONSIVE
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .hero-left {
+        max-width: 800px;
+    }
+
+    .hero-right {
+        justify-content: flex-start;
+    }
+
+    .feature-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .cta-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .home-container {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .hero-section {
+        min-height: auto;
+        padding: 45px 0;
+    }
+
+    .hero-left h1 {
+        font-size: 45px;
+        letter-spacing: -1.5px;
+    }
+
+    .hero-description {
+        font-size: 16px;
+    }
+
+    .hero-highlights {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dashboard-preview {
+        max-width: 100%;
+    }
+
+    .how-section {
+        padding: 35px 0;
+    }
+
+        .how-section .home-container {
+            padding-top: 30px;
+            padding-bottom: 30px;
+            border-radius: 22px;
+        }
+
+    .steps-row {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .features-section {
+        padding: 40px 0;
+    }
+
+        .features-section .home-container {
+            padding-top: 30px;
+            padding-bottom: 30px;
+            border-radius: 22px;
+        }
+
+    .section-heading h2 {
+        font-size: 31px;
+    }
+
+    .cta-section {
+        padding: 40px 0 50px;
+    }
+
+    .cta-box {
+        padding: 32px 25px;
+        border-radius: 22px;
+    }
+
+    .cta-content h2 {
+        font-size: 28px;
+    }
+
+    .cta-buttons {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cta-primary,
+    .cta-secondary {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .hero-left h1 {
+        font-size: 38px;
+    }
+
+    .career-preview-content {
+        align-items: flex-start;
+    }
+
+    .career-preview-icon {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+        font-size: 21px;
+    }
+
+    .career-preview-card h2 {
+        font-size: 22px;
+    }
+
+    .career-preview-card p {
+        font-size: 12px;
+    }
+
+    .mini-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading h2 {
+        font-size: 28px;
+    }
+}

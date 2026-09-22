@@ -1,0 +1,983 @@
+﻿/* =========================================================
+   SKILLBRIDGE — SKILL GAP ANALYSIS
+   PREMIUM PROFESSIONAL DESIGN
+   WHITE + MINT + TEAL
+========================================================= */
+
+.skillgap-page {
+    --primary: #0f9f91;
+    --primary-dark: #087b71;
+    --primary-deep: #0b625b;
+    --primary-light: #e1f8f4;
+    --primary-soft: #f1fbf9;
+    --dark: #173b3a;
+    --text: #526b7a;
+    --muted: #8295a1;
+    --border: #dcefeb;
+    --surface: #ffffff;
+    --surface-soft: #f7fcfb;
+    width: 100%;
+    min-height: 100vh;
+    padding: 55px 3.5% 90px;
+    color: var(--dark);
+    background: radial-gradient( circle at 8% 4%, rgba(86, 199, 187, 0.16), transparent 24% ), radial-gradient( circle at 94% 12%, rgba(15, 159, 145, 0.10), transparent 23% ), linear-gradient( 180deg, #f3fcfa 0%, #f8fdfc 30%, #ffffff 72% );
+    box-sizing: border-box;
+}
+
+    .skillgap-page *,
+    .skillgap-page *::before,
+    .skillgap-page *::after {
+        box-sizing: border-box;
+    }
+
+
+    /* =========================================================
+   HERO
+========================================================= */
+
+    .skillgap-page .skillgap-hero {
+        width: 100%;
+        min-height: 285px;
+        margin-bottom: 30px;
+        padding: 42px 52px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 45px;
+        border: 1px solid #d9eeeb;
+        border-radius: 30px;
+        background: #ffffff;
+        box-shadow: 0 18px 45px rgba(23, 59, 58, 0.07);
+    }
+
+    .skillgap-page .skillgap-hero-content {
+        max-width: 850px;
+    }
+
+    .skillgap-page .skillgap-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 15px;
+        border: 1px solid #bdece5;
+        border-radius: 50px;
+        background: #e5f9f5;
+        color: var(--primary-dark);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.6px;
+    }
+
+    .skillgap-page .label-icon {
+        width: 26px;
+        height: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #c9f2eb;
+    }
+
+    .skillgap-page .skillgap-label i {
+        font-size: 13px;
+    }
+
+    .skillgap-page .skillgap-hero h1 {
+        margin: 18px 0 12px;
+        font-size: clamp(42px, 5vw, 58px);
+        line-height: 1.05;
+        letter-spacing: -2px;
+        font-weight: 850;
+        color: var(--dark);
+    }
+
+        .skillgap-page .skillgap-hero h1 span {
+            color: var(--primary);
+        }
+
+    .skillgap-page .skillgap-hero p {
+        max-width: 760px;
+        margin: 0;
+        color: var(--text);
+        font-size: 17px;
+        line-height: 1.75;
+    }
+
+
+    /* =========================================================
+   CAREER TARGET
+========================================================= */
+
+    .skillgap-page .career-target {
+        min-width: 330px;
+        max-width: 370px;
+        padding: 25px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        border: 1px solid #ccebe6;
+        border-radius: 22px;
+        background: linear-gradient( 145deg, #effbf9, #ffffff );
+        box-shadow: 0 12px 30px rgba(15, 159, 145, 0.08);
+    }
+
+    .skillgap-page .target-icon {
+        width: 58px;
+        height: 58px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 17px;
+        background: linear-gradient( 145deg, #d3f6f0, #bceee7 );
+        color: var(--primary-dark);
+        font-size: 25px;
+    }
+
+    .skillgap-page .target-text span {
+        display: block;
+        margin-bottom: 6px;
+        color: #66807b;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.8px;
+    }
+
+    .skillgap-page .target-text strong {
+        display: block;
+        color: var(--dark);
+        font-size: 19px;
+        line-height: 1.3;
+        font-weight: 800;
+    }
+
+    .skillgap-page .target-text small {
+        display: block;
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: 12px;
+    }
+
+
+    /* =========================================================
+   EMPTY STATE
+========================================================= */
+
+    .skillgap-page .empty-skillgap {
+        width: 100%;
+        min-height: 310px;
+        margin-bottom: 30px;
+        padding: 45px;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        border: 1px solid var(--border);
+        border-radius: 26px;
+        background: #ffffff;
+        box-shadow: 0 16px 40px rgba(23, 59, 58, 0.06);
+    }
+
+    .skillgap-page .empty-icon {
+        width: 100px;
+        height: 100px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 28px;
+        background: var(--primary-light);
+        color: var(--primary-dark);
+        font-size: 40px;
+    }
+
+    .skillgap-page .empty-label {
+        color: var(--primary-dark);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.8px;
+    }
+
+    .skillgap-page .empty-content h2 {
+        margin: 8px 0 10px;
+        font-size: 29px;
+        font-weight: 800;
+    }
+
+    .skillgap-page .empty-content p {
+        max-width: 700px;
+        margin: 0 0 24px;
+        color: var(--text);
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+
+    /* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
+    .skillgap-page .skillgap-primary-btn {
+        min-height: 54px;
+        padding: 0 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border-radius: 14px;
+        background: linear-gradient( 135deg, #078d83, #16b8a9 );
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 800;
+        box-shadow: 0 10px 25px rgba(15, 159, 145, 0.20);
+        transition: all 0.25s ease;
+    }
+
+        .skillgap-page .skillgap-primary-btn:hover {
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 32px rgba(15, 159, 145, 0.28);
+        }
+
+
+    /* =========================================================
+   SUMMARY CARDS
+========================================================= */
+
+    .skillgap-page .skillgap-summary {
+        width: 100%;
+        margin-bottom: 30px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+    }
+
+    .skillgap-page .summary-card {
+        min-height: 190px;
+        padding: 26px;
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        background: #ffffff;
+        box-shadow: 0 13px 35px rgba(23, 59, 58, 0.055);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+        .skillgap-page .summary-card:hover {
+            transform: translateY(-4px);
+            border-color: #c5e7e1;
+            box-shadow: 0 20px 45px rgba(23, 59, 58, 0.09);
+        }
+
+    .skillgap-page .summary-card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .skillgap-page .summary-icon {
+        width: 51px;
+        height: 51px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 16px;
+        background: var(--primary-light);
+        color: var(--primary-dark);
+        font-size: 22px;
+    }
+
+    .skillgap-page .summary-status {
+        padding: 6px 10px;
+        border-radius: 50px;
+        background: #f0faf8;
+        color: var(--primary-dark);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+    }
+
+    .skillgap-page .summary-info {
+        margin-top: 22px;
+    }
+
+    .skillgap-page .summary-label {
+        display: block;
+        margin-bottom: 5px;
+        color: #66807b;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.7px;
+    }
+
+    .skillgap-page .summary-info strong {
+        display: block;
+        color: var(--dark);
+        font-size: 34px;
+        line-height: 1.1;
+        font-weight: 850;
+    }
+
+    .skillgap-page .summary-card.career .summary-info strong {
+        font-size: 21px;
+        line-height: 1.3;
+    }
+
+    .skillgap-page .summary-info small {
+        display: block;
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 12px;
+    }
+
+
+    /* =========================================================
+   INTRODUCTION CARD
+========================================================= */
+
+    .skillgap-page .skillgap-intro-card {
+        width: 100%;
+        margin-bottom: 25px;
+        padding: 30px 34px;
+        display: flex;
+        align-items: flex-start;
+        gap: 22px;
+        border: 1px solid #cfeae5;
+        border-radius: 24px;
+        background: linear-gradient( 135deg, #eafaf7, #ffffff );
+        box-shadow: 0 12px 32px rgba(15, 159, 145, 0.06);
+    }
+
+    .skillgap-page .intro-icon {
+        width: 57px;
+        height: 57px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 17px;
+        background: #c9f2eb;
+        color: var(--primary-dark);
+        font-size: 24px;
+    }
+
+    .skillgap-page .intro-content > span,
+    .skillgap-page .description-content > span {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--primary-dark);
+        font-size: 11px;
+        font-weight: 850;
+        letter-spacing: 0.8px;
+    }
+
+    .skillgap-page .intro-content h2 {
+        margin: 0 0 8px;
+        color: var(--dark);
+        font-size: 23px;
+        font-weight: 820;
+    }
+
+    .skillgap-page .intro-content p {
+        max-width: 1000px;
+        margin: 0;
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1.75;
+    }
+
+
+    /* =========================================================
+   CAREER DESCRIPTION
+========================================================= */
+
+    .skillgap-page .career-description {
+        width: 100%;
+        margin-bottom: 30px;
+        padding: 28px 34px;
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        background: #ffffff;
+        box-shadow: 0 12px 30px rgba(23, 59, 58, 0.05);
+    }
+
+    .skillgap-page .description-icon {
+        width: 54px;
+        height: 54px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 16px;
+        background: var(--primary-light);
+        color: var(--primary-dark);
+        font-size: 22px;
+    }
+
+    .skillgap-page .description-content h3 {
+        margin: 0 0 8px;
+        color: var(--dark);
+        font-size: 22px;
+        font-weight: 800;
+    }
+
+    .skillgap-page .description-content p {
+        max-width: 1100px;
+        margin: 0;
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1.75;
+    }
+
+
+    /* =========================================================
+   MAIN SKILLS GRID
+========================================================= */
+
+    .skillgap-page .skillgap-grid {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin-bottom: 30px;
+    }
+
+
+    /* =========================================================
+   SKILLS PANELS
+========================================================= */
+
+    .skillgap-page .skills-panel {
+        min-width: 0;
+        padding: 30px;
+        border: 1px solid var(--border);
+        border-radius: 25px;
+        background: #ffffff;
+        box-shadow: 0 15px 40px rgba(23, 59, 58, 0.055);
+    }
+
+    .skillgap-page .panel-heading {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 20px;
+        padding-bottom: 23px;
+        border-bottom: 1px solid #e6f1ef;
+    }
+
+    .skillgap-page .panel-label {
+        display: block;
+        margin-bottom: 7px;
+        color: var(--primary-dark);
+        font-size: 10px;
+        font-weight: 850;
+        letter-spacing: 0.9px;
+    }
+
+    .skillgap-page .panel-title h2 {
+        margin: 0;
+        color: var(--dark);
+        font-size: 23px;
+        font-weight: 820;
+    }
+
+    .skillgap-page .panel-title p {
+        margin: 7px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+    }
+
+    .skillgap-page .skill-count {
+        min-width: 68px;
+        padding: 10px 13px;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 15px;
+        background: var(--primary-light);
+        color: var(--primary-dark);
+    }
+
+        .skillgap-page .skill-count strong {
+            font-size: 21px;
+            line-height: 1;
+            font-weight: 850;
+        }
+
+        .skillgap-page .skill-count span {
+            margin-top: 4px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+
+    /* =========================================================
+   CURRENT SKILLS
+========================================================= */
+
+    .skillgap-page .skills-list {
+        padding-top: 24px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 11px;
+    }
+
+    .skillgap-page .skill-chip {
+        min-height: 44px;
+        padding: 7px 15px 7px 8px;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        border: 1px solid #c9ebe5;
+        border-radius: 50px;
+        background: #effbf9;
+        color: #087b71;
+        font-size: 13px;
+        font-weight: 750;
+        transition: all 0.2s ease;
+    }
+
+        .skillgap-page .skill-chip:hover {
+            transform: translateY(-2px);
+            background: #e3f8f4;
+            border-color: #a9ddd5;
+            box-shadow: 0 7px 16px rgba(15, 159, 145, 0.08);
+        }
+
+    .skillgap-page .chip-icon {
+        width: 29px;
+        height: 29px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #c9f2eb;
+        color: var(--primary-dark);
+    }
+
+    .skillgap-page .no-skills {
+        margin-top: 24px;
+        padding: 18px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        border: 1px dashed #cfe5e1;
+        border-radius: 16px;
+        background: var(--surface-soft);
+        color: var(--muted);
+        font-size: 13px;
+    }
+
+
+    /* =========================================================
+   SKILL GAPS
+========================================================= */
+
+    .skillgap-page .gap-list {
+        padding-top: 23px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .skillgap-page .gap-card {
+        padding: 18px;
+        border: 1px solid #e1efed;
+        border-radius: 18px;
+        background: #fbfefd;
+        transition: all 0.2s ease;
+    }
+
+        .skillgap-page .gap-card:hover {
+            transform: translateY(-2px);
+            border-color: #bfe4de;
+            box-shadow: 0 9px 22px rgba(23, 59, 58, 0.06);
+        }
+
+    .skillgap-page .gap-card-top {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .skillgap-page .gap-skill-icon {
+        width: 42px;
+        height: 42px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 13px;
+        background: #e4f8f4;
+        color: var(--primary-dark);
+        font-size: 18px;
+    }
+
+    .skillgap-page .gap-title {
+        min-width: 0;
+        flex: 1;
+    }
+
+        .skillgap-page .gap-title h3 {
+            margin: 0;
+            color: var(--dark);
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .skillgap-page .gap-title span {
+            display: block;
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+    .skillgap-page .priority {
+        padding: 6px 10px;
+        flex-shrink: 0;
+        border-radius: 50px;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.4px;
+    }
+
+        .skillgap-page .priority.high {
+            background: #e4f8f4;
+            color: var(--primary-dark);
+        }
+
+        .skillgap-page .priority.medium {
+            background: #effbf9;
+            color: #43857e;
+        }
+
+    .skillgap-page .gap-divider {
+        height: 1px;
+        margin: 14px 0;
+        background: #e6f1ef;
+    }
+
+    .skillgap-page .gap-card p {
+        margin: 0;
+        color: var(--text);
+        font-size: 13px;
+        line-height: 1.65;
+    }
+
+    .skillgap-page .no-gap {
+        padding: 35px 20px;
+        text-align: center;
+    }
+
+    .skillgap-page .no-gap-icon {
+        width: 65px;
+        height: 65px;
+        margin: 0 auto 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+        background: var(--primary-light);
+        color: var(--primary-dark);
+        font-size: 28px;
+    }
+
+    .skillgap-page .no-gap h3 {
+        margin: 0 0 7px;
+        font-size: 20px;
+        font-weight: 800;
+    }
+
+    .skillgap-page .no-gap p {
+        max-width: 420px;
+        margin: 0 auto;
+        color: var(--text);
+        font-size: 13px;
+        line-height: 1.65;
+    }
+
+
+    /* =========================================================
+   WHAT'S NEXT
+========================================================= */
+
+    .skillgap-page .next-step-card {
+        width: 100%;
+        min-height: 205px;
+        padding: 32px 36px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 35px;
+        border: 1px solid #b8e2db;
+        border-radius: 26px;
+        background: linear-gradient( 135deg, #e5f9f5 0%, #f7fcfb 55%, #ffffff 100% );
+        box-shadow: 0 16px 42px rgba(15, 159, 145, 0.09);
+    }
+
+    .skillgap-page .next-step-content {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .skillgap-page .next-step-icon {
+        width: 66px;
+        height: 66px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 19px;
+        background: #c8f2eb;
+        color: var(--primary-dark);
+        font-size: 29px;
+    }
+
+    .skillgap-page .next-step-text > span {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--primary-dark);
+        font-size: 11px;
+        font-weight: 850;
+        letter-spacing: 0.9px;
+    }
+
+    .skillgap-page .next-step-text h2 {
+        margin: 0 0 7px;
+        color: var(--dark);
+        font-size: 24px;
+        line-height: 1.3;
+        font-weight: 820;
+    }
+
+    .skillgap-page .next-step-text p {
+        max-width: 720px;
+        margin: 0;
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+
+    /* =========================================================
+   NAVIGATION BUTTONS
+========================================================= */
+
+    .skillgap-page .next-step-buttons {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        flex-shrink: 0;
+    }
+
+    .skillgap-page .next-step-btn {
+        min-height: 54px;
+        padding: 0 22px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border-radius: 14px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 800;
+        transition: all 0.25s ease;
+    }
+
+    /* Previous */
+    .skillgap-page .previous-btn {
+        background: #ffffff;
+        border: 1px solid #9edbd3;
+        color: var(--primary-dark);
+        box-shadow: 0 7px 18px rgba(15, 159, 145, 0.08);
+    }
+
+        .skillgap-page .previous-btn:hover {
+            background: #effbf9;
+            color: var(--primary-dark);
+            transform: translateX(-3px);
+            box-shadow: 0 10px 24px rgba(15, 159, 145, 0.14);
+        }
+
+    /* Next */
+    .skillgap-page .next-btn-primary {
+        background: linear-gradient( 135deg, #078d83, #16b8a9 );
+        border: 1px solid #078d83;
+        color: #ffffff;
+        box-shadow: 0 10px 24px rgba(15, 159, 145, 0.20);
+    }
+
+        .skillgap-page .next-btn-primary:hover {
+            background: linear-gradient( 135deg, #087b71, #0f9f91 );
+            color: #ffffff;
+            transform: translateX(3px);
+            box-shadow: 0 14px 30px rgba(15, 159, 145, 0.27);
+        }
+
+    .skillgap-page .next-step-btn i {
+        font-size: 17px;
+    }
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .skillgap-page {
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+
+        .skillgap-page .skillgap-hero {
+            padding: 35px;
+        }
+
+        .skillgap-page .career-target {
+            min-width: 290px;
+        }
+
+        .skillgap-page .skillgap-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .skillgap-page .next-step-card {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .skillgap-page .next-step-buttons {
+            width: 100%;
+            justify-content: space-between;
+        }
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 750px) {
+
+    .skillgap-page {
+        padding: 30px 5% 60px;
+    }
+
+        .skillgap-page .skillgap-hero {
+            min-height: auto;
+            padding: 30px 25px;
+            flex-direction: column;
+            align-items: flex-start;
+            border-radius: 24px;
+        }
+
+            .skillgap-page .skillgap-hero h1 {
+                font-size: 40px;
+                letter-spacing: -1.2px;
+            }
+
+            .skillgap-page .skillgap-hero p {
+                font-size: 15px;
+            }
+
+        .skillgap-page .career-target {
+            width: 100%;
+            min-width: 0;
+        }
+
+        .skillgap-page .skillgap-summary {
+            grid-template-columns: 1fr;
+        }
+
+        .skillgap-page .summary-card {
+            min-height: 165px;
+        }
+
+        .skillgap-page .empty-skillgap {
+            padding: 30px 25px;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .skillgap-page .skillgap-intro-card,
+        .skillgap-page .career-description {
+            padding: 25px;
+        }
+
+        .skillgap-page .skills-panel {
+            padding: 24px;
+        }
+
+        .skillgap-page .panel-heading {
+            flex-direction: column;
+        }
+
+        .skillgap-page .skill-count {
+            align-self: flex-start;
+        }
+
+        .skillgap-page .next-step-card {
+            padding: 27px 24px;
+        }
+
+        .skillgap-page .next-step-content {
+            align-items: flex-start;
+        }
+
+        .skillgap-page .next-step-text h2 {
+            font-size: 21px;
+        }
+
+        .skillgap-page .next-step-buttons {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .skillgap-page .next-step-btn {
+            width: 100%;
+        }
+}
+
+
+/* =========================================================
+   EXTRA SMALL
+========================================================= */
+
+@media (max-width: 450px) {
+
+    .skillgap-page .skillgap-hero h1 {
+        font-size: 35px;
+    }
+
+    .skillgap-page .career-target {
+        padding: 20px;
+    }
+
+    .skillgap-page .target-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .skillgap-page .target-text strong {
+        font-size: 17px;
+    }
+
+    .skillgap-page .skillgap-intro-card,
+    .skillgap-page .career-description {
+        flex-direction: column;
+    }
+
+    .skillgap-page .gap-card-top {
+        align-items: flex-start;
+    }
+
+    .skillgap-page .priority {
+        margin-left: auto;
+    }
+}

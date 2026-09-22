@@ -1,0 +1,541 @@
+﻿@page
+@model SkillBridge.Pages.SkillGapModel
+
+@{
+    ViewData["Title"] = "Skill Gap Analysis";
+}
+
+<link rel="stylesheet"
+      href="~/css/skillgap.css"
+      asp-append-version="true" />
+
+<div class="skillgap-page">
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="skillgap-hero">
+
+        <div class="skillgap-hero-content">
+
+            <div class="skillgap-label">
+                <span class="label-icon">
+                    <i class="bi bi-stars"></i>
+                </span>
+
+                PERSONALIZED ANALYSIS
+            </div>
+
+            <h1>
+                Skill Gap <span>Analysis</span>
+            </h1>
+
+            <p>
+                Understand the skills you already have, discover the
+                skills you can improve, and prepare yourself for your
+                recommended career direction.
+            </p>
+
+        </div>
+
+        <div class="career-target">
+
+            <div class="target-icon">
+                <i class="bi bi-bullseye"></i>
+            </div>
+
+            <div class="target-text">
+
+                <span>RECOMMENDED CAREER</span>
+
+                <strong>
+                    @Model.CareerGoal
+                </strong>
+
+                <small>
+                    Based on your resume
+                </small>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    @if (!Model.HasResumeData)
+    {
+        <!-- =================================================
+             NO RESUME STATE
+        ================================================== -->
+
+        <section class="empty-skillgap">
+
+            <div class="empty-icon">
+                <i class="bi bi-file-earmark-arrow-up-fill"></i>
+            </div>
+
+            <div class="empty-content">
+
+                <span class="empty-label">
+                    RESUME REQUIRED
+                </span>
+
+                <h2>
+                    Analyze your resume first
+                </h2>
+
+                <p>
+                    Upload and analyze your resume to discover your
+                    current skills, identify skill gaps and receive
+                    personalized career guidance.
+                </p>
+
+                <a asp-page="/ResumeAnalyzer"
+                   class="skillgap-primary-btn">
+
+                    <i class="bi bi-upload"></i>
+
+                    Analyze Resume
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </section>
+    }
+    else
+    {
+        <!-- =================================================
+             SUMMARY CARDS
+        ================================================== -->
+
+        <section class="skillgap-summary">
+
+            <!-- CURRENT SKILLS -->
+
+            <div class="summary-card current">
+
+                <div class="summary-card-top">
+
+                    <div class="summary-icon">
+                        <i class="bi bi-check2-circle"></i>
+                    </div>
+
+                    <span class="summary-status">
+                        FOUND
+                    </span>
+
+                </div>
+
+                <div class="summary-info">
+
+                    <span class="summary-label">
+                        IDENTIFIED SKILLS
+                    </span>
+
+                    <strong>
+                        @Model.CurrentSkillCount
+                    </strong>
+
+                    <small>
+                        Skills found in your resume
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- SKILL GAPS -->
+
+            <div class="summary-card gap">
+
+                <div class="summary-card-top">
+
+                    <div class="summary-icon">
+                        <i class="bi bi-lightbulb-fill"></i>
+                    </div>
+
+                    <span class="summary-status">
+                        FOCUS
+                    </span>
+
+                </div>
+
+                <div class="summary-info">
+
+                    <span class="summary-label">
+                        SKILLS TO IMPROVE
+                    </span>
+
+                    <strong>
+                        @Model.SkillGapCount
+                    </strong>
+
+                    <small>
+                        Recommended for your career
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- CAREER -->
+
+            <div class="summary-card career">
+
+                <div class="summary-card-top">
+
+                    <div class="summary-icon">
+                        <i class="bi bi-compass-fill"></i>
+                    </div>
+
+                    <span class="summary-status">
+                        MATCHED
+                    </span>
+
+                </div>
+
+                <div class="summary-info">
+
+                    <span class="summary-label">
+                        CAREER DIRECTION
+                    </span>
+
+                    <strong>
+                        @Model.CareerGoal
+                    </strong>
+
+                    <small>
+                        Personalized from your resume
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PAGE INTRODUCTION
+        ================================================== -->
+
+        <section class="skillgap-intro-card">
+
+            <div class="intro-icon">
+                <i class="bi bi-bar-chart-line-fill"></i>
+            </div>
+
+            <div class="intro-content">
+
+                <span>
+                    ABOUT YOUR SKILL GAP
+                </span>
+
+                <h2>
+                    Know where you stand and what to improve
+                </h2>
+
+                <p>
+                    SkillBridge compares the skills identified from your
+                    resume with the skills relevant to your recommended
+                    career direction. This helps you understand your
+                    strengths and the areas where additional skills can
+                    improve your career readiness.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             CAREER INSIGHT
+        ================================================== -->
+
+        <section class="career-description">
+
+            <div class="description-icon">
+                <i class="bi bi-compass-fill"></i>
+            </div>
+
+            <div class="description-content">
+
+                <span>
+                    CAREER INSIGHT
+                </span>
+
+                <h3>
+                    Why these skills matter
+                </h3>
+
+                <p>
+                    @Model.CareerDescription
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SKILLS AREA
+        ================================================== -->
+
+        <div class="skillgap-grid">
+
+            <!-- =================================================
+                 CURRENT SKILLS
+            ================================================== -->
+
+            <section class="skills-panel current-panel">
+
+                <div class="panel-heading">
+
+                    <div class="panel-title">
+
+                        <span class="panel-label">
+                            YOUR STRENGTHS
+                        </span>
+
+                        <h2>
+                            Skills You Already Have
+                        </h2>
+
+                        <p>
+                            Skills identified from your uploaded resume.
+                        </p>
+
+                    </div>
+
+                    <div class="skill-count current-count">
+
+                        <strong>
+                            @Model.CurrentSkillCount
+                        </strong>
+
+                        <span>
+                            skills
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                @if (Model.CurrentSkills.Count > 0)
+                {
+                    <div class="skills-list">
+
+                        @foreach (var skill in Model.CurrentSkills)
+                        {
+                            <div class="skill-chip">
+
+                                <span class="chip-icon">
+                                    <i class="bi bi-check-lg"></i>
+                                </span>
+
+                                <span class="chip-text">
+                                    @skill
+                                </span>
+
+                            </div>
+                        }
+
+                    </div>
+                }
+                else
+                {
+                    <div class="no-skills">
+
+                        <i class="bi bi-info-circle-fill"></i>
+
+                        <span>
+                            No skills were identified from your resume.
+                        </span>
+
+                    </div>
+                }
+
+            </section>
+
+
+            <!-- =================================================
+                 SKILLS TO IMPROVE
+            ================================================== -->
+
+            <section class="skills-panel gap-panel">
+
+                <div class="panel-heading">
+
+                    <div class="panel-title">
+
+                        <span class="panel-label">
+                            DEVELOPMENT AREAS
+                        </span>
+
+                        <h2>
+                            Skills to Improve
+                        </h2>
+
+                        <p>
+                            Skills that can strengthen your career profile.
+                        </p>
+
+                    </div>
+
+                    <div class="skill-count gap-count">
+
+                        <strong>
+                            @Model.SkillGapCount
+                        </strong>
+
+                        <span>
+                            gaps
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                @if (Model.SkillGaps.Count > 0)
+                {
+                    <div class="gap-list">
+
+                        @foreach (var gap in Model.SkillGaps)
+                        {
+                            <div class="gap-card">
+
+                                <div class="gap-card-top">
+
+                                    <div class="gap-skill-icon">
+                                        <i class="bi bi-lightbulb-fill"></i>
+                                    </div>
+
+                                    <div class="gap-title">
+
+                                        <h3>
+                                            @gap.Skill
+                                        </h3>
+
+                                        <span>
+                                            Recommended skill
+                                        </span>
+
+                                    </div>
+
+                                    <span class="priority @gap.Priority.ToLower()">
+                                        @gap.Priority
+                                    </span>
+
+                                </div>
+
+                                <div class="gap-divider"></div>
+
+                                <p>
+                                    @gap.Explanation
+                                </p>
+
+                            </div>
+                        }
+
+                    </div>
+                }
+                else
+                {
+                    <div class="no-gap">
+
+                        <div class="no-gap-icon">
+                            <i class="bi bi-check-lg"></i>
+                        </div>
+
+                        <h3>
+                            Great foundation!
+                        </h3>
+
+                        <p>
+                            Your resume already contains the key skills
+                            identified for your career direction.
+                        </p>
+
+                    </div>
+                }
+
+            </section>
+
+        </div>
+
+
+        <!-- =================================================
+             WHAT'S NEXT
+        ================================================== -->
+
+        <section class="next-step-card">
+
+            <div class="next-step-content">
+
+                <div class="next-step-icon">
+                    <i class="bi bi-signpost-2-fill"></i>
+                </div>
+
+                <div class="next-step-text">
+
+                    <span>
+                        WHAT'S NEXT?
+                    </span>
+
+                    <h2>
+                        Continue to your personalized career path
+                    </h2>
+
+                    <p>
+                        Use your skill gap insights to explore the career
+                        progression recommended for your profile.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="next-step-buttons">
+
+                <!-- PREVIOUS -->
+                <a asp-page="/ResumeAnalyzer"
+                   class="next-step-btn previous-btn">
+
+                    <i class="bi bi-arrow-left"></i>
+
+                    <span>
+                        Resume Analysis
+                    </span>
+
+                </a>
+
+
+                <!-- NEXT -->
+                <a asp-page="/CareerPath"
+                   class="next-step-btn next-btn-primary">
+
+                    <span>
+                        Career Path
+                    </span>
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    }
+
+</div>

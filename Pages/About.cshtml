@@ -1,0 +1,814 @@
+﻿@page
+@{
+    ViewData["Title"] = "About Us";
+}
+
+<style>
+
+    /* =========================================================
+           SKILLBRIDGE - ABOUT PAGE
+           PROFESSIONAL TEAL + MINT DESIGN
+        ========================================================= */
+
+    .about-page {
+        min-height: calc(100vh - 80px);
+        padding: 55px 5% 75px;
+        background: radial-gradient(circle at 8% 8%, rgba(20,184,166,.08), transparent 24%), linear-gradient(180deg, #f4fbf9 0%, #ffffff 55%, #f7fcfb 100%);
+        color: #18312f;
+    }
+
+
+    .about-container {
+        width: 100%;
+        max-width: 1250px;
+        margin: 0 auto;
+    }
+
+
+    /* =========================================================
+           HERO
+        ========================================================= */
+
+    .about-hero {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+        padding: 48px 52px;
+        border-radius: 28px;
+        background: radial-gradient(circle at 90% 20%, rgba(94,234,212,.15), transparent 28%), linear-gradient(135deg, #123c3a, #0f766e);
+        box-shadow: 0 18px 45px rgba(15,118,110,.16);
+        margin-bottom: 30px;
+    }
+
+
+        .about-hero::after {
+            content: "";
+            position: absolute;
+            width: 230px;
+            height: 230px;
+            right: -90px;
+            bottom: -115px;
+            border-radius: 50%;
+            background: rgba(204,251,241,.07);
+        }
+
+
+    .about-hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 820px;
+    }
+
+
+    .about-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        margin-bottom: 18px;
+        border-radius: 999px;
+        background: rgba(204,251,241,.13);
+        border: 1px solid rgba(204,251,241,.20);
+        color: #ccfbf1;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
+    }
+
+
+        .about-label i {
+            font-size: 13px;
+        }
+
+
+    .about-hero h1 {
+        margin: 0 0 15px;
+        color: #ffffff;
+        font-size: clamp(34px, 4vw, 50px);
+        line-height: 1.12;
+        font-weight: 800;
+        letter-spacing: -1px;
+    }
+
+
+        .about-hero h1 span {
+            color: #5eead4;
+        }
+
+
+    .about-hero p {
+        margin: 0;
+        max-width: 760px;
+        color: #c9e5e1;
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+
+    .about-hero-icon {
+        position: relative;
+        z-index: 2;
+        width: 110px;
+        height: 110px;
+        min-width: 110px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 30px;
+        background: rgba(255,255,255,.10);
+        border: 1px solid rgba(204,251,241,.20);
+        color: #ccfbf1;
+        font-size: 46px;
+    }
+
+
+    /* =========================================================
+           PURPOSE
+        ========================================================= */
+
+    .about-purpose {
+        display: grid;
+        grid-template-columns: 75px 1fr;
+        gap: 22px;
+        align-items: flex-start;
+        padding: 32px 35px;
+        background: #ffffff;
+        border: 1px solid #d9eeeb;
+        border-radius: 23px;
+        box-shadow: 0 10px 30px rgba(24,49,47,.05);
+        margin-bottom: 38px;
+    }
+
+
+    .purpose-icon {
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 17px;
+        background: #e4f8f4;
+        color: #0f766e;
+        font-size: 25px;
+    }
+
+
+    .about-section-label {
+        display: block;
+        margin-bottom: 5px;
+        color: #0f766e;
+        font-size: 9px;
+        font-weight: 850;
+        letter-spacing: 1.5px;
+    }
+
+
+    .about-section-title {
+        margin: 0 0 9px;
+        color: #18312f;
+        font-size: 24px;
+        font-weight: 800;
+    }
+
+
+    .about-purpose p {
+        margin: 0;
+        color: #667f7b;
+        font-size: 13.5px;
+        line-height: 1.8;
+    }
+
+
+    /* =========================================================
+           WHAT SKILLBRIDGE DOES
+        ========================================================= */
+
+    .about-services-header {
+        margin-bottom: 20px;
+    }
+
+
+        .about-services-header h2 {
+            margin: 0 0 6px;
+            color: #18312f;
+            font-size: 27px;
+            font-weight: 800;
+        }
+
+
+        .about-services-header p {
+            margin: 0;
+            color: #718983;
+            font-size: 13px;
+        }
+
+
+    /* =========================================================
+           SERVICE CARDS
+        ========================================================= */
+
+    .about-features {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 16px;
+    }
+
+
+    .about-feature {
+        position: relative;
+        padding: 24px 19px 22px;
+        background: #ffffff;
+        border: 1px solid #d9eeeb;
+        border-radius: 19px;
+        box-shadow: 0 8px 24px rgba(24,49,47,.045);
+        transition: all .25s ease;
+    }
+
+
+        .about-feature:hover {
+            transform: translateY(-5px);
+            border-color: #a8ded7;
+            box-shadow: 0 14px 30px rgba(15,118,110,.10);
+        }
+
+
+    .feature-icon {
+        width: 46px;
+        height: 46px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 17px;
+        border-radius: 13px;
+        background: #e5f8f4;
+        color: #0f766e;
+        font-size: 19px;
+    }
+
+
+    .about-feature h3 {
+        margin: 0 0 8px;
+        color: #18312f;
+        font-size: 15px;
+        font-weight: 800;
+        line-height: 1.35;
+    }
+
+
+    .about-feature p {
+        margin: 0;
+        color: #718983;
+        font-size: 11.5px;
+        line-height: 1.65;
+    }
+
+
+    /* =========================================================
+           HOW IT WORKS
+        ========================================================= */
+
+    .about-process {
+        margin-top: 38px;
+        padding: 30px 34px;
+        border-radius: 23px;
+        background: #123c3a;
+        box-shadow: 0 12px 30px rgba(18,60,58,.12);
+    }
+
+
+    .process-heading {
+        margin-bottom: 25px;
+    }
+
+
+        .process-heading span {
+            display: block;
+            margin-bottom: 5px;
+            color: #5eead4;
+            font-size: 9px;
+            font-weight: 850;
+            letter-spacing: 1.5px;
+        }
+
+
+        .process-heading h2 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 23px;
+            font-weight: 800;
+        }
+
+
+    .process-steps {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
+    }
+
+
+    .process-step {
+        position: relative;
+        padding: 18px 15px;
+        border-radius: 15px;
+        background: rgba(255,255,255,.07);
+        border: 1px solid rgba(204,251,241,.12);
+    }
+
+
+    .step-number {
+        width: 29px;
+        height: 29px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 11px;
+        border-radius: 9px;
+        background: #14b8a6;
+        color: #ffffff;
+        font-size: 11px;
+        font-weight: 800;
+    }
+
+
+    .process-step h3 {
+        margin: 0 0 5px;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 800;
+    }
+
+
+    .process-step p {
+        margin: 0;
+        color: #a9ccc7;
+        font-size: 10.5px;
+        line-height: 1.55;
+    }
+
+
+    /* =========================================================
+           FINAL STATEMENT
+        ========================================================= */
+
+    .about-bottom {
+        margin-top: 25px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 21px 25px;
+        border-radius: 17px;
+        background: linear-gradient(135deg, #effcf9, #e5f8f4);
+        border: 1px solid #ccebe6;
+    }
+
+
+    .about-bottom-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 11px;
+        background: #ccfbf1;
+        color: #0f766e;
+        font-size: 17px;
+    }
+
+
+    .about-bottom p {
+        margin: 0;
+        color: #41655f;
+        font-size: 12.5px;
+        line-height: 1.65;
+        font-weight: 600;
+    }
+
+
+    /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+    @@media (max-width: 1100px) {
+
+        .about-features {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .process-steps {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+
+    @@media (max-width: 800px) {
+
+        .about-hero {
+            padding: 38px 32px;
+        }
+
+        .about-hero-icon {
+            width: 85px;
+            height: 85px;
+            min-width: 85px;
+            font-size: 35px;
+        }
+
+        .about-purpose {
+            grid-template-columns: 1fr;
+        }
+
+        .about-features {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .process-steps {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+
+    @@media (max-width: 550px) {
+
+        .about-page {
+            padding: 35px 18px 55px;
+        }
+
+        .about-hero {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 30px 24px;
+            border-radius: 22px;
+        }
+
+            .about-hero h1 {
+                font-size: 34px;
+            }
+
+        .about-purpose {
+            padding: 25px 22px;
+        }
+
+        .about-features {
+            grid-template-columns: 1fr;
+        }
+
+        .process-steps {
+            grid-template-columns: 1fr;
+        }
+
+        .about-process {
+            padding: 26px 21px;
+        }
+    }
+
+</style>
+
+
+<div class="about-page">
+
+    <div class="about-container">
+
+
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
+
+        <section class="about-hero">
+
+            <div class="about-hero-content">
+
+                <span class="about-label">
+                    <i class="bi bi-stars"></i>
+                    ABOUT SKILLBRIDGE
+                </span>
+
+                <h1>
+                    Bridging Your Skills
+                    <span>to Your Career.</span>
+                </h1>
+
+                <p>
+                    SkillBridge is an AI-based resume analysis and
+                    career recommendation platform designed to help
+                    users understand their skills, identify areas for
+                    improvement and discover suitable career opportunities.
+                </p>
+
+            </div>
+
+
+            <div class="about-hero-icon">
+
+                <i class="bi bi-signpost-2-fill"></i>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PURPOSE
+        ====================================================== -->
+
+        <section class="about-purpose">
+
+            <div class="purpose-icon">
+
+                <i class="bi bi-bullseye"></i>
+
+            </div>
+
+
+            <div>
+
+                <span class="about-section-label">
+                    OUR PURPOSE
+                </span>
+
+                <h2 class="about-section-title">
+                    Making Career Decisions Clearer
+                </h2>
+
+                <p>
+                    SkillBridge connects the information in a user's
+                    resume with practical career guidance. By analyzing
+                    skills and highlighting gaps, the platform helps
+                    users understand their current profile and explore
+                    career directions that match their abilities.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             WHAT SKILLBRIDGE DOES
+        ====================================================== -->
+
+        <section>
+
+            <div class="about-services-header">
+
+                <span class="about-section-label">
+                    THE SKILLBRIDGE EXPERIENCE
+                </span>
+
+                <h2>
+                    What SkillBridge Does
+                </h2>
+
+                <p>
+                    Everything is connected to your resume and career direction.
+                </p>
+
+            </div>
+
+
+            <div class="about-features">
+
+
+                <!-- Resume Analysis -->
+
+                <article class="about-feature">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-file-earmark-check-fill"></i>
+                    </div>
+
+                    <h3>
+                        Resume Analysis
+                    </h3>
+
+                    <p>
+                        Analyze your resume to identify relevant skills,
+                        generate a resume score and receive improvement suggestions.
+                    </p>
+
+                </article>
+
+
+                <!-- Skill Gap -->
+
+                <article class="about-feature">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-bar-chart-fill"></i>
+                    </div>
+
+                    <h3>
+                        Skill Gap Analysis
+                    </h3>
+
+                    <p>
+                        Discover skills that can strengthen your profile
+                        for your recommended career direction.
+                    </p>
+
+                </article>
+
+
+                <!-- Career Path -->
+
+                <article class="about-feature">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-signpost-2-fill"></i>
+                    </div>
+
+                    <h3>
+                        Career Path
+                    </h3>
+
+                    <p>
+                        Explore a personalized career progression based
+                        on the skills identified from your resume.
+                    </p>
+
+                </article>
+
+
+                <!-- Jobs -->
+
+                <article class="about-feature">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-briefcase-fill"></i>
+                    </div>
+
+                    <h3>
+                        Recommended Jobs
+                    </h3>
+
+                    <p>
+                        Discover job opportunities that match the
+                        skills and career direction in your profile.
+                    </p>
+
+                </article>
+
+
+                <!-- Courses -->
+
+                <article class="about-feature">
+
+                    <div class="feature-icon">
+                        <i class="bi bi-book-half"></i>
+                    </div>
+
+                    <h3>
+                        Learning Recommendations
+                    </h3>
+
+                    <p>
+                        Find external learning resources that can help
+                        improve the skills relevant to your career goal.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             HOW IT WORKS
+        ====================================================== -->
+
+        <section class="about-process">
+
+            <div class="process-heading">
+
+                <span>
+                    SIMPLE CAREER JOURNEY
+                </span>
+
+                <h2>
+                    How SkillBridge Works
+                </h2>
+
+            </div>
+
+
+            <div class="process-steps">
+
+
+                <div class="process-step">
+
+                    <div class="step-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Upload Resume
+                    </h3>
+
+                    <p>
+                        Upload your resume to begin your career analysis.
+                    </p>
+
+                </div>
+
+
+                <div class="process-step">
+
+                    <div class="step-number">
+                        02
+                    </div>
+
+                    <h3>
+                        Analyze Skills
+                    </h3>
+
+                    <p>
+                        SkillBridge identifies relevant skills from your resume.
+                    </p>
+
+                </div>
+
+
+                <div class="process-step">
+
+                    <div class="step-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Identify Skill Gaps
+                    </h3>
+
+                    <p>
+                        Discover areas where additional skills can help.
+                    </p>
+
+                </div>
+
+
+                <div class="process-step">
+
+                    <div class="step-number">
+                        04
+                    </div>
+
+                    <h3>
+                        Explore Career Path
+                    </h3>
+
+                    <p>
+                        View the career direction suggested for your profile.
+                    </p>
+
+                </div>
+
+
+                <div class="process-step">
+
+                    <div class="step-number">
+                        05
+                    </div>
+
+                    <h3>
+                        Discover Opportunities
+                    </h3>
+
+                    <p>
+                        Explore recommended jobs and external learning resources.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FINAL STATEMENT
+        ====================================================== -->
+
+        <div class="about-bottom">
+
+            <div class="about-bottom-icon">
+
+                <i class="bi bi-stars"></i>
+
+            </div>
+
+            <p>
+                SkillBridge helps turn resume information into
+                meaningful career insights, giving users a clearer
+                understanding of their skills, opportunities and
+                next steps.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>

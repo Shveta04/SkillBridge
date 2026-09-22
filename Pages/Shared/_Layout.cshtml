@@ -1,0 +1,918 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewData["Title"] - SkillBridge</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/dashboard.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SkillBridge.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/login.css" />
+    <link rel="stylesheet" href="~/css/register.css" asp-append-version="true" />
+
+    <style>
+
+            /* =========================================================
+                       SKILLBRIDGE PROFILE - ATTRACTIVE TEAL DESIGN
+                    ========================================================= */
+
+            .profile-container {
+                position: relative;
+                display: flex;
+                align-items: center;
+                margin-left: 12px;
+            }
+
+            /* ================= PROFILE ICON ================= */
+
+            .profile-icon-btn {
+                width: 46px;
+                height: 46px;
+                border-radius: 50%;
+                border: 2px solid rgba(255,255,255,.35);
+                background: linear-gradient(135deg, #ffffff, #e6fffb);
+                color: #0f766e;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                padding: 0;
+                box-shadow: 0 5px 18px rgba(0,0,0,.16);
+                transition: all .3s ease;
+            }
+
+                .profile-icon-btn i {
+                    font-size: 23px;
+                }
+
+                .profile-icon-btn:hover {
+                    transform: translateY(-3px) scale(1.04);
+                    background: linear-gradient(135deg, #e6fffb, #ccfbf1);
+                    color: #115e59;
+                    box-shadow: 0 9px 25px rgba(20,184,166,.30);
+                    border-color: #5eead4;
+                }
+
+                .profile-icon-btn:active {
+                    transform: scale(.96);
+                }
+
+            /* =========================================================
+                       PROFILE POPUP
+                    ========================================================= */
+
+            .profile-popup {
+                position: absolute;
+                top: 58px;
+                right: 0;
+                width: 320px;
+                background: #ffffff;
+                border: 1px solid #cce9e5;
+                border-radius: 20px;
+                overflow: hidden;
+                box-shadow: 0 20px 45px rgba(15,118,110,.20);
+                display: none;
+                z-index: 99999;
+                animation: profilePopup .25s ease;
+            }
+
+                .profile-popup.show {
+                    display: block;
+                }
+
+            @@keyframes profilePopup {
+
+                from {
+                    opacity: 0;
+                    transform: translateY(-8px) scale(.97);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                }
+            }
+
+            /* =========================================================
+                       PROFILE HEADER
+                    ========================================================= */
+
+            .profile-popup-header {
+                position: relative;
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                padding: 22px;
+                background: linear-gradient(135deg, #f0fdfa, #e6fffb);
+                border-bottom: 1px solid #d7efeb;
+            }
+
+                .profile-popup-header::after {
+                    content: "";
+                    position: absolute;
+                    width: 90px;
+                    height: 90px;
+                    border-radius: 50%;
+                    background: rgba(20,184,166,.10);
+                    right: -30px;
+                    top: -35px;
+                }
+
+            /* Avatar */
+
+            .profile-popup-icon {
+                width: 52px;
+                height: 52px;
+                min-width: 52px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #0f766e, #14b8a6);
+                color: #ffffff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 8px 20px rgba(15,118,110,.25);
+                position: relative;
+                z-index: 2;
+            }
+
+                .profile-popup-icon i {
+                    font-size: 25px;
+                }
+
+            /* Header text */
+
+            .profile-popup-header h6 {
+                margin: 0 0 3px 0;
+                color: #123c3a;
+                font-size: 16px;
+                font-weight: 800;
+                word-break: break-word;
+            }
+
+            .profile-popup-header small {
+                color: #4f7772;
+                font-size: 11px;
+                font-weight: 600;
+            }
+
+            /* =========================================================
+                       PROFILE INFORMATION
+                    ========================================================= */
+
+            .profile-info {
+                padding: 20px 22px 8px;
+            }
+
+            .profile-info-item {
+                display: flex;
+                align-items: center;
+                gap: 13px;
+                margin-bottom: 14px;
+                padding: 11px 12px;
+                border-radius: 12px;
+                background: #f8fdfc;
+                color: #315f59;
+                font-size: 13px;
+                font-weight: 600;
+                border: 1px solid transparent;
+                transition: all .25s ease;
+            }
+
+                .profile-info-item:hover {
+                    background: #effcf9;
+                    border-color: #c8ebe6;
+                    transform: translateX(2px);
+                }
+
+                .profile-info-item i {
+                    width: 32px;
+                    height: 32px;
+                    min-width: 32px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 9px;
+                    background: #dff8f3;
+                    color: #0f766e;
+                    font-size: 15px;
+                }
+
+                .profile-info-item span {
+                    overflow-wrap: anywhere;
+                    line-height: 1.4;
+                }
+
+            /* =========================================================
+                       PROFILE FOOTER
+                    ========================================================= */
+
+            .profile-popup form {
+                margin: 0;
+            }
+
+            .profile-popup-footer {
+                padding: 5px 22px 20px;
+            }
+
+            /* =========================================================
+                       LOGOUT BUTTON
+                    ========================================================= */
+
+            .profile-logout-btn {
+                width: calc(100% - 44px);
+                margin: 5px 22px 20px;
+                padding: 11px 15px;
+                border-radius: 11px;
+                border: 1px solid #f3c7c4;
+                background: #fff5f4;
+                color: #dc4c45;
+                font-size: 13px;
+                font-weight: 700;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all .3s ease;
+            }
+
+                .profile-logout-btn:hover {
+                    background: #dc4c45;
+                    color: #ffffff;
+                    border-color: #dc4c45;
+                    transform: translateY(-2px);
+                    box-shadow: 0 8px 18px rgba(220,76,69,.20);
+                }
+
+                .profile-logout-btn i {
+                    font-size: 16px;
+                }
+
+            /* =========================================================
+                       MOBILE
+                    ========================================================= */
+
+            @@media (max-width: 991px) {
+
+                .profile-container {
+                    margin-left: 8px;
+                }
+
+                .profile-icon-btn {
+                    width: 44px;
+                    height: 44px;
+                }
+
+                .profile-popup {
+                    position: fixed;
+                    top: 76px;
+                    right: 18px;
+                    width: 310px;
+                    max-width: calc(100vw - 36px);
+                }
+            }
+
+            @@media (max-width: 480px) {
+
+                .profile-popup {
+                    right: 12px;
+                    width: calc(100vw - 24px);
+                }
+            }
+
+            /* =========================================================
+                       NAVBAR SMALL POLISH
+                    ========================================================= */
+
+            .custom-navbar {
+                background: #123c3a !important;
+                border-bottom: 1px solid rgba(94,234,212,.18);
+                box-shadow: 0 5px 22px rgba(18,60,58,.12);
+            }
+
+                .custom-navbar .nav-link {
+                    color: #e6fffb !important;
+                    transition: all .25s ease;
+                }
+
+                    .custom-navbar .nav-link:hover {
+                        color: #5eead4 !important;
+                    }
+
+            .btn-register {
+                background: linear-gradient(135deg, #0f766e, #14b8a6) !important;
+                color: #ffffff !important;
+                border: none;
+                box-shadow: 0 7px 18px rgba(20,184,166,.20);
+            }
+
+                .btn-register:hover {
+                    background: linear-gradient(135deg, #115e59, #0f766e) !important;
+                    color: #ffffff !important;
+                    transform: translateY(-2px);
+                }
+
+            /* =========================================================
+                       INPUT TEXT FIX
+                    ========================================================= */
+
+            input,
+            textarea,
+            select {
+                color: #18312f !important;
+                background-color: #ffffff !important;
+            }
+
+                input::placeholder,
+                textarea::placeholder {
+                    color: #94a3b8 !important;
+                    opacity: 1;
+                }
+
+            /* =========================================================
+                       SKILLBRIDGE FOOTER
+                    ========================================================= */
+
+            .footer {
+                background: #123c3a;
+                color: #dff8f4;
+                margin-top: 0;
+                padding: 58px 0 24px;
+                border-top: 1px solid rgba(94,234,212,.18);
+            }
+
+                .footer .container {
+                    max-width: 1250px;
+                }
+
+            .footer-brand {
+                padding-right: 35px;
+            }
+
+            .footer-title {
+                margin: 0 0 14px;
+                color: #ffffff;
+                font-size: 25px;
+                font-weight: 800;
+                letter-spacing: -.4px;
+            }
+
+            .footer-description {
+                margin: 0;
+                max-width: 360px;
+                color: #b9d9d5;
+                font-size: 13px;
+                line-height: 1.8;
+            }
+
+            .footer-heading {
+                margin: 4px 0 18px;
+                color: #ffffff;
+                font-size: 14px;
+                font-weight: 800;
+                letter-spacing: .3px;
+            }
+
+            .footer-links {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+                .footer-links li {
+                    margin-bottom: 11px;
+                }
+
+                .footer-links a {
+                    color: #b9d9d5;
+                    text-decoration: none;
+                    font-size: 12.5px;
+                    font-weight: 500;
+                    transition: all .25s ease;
+                }
+
+                    .footer-links a:hover {
+                        color: #5eead4;
+                        padding-left: 4px;
+                    }
+
+            .footer-about {
+                padding-left: 10px;
+            }
+
+                .footer-about p {
+                    margin: 0;
+                    color: #b9d9d5;
+                    font-size: 12.5px;
+                    line-height: 1.8;
+                }
+
+            .footer-line {
+                margin: 38px 0 20px;
+                border: 0;
+                border-top: 1px solid rgba(204,251,241,.13);
+                opacity: 1;
+            }
+
+            .footer-bottom {
+                color: #8fb8b2;
+                font-size: 11px;
+                font-weight: 500;
+            }
+
+                .footer-bottom strong {
+                    color: #dff8f4;
+                    font-weight: 700;
+                }
+
+            /* =========================================================
+                       FOOTER RESPONSIVE
+                    ========================================================= */
+
+            @@media (max-width: 991px) {
+
+                .footer {
+                    padding: 48px 0 22px;
+                }
+
+                .footer-brand {
+                    padding-right: 0;
+                    margin-bottom: 30px;
+                }
+
+                .footer-about {
+                    padding-left: 0;
+                    margin-top: 30px;
+                }
+            }
+
+            @@media (max-width: 575px) {
+
+                .footer {
+                    padding: 42px 0 20px;
+                }
+
+                .footer-title {
+                    font-size: 23px;
+                }
+
+                .footer-heading {
+                    margin-top: 20px;
+                }
+
+                .footer-line {
+                    margin-top: 30px;
+                }
+            }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+
+        <div class="container">
+
+            <!-- BRAND -->
+
+            <a class="navbar-brand d-flex align-items-center"
+               asp-page="/Index">
+
+                <img src="~/images/logo.png"
+                     class="logo"
+                     alt="SkillBridge Logo" />
+
+                <div class="brand-text">
+
+                    <div class="logo-title">
+                        <span class="skill-text">Skill</span><span class="bridge-text">Bridge</span>
+                    </div>
+
+                    <div class="logo-subtitle">
+                        AI CAREER PLATFORM
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <!-- MOBILE TOGGLE -->
+
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarMenu"
+                    aria-controls="navbarMenu"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+
+            <!-- MENU -->
+
+            <div class="collapse navbar-collapse"
+                 id="navbarMenu">
+
+                <ul class="navbar-nav mx-auto">
+
+                    <li class="nav-item">
+
+                        <a class="nav-link"
+                           asp-page="/Index">
+                            Home
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link"
+                           asp-page="/Dashboard">
+                            Dashboard
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link"
+                           asp-page="/About">
+                            About
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+
+                        <a class="nav-link"
+                           asp-page="/Contact">
+                            Contact
+                        </a>
+
+                    </li>
+
+                </ul>
+
+
+                <!-- RIGHT SIDE -->
+
+                <div class="d-flex align-items-center">
+
+                    <a asp-page="/Account/Login"
+                       class="btn btn-login">
+                        Login
+                    </a>
+
+                    <a asp-page="/Account/Register"
+                       class="btn btn-register ms-3">
+                        Get Started
+                    </a>
+
+
+                    <!-- ================= USER PROFILE ================= -->
+
+                    <div class="profile-container">
+
+                        <button type="button"
+                                class="profile-icon-btn"
+                                onclick="toggleProfilePopup()"
+                                aria-label="User Profile">
+
+                            <i class="bi bi-person-fill"></i>
+
+                        </button>
+
+
+                        <!-- PROFILE POPUP -->
+
+                        <div id="profilePopup"
+                             class="profile-popup">
+
+                            <!-- PROFILE HEADER -->
+
+                            <div class="profile-popup-header">
+
+                                <div class="profile-popup-icon">
+                                    <i class="bi bi-person-fill"></i>
+                                </div>
+
+                                <div>
+
+                                    <h6>
+                                        @Context.Session.GetString("UserFullName")
+                                    </h6>
+
+                                    <small>
+                                        SkillBridge User
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- PROFILE INFORMATION -->
+
+                            <div class="profile-info">
+
+                                <div class="profile-info-item">
+
+                                    <i class="bi bi-person-fill"></i>
+
+                                    <span>
+                                        @Context.Session.GetString("UserFullName")
+                                    </span>
+
+                                </div>
+
+
+                                <div class="profile-info-item">
+
+                                    <i class="bi bi-envelope-fill"></i>
+
+                                    <span>
+                                        @Context.Session.GetString("UserEmail")
+                                    </span>
+
+                                </div>
+
+
+                                <div class="profile-info-item">
+
+                                    <i class="bi bi-telephone-fill"></i>
+
+                                    <span>
+                                        @(Context.Session.GetString("UserPhone") ?? "Not provided")
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- LOGOUT -->
+
+                            <form method="post"
+                                  asp-page="/Account/Logout">
+
+                                <button type="submit"
+                                        class="profile-logout-btn">
+
+                                    <i class="bi bi-box-arrow-right me-2"></i>
+                                    Logout
+
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= PAGE CONTENT ================= -->
+
+    <main>
+
+        @RenderBody()
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="row g-4">
+
+                <!-- ================= SKILLBRIDGE ================= -->
+
+                <div class="col-lg-4 col-md-12 footer-brand">
+
+                    <h4 class="footer-title">
+                        SkillBridge
+                    </h4>
+
+                    <p class="footer-description">
+                        AI-Based Resume Analyzer and Career Recommendation
+                        Platform designed to help users understand their skills,
+                        identify skill gaps and discover suitable career opportunities.
+                    </p>
+
+                </div>
+
+
+                <!-- ================= PLATFORM ================= -->
+
+                <div class="col-lg-2 col-md-4 col-6">
+
+                    <h5 class="footer-heading">
+                        Platform
+                    </h5>
+
+                    <ul class="footer-links">
+
+                        <li>
+                            <a asp-page="/Index">
+                                Home
+                            </a>
+                        </li>
+
+                        <li>
+                            <a asp-page="/Dashboard">
+                                Dashboard
+                            </a>
+                        </li>
+
+                        <li>
+                            <a asp-page="/ResumeAnalyzer">
+                                Resume Analyzer
+                            </a>
+                        </li>
+
+                        <li>
+                            <a asp-page="/SkillGap">
+                                Skill Gap Analysis
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <!-- ================= CAREER ================= -->
+
+                <div class="col-lg-2 col-md-4 col-6">
+
+                    <h5 class="footer-heading">
+                        Career
+                    </h5>
+
+                    <ul class="footer-links">
+
+                        <li>
+                            <a asp-page="/CareerPath">
+                                Career Path
+                            </a>
+                        </li>
+
+                        <li>
+                            <a asp-page="/Jobs">
+                                Recommended Jobs
+                            </a>
+                        </li>
+
+                        <li>
+                            <a asp-page="/Courses">
+                                Recommended Courses
+                            </a>
+                        </li>
+
+                        <li>
+                            <a asp-page="/Account/Profile">
+                                Profile
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <!-- ================= ABOUT SKILLBRIDGE ================= -->
+
+                <div class="col-lg-4 col-md-4 footer-about">
+
+                    <h5 class="footer-heading">
+                        About SkillBridge
+                    </h5>
+
+                    <p>
+                        SkillBridge analyzes the information available in a
+                        user's resume to identify skills, highlight areas for
+                        improvement and suggest a suitable career direction.
+                        It also provides personalized job recommendations and
+                        external learning resources to support career growth.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= FOOTER LINE ================= -->
+
+            <hr class="footer-line" />
+
+
+            <!-- ================= FOOTER BOTTOM ================= -->
+
+            <div class="footer-bottom text-center">
+
+                © 2026 <strong>SkillBridge</strong>
+                &nbsp;|&nbsp;
+                AI Career Platform
+                &nbsp;|&nbsp;
+                All Rights Reserved
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= SCRIPTS ================= -->
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+    <!-- ================= PROFILE SCRIPT ================= -->
+
+    <script>
+
+        function toggleProfilePopup() {
+
+        const popup = document.getElementById("profilePopup");
+
+        if (!popup) return;
+
+        popup.classList.toggle("show");
+
+        }
+
+
+        document.addEventListener("click", function (event) {
+
+        const popup = document.getElementById("profilePopup");
+
+        const profileButton =
+        document.querySelector(".profile-icon-btn");
+
+        if (!popup || !profileButton)
+        return;
+
+
+        if (!popup.contains(event.target) &&
+        !profileButton.contains(event.target)) {
+
+        popup.classList.remove("show");
+
+        }
+
+        });
+
+
+        /* Prevent popup from closing immediately */
+
+        document.querySelector(".profile-popup")?.addEventListener(
+        "click",
+        function (event) {
+
+        event.stopPropagation();
+
+        }
+        );
+
+    </script>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

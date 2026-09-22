@@ -1,0 +1,373 @@
+﻿@page
+@model SkillBridge.Pages.ResumeAnalyzerModel
+
+@{
+    ViewData["Title"] = "Resume Analyzer";
+}
+
+<link rel="stylesheet" href="~/css/resumeanalyzer.css" />
+
+<div class="resume-page">
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero-section">
+
+        <div class="hero-left">
+
+            <span class="hero-badge">
+                <i class="bi bi-stars"></i>
+                AI Powered Resume Analysis
+            </span>
+
+            <h1>Resume Analyzer</h1>
+
+            <p>
+                Upload your resume and get useful insights about
+                resume quality, skills, keywords and improvements.
+            </p>
+
+        </div>
+
+        <div class="hero-right">
+
+            <div class="hero-card">
+
+                <i class="bi bi-file-earmark-check-fill"></i>
+
+                <h3>Resume Analysis</h3>
+
+                <p>Improve your career profile</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= MESSAGES ================= -->
+    @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+    {
+        <div class="success-message">
+
+            <i class="bi bi-check-circle-fill"></i>
+
+            @Model.SuccessMessage
+
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="error-message">
+
+            <i class="bi bi-exclamation-circle-fill"></i>
+
+            @Model.ErrorMessage
+
+        </div>
+    }
+
+
+    <!-- ================= UPLOAD ================= -->
+
+    <section class="card upload-card">
+
+        <div class="card-header">
+
+            <i class="bi bi-cloud-arrow-up-fill"></i>
+
+            <h3>Upload Resume</h3>
+
+        </div>
+
+        <form method="post"
+              enctype="multipart/form-data">
+
+            <div class="upload-area">
+
+                <div class="upload-icon">
+
+                    <i class="bi bi-file-earmark-arrow-up"></i>
+
+                </div>
+
+                <h4>Select Your Resume</h4>
+
+                <p>
+                    Upload your PDF, DOC or DOCX resume
+                    for analysis.
+                </p>
+
+                <input asp-for="ResumeFile"
+                       type="file"
+                       id="resumeFile"
+                       accept=".pdf,.doc,.docx"
+                       hidden />
+
+                <label for="resumeFile"
+                       class="upload-button">
+
+                    <i class="bi bi-folder2-open"></i>
+
+                    <span id="fileName">
+                        Choose Resume
+                    </span>
+
+                </label>
+
+                <button type="submit"
+                        class="analyze-btn">
+
+                    <i class="bi bi-stars"></i>
+
+                    Analyze Resume
+
+                </button>
+
+                <small>
+                    Supported: PDF • DOC • DOCX
+                    | Maximum size: 10 MB
+                </small>
+
+            </div>
+
+        </form>
+
+    </section>
+
+
+    @if (Model.AnalysisCompleted)
+    {
+
+        <!-- ================= ANALYSIS SUMMARY ================= -->
+
+        <section class="top-grid">
+
+            <!-- SCORE -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <i class="bi bi-speedometer2"></i>
+
+                    <h3>Resume Score</h3>
+
+                </div>
+
+                <div class="score-section">
+
+                    <div class="score-circle">
+
+                        <strong>
+                            @Model.ResumeScore%
+                        </strong>
+
+                        <span>
+                            Good
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Your resume has a good foundation.
+                        A few improvements can make it stronger.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- FILE -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <i class="bi bi-file-earmark-check"></i>
+
+                    <h3>Uploaded Resume</h3>
+
+                </div>
+
+                <div class="uploaded-file">
+
+                    <i class="bi bi-file-earmark-text"></i>
+
+                    <div>
+
+                        <strong>
+                            @Model.UploadedFileName
+                        </strong>
+
+                        <span>
+                            Successfully analyzed
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DETECTED SKILLS ================= -->
+
+        <section class="section-card">
+
+            <div class="card-header">
+
+                <i class="bi bi-stars"></i>
+
+                <h3>Skills Detected</h3>
+
+            </div>
+
+            <p class="card-description">
+                Skills identified from your resume profile.
+            </p>
+
+            <div class="tags">
+
+                @foreach (var skill in Model.DetectedSkills)
+                {
+                    <span class="skill-tag">
+                        @skill
+                    </span>
+                }
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= MISSING SKILLS ================= -->
+
+        <section class="section-card">
+
+            <div class="card-header">
+
+                <i class="bi bi-exclamation-circle-fill"></i>
+
+                <h3>Skills You Could Add</h3>
+
+            </div>
+
+            <p class="card-description">
+                These skills could strengthen your profile
+                for software development opportunities.
+            </p>
+
+            <div class="tags">
+
+                @foreach (var skill in Model.MissingSkills)
+                {
+                    <span class="missing-tag">
+                        @skill
+                    </span>
+                }
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= AI SUGGESTIONS ================= -->
+
+        <section class="section-card">
+
+            <div class="card-header">
+
+                <i class="bi bi-robot"></i>
+
+                <h3>Resume Improvement Suggestions</h3>
+
+            </div>
+
+            <div class="suggestion-list">
+
+                @foreach (var suggestion in Model.Suggestions)
+                {
+                    <div class="suggestion-item">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        <span>
+                            @suggestion
+                        </span>
+
+                    </div>
+                }
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= NEXT STEPS ================= -->
+
+        <section class="section-card next-step-card">
+
+            <div class="card-header">
+
+                <i class="bi bi-arrow-right-circle-fill"></i>
+
+                <h3>What's Next?</h3>
+
+            </div>
+
+            <p>
+                Your resume has been analyzed. Continue to the next step
+                to identify the skills you need to improve.
+            </p>
+
+            <div class="next-step-buttons">
+
+                <!-- PREVIOUS PAGE -->
+                <a asp-page="/Dashboard"
+                   class="next-btn previous-btn">
+
+                    <i class="bi bi-arrow-left"></i>
+                    <span>Dashboard</span>
+
+                </a>
+
+                <!-- NEXT PAGE -->
+                <a asp-page="/SkillGap"
+                   class="next-btn next-btn-primary">
+
+                    <span>Skill Gap Analysis</span>
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </section>
+
+    }
+
+</div>
+
+
+<script>
+
+    document
+        .getElementById("resumeFile")
+        .addEventListener("change", function () {
+
+            if (this.files.length > 0) {
+
+                document.getElementById("fileName").textContent =
+                    this.files[0].name;
+
+            }
+
+        });
+
+</script>

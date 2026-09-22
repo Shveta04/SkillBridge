@@ -1,0 +1,548 @@
+﻿@page
+@model SkillBridge.Pages.Admin.LoginModel
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Admin Login";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Admin Login - SkillBridge</title>
+
+    <link rel="stylesheet"
+          href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                min-height: 100vh;
+                font-family: Arial, Helvetica, sans-serif;
+                background: #f4fbf9;
+                color: #163b38;
+            }
+
+            .admin-page {
+                min-height: 100vh;
+                display: flex;
+            }
+
+            /* LEFT BRANDING */
+
+            .admin-brand {
+                width: 43%;
+                min-height: 100vh;
+                background: #ffffff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 60px;
+                position: relative;
+                overflow: hidden;
+                border-right: 1px solid #dcefeb;
+            }
+
+                .admin-brand::before {
+                    content: "";
+                    position: absolute;
+                    width: 430px;
+                    height: 430px;
+                    border-radius: 50%;
+                    background: rgba(16, 181, 164, 0.10);
+                    top: -180px;
+                    left: -170px;
+                }
+
+                .admin-brand::after {
+                    content: "";
+                    position: absolute;
+                    width: 500px;
+                    height: 500px;
+                    border-radius: 50%;
+                    background: rgba(16, 181, 164, 0.08);
+                    bottom: -280px;
+                    right: -230px;
+                }
+
+            .brand-content {
+                position: relative;
+                z-index: 2;
+                max-width: 470px;
+            }
+
+            .brand-logo {
+                font-size: 56px;
+                line-height: 0.95;
+                font-weight: 900;
+                letter-spacing: -3px;
+                color: #163b38;
+                margin-bottom: 14px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+
+                .brand-logo span {
+                    color: #10b5a4;
+                    font-weight: 900;
+                }
+
+                .brand-logo::after {
+                    content: "";
+                    display: block;
+                    width: 58px;
+                    height: 5px;
+                    margin-top: 14px;
+                    border-radius: 10px;
+                    background: #10b5a4;
+                }
+
+            .brand-tagline {
+                color: #6f8985;
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: 5px;
+                margin-top: 0;
+                margin-bottom: 48px;
+            }
+
+            .admin-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 9px;
+                background: #e8f8f5;
+                border: 1px solid #c9eee8;
+                padding: 10px 17px;
+                border-radius: 30px;
+                color: #087f73;
+                font-size: 14px;
+                font-weight: 600;
+                margin-bottom: 26px;
+            }
+
+            .brand-content h1 {
+                color: #163b38;
+                font-size: 39px;
+                line-height: 1.1;
+                font-weight: 800;
+                letter-spacing: -1px;
+                margin-bottom: 24px;
+                max-width: 500px;
+            }
+
+            .brand-content p {
+                color: #64807c;
+                font-size: 17px;
+                line-height: 1.7;
+            }
+
+            /* LOGIN AREA */
+
+            .login-area {
+                width: 57%;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 50px;
+                background: #f4fbf9;
+            }
+
+            .login-card {
+                width: 100%;
+                max-width: 510px;
+                background: #ffffff;
+                border: 1px solid #dcefeb;
+                border-radius: 24px;
+                padding: 45px;
+                box-shadow: 0 20px 55px rgba(22, 59, 56, 0.10);
+            }
+
+            .login-icon {
+                width: 70px;
+                height: 70px;
+                border-radius: 20px;
+                background: #E8F8F5;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 28px;
+            }
+
+            .login-card h2 {
+                color: #163b38;
+                font-size: 34px;
+                font-weight: 800;
+                margin-bottom: 8px;
+            }
+
+            .login-subtitle {
+                color: #6b8581;
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+
+            /* FORM */
+
+            .form-label {
+                color: #294e4a;
+                font-size: 15px;
+                font-weight: 700;
+                margin-bottom: 8px;
+            }
+
+            .form-control {
+                height: 54px;
+                border-radius: 12px;
+                border: 1px solid #cfe3df;
+                padding: 0 16px;
+                color: #163b38;
+                font-size: 15px;
+                background: #ffffff;
+            }
+
+                .form-control::placeholder {
+                    color: #8aa19d;
+                }
+
+                .form-control:focus {
+                    border-color: #10b5a4;
+                    box-shadow: 0 0 0 4px rgba(16, 181, 164, 0.12);
+                }
+
+            /* BUTTON */
+
+            .login-button {
+                width: 100%;
+                height: 54px;
+                border: none;
+                border-radius: 12px;
+                background: #10b5a4;
+                color: #ffffff;
+                font-size: 16px;
+                font-weight: 700;
+                margin-top: 10px;
+                transition: all 0.2s ease;
+            }
+
+                .login-button:hover {
+                    background: #078f82;
+                    transform: translateY(-1px);
+                }
+
+            /* ERROR */
+
+            .error-message {
+                background: #fff4f4;
+                border: 1px solid #ffd5d5;
+                color: #c62828;
+                padding: 13px 15px;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                font-size: 14px;
+            }
+
+            /* LINKS */
+
+            .back-link {
+                display: block;
+                text-align: center;
+                margin-top: 25px;
+                color: #64807c;
+                text-decoration: none;
+                font-size: 14px;
+            }
+
+                .back-link:hover {
+                    color: #10b5a4;
+                }
+
+            .security-note {
+                text-align: center;
+                color: #8aa19d;
+                font-size: 12px;
+                margin-top: 25px;
+            }
+
+            /* MOBILE */
+
+            @@media (max-width: 900px) {
+
+                .admin-page {
+                    display: block;
+                }
+
+                .admin-brand {
+                    width: 100%;
+                    min-height: 300px;
+                    padding: 45px 30px;
+                }
+
+                .brand-tagline {
+                    margin-bottom: 25px;
+                }
+
+                .brand-content h1 {
+                    font-size: 36px;
+                }
+
+                .brand-content p {
+                    display: none;
+                }
+
+                .login-area {
+                    width: 100%;
+                    min-height: calc(100vh - 300px);
+                    padding: 30px 20px;
+                }
+
+                .login-card {
+                    padding: 30px 25px;
+                }
+            }
+
+            .brand-description {
+                color: #64807c;
+                font-size: 16px;
+                line-height: 1.75;
+                max-width: 480px;
+                margin-bottom: 32px;
+            }
+
+            .brand-content h1 span {
+                color: #10b5a4;
+            }
+
+            .brand-features {
+                display: flex;
+                flex-direction: column;
+                gap: 17px;
+                margin-top: 10px;
+            }
+
+            .brand-feature {
+                display: flex;
+                align-items: flex-start;
+                gap: 14px;
+            }
+
+            .feature-icon {
+                width: 28px;
+                height: 28px;
+                min-width: 28px;
+                border-radius: 50%;
+                background: #e8f8f5;
+                color: #10b5a4;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 14px;
+                font-weight: 800;
+                margin-top: 2px;
+            }
+
+            .brand-feature strong {
+                display: block;
+                color: #163b38;
+                font-size: 15px;
+                font-weight: 700;
+                margin-bottom: 3px;
+            }
+
+            .brand-feature small {
+                display: block;
+                color: #78918d;
+                font-size: 13px;
+                line-height: 1.5;
+            }
+
+            .brand-footer-text {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                margin-top: 40px;
+                color: #8aa19d;
+                font-size: 10px;
+                letter-spacing: 2px;
+                font-weight: 700;
+            }
+
+            .footer-line {
+                width: 38px;
+                height: 2px;
+                background: #10b5a4;
+                border-radius: 10px;
+            }
+    </style>
+</head>
+
+<body>
+
+    <div class="admin-page">
+
+        <!-- LEFT BRANDING -->
+
+        <section class="admin-brand">
+
+            <div class="brand-content">
+
+                <div class="brand-logo">
+                    Skill<span>Bridge</span>
+                </div>
+
+                <div class="brand-tagline">
+                    AI CAREER PLATFORM
+                </div>
+
+                <div class="admin-badge">
+                    <span>✦</span>
+                    SkillBridge Administration
+                </div>
+
+                <h1>
+                    Empowering careers.<br />
+                    <span>Managing opportunities.</span>
+                </h1>
+
+                <p class="brand-description">
+                    Your central workspace for managing the SkillBridge
+                    career ecosystem — from talented professionals to
+                    meaningful job opportunities.
+                </p>
+
+                <div class="brand-features">
+
+                    <div class="brand-feature">
+                        <div class="feature-icon">
+                            ✓
+                        </div>
+
+                        <div>
+                            <strong>Manage users</strong>
+                            <small>Keep your growing talent community organized.</small>
+                        </div>
+                    </div>
+
+                    <div class="brand-feature">
+                        <div class="feature-icon">
+                            ✓
+                        </div>
+
+                        <div>
+                            <strong>Manage opportunities</strong>
+                            <small>Monitor jobs and connect talent with possibilities.</small>
+                        </div>
+                    </div>
+
+                    <div class="brand-feature">
+                        <div class="feature-icon">
+                            ✓
+                        </div>
+
+                        <div>
+                            <strong>Manage applications</strong>
+                            <small>Review resumes and support better career matches.</small>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="brand-footer-text">
+                    <span class="footer-line"></span>
+                    <span>BUILDING THE FUTURE OF CAREERS</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LOGIN -->
+
+        <section class="login-area">
+
+            <div class="login-card">
+
+                <div class="login-icon">
+                    🛡️
+                </div>
+
+                <h2>
+                    Admin Login
+                </h2>
+
+                <p class="login-subtitle">
+                    Sign in to access the SkillBridge administration panel.
+                </p>
+
+                @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                {
+                    <div class="error-message">
+                        @Model.ErrorMessage
+                    </div>
+                }
+
+                <form method="post">
+
+                    <div class="mb-4">
+
+                        <label asp-for="Email"
+                               class="form-label">
+                            Admin Email
+                        </label>
+
+                        <input asp-for="Email"
+                               type="email"
+                               class="form-control"
+                               placeholder="Enter your admin email"
+                               autocomplete="email" />
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label asp-for="Password"
+                               class="form-label">
+                            Password
+                        </label>
+
+                        <input asp-for="Password"
+                               type="password"
+                               class="form-control"
+                               placeholder="Enter your admin password"
+                               autocomplete="current-password" />
+
+                    </div>
+
+                    <button type="submit"
+                            class="login-button">
+                        Sign In to Admin Panel
+                    </button>
+
+                </form>
+
+                <a href="/"
+                   class="back-link">
+                    ← Back to SkillBridge
+                </a>
+
+                <div class="security-note">
+                    🔒 Authorized administrators only
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

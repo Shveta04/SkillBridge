@@ -1,0 +1,636 @@
+﻿/* ===========================================
+   SKILLBRIDGE LOGIN PAGE
+   Professional Mint + Teal Theme
+=========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+/* ===========================================
+   GLOBAL
+=========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --primary: #0F766E;
+    --primary-dark: #0A5C57;
+    --secondary: #14B8A6;
+    --dark: #124E4A;
+    --dark-text: #173F3B;
+    --text: #245B57;
+    --muted: #68817E;
+    --soft-muted: #8AA3A0;
+    --border: #D9E7E5;
+    --background: #F0FDFA;
+    --card: #FFFFFF;
+}
+
+body {
+    background: #F0FDFA;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
+/* ===========================================
+   LOGIN PAGE
+=========================================== */
+
+.login-page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    position: relative;
+}
+
+
+/* ===========================================
+   BACKGROUND GLOW
+=========================================== */
+
+.bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: .30;
+    pointer-events: none;
+}
+
+.circle1 {
+    width: 320px;
+    height: 320px;
+    background: #14B8A6;
+    left: -100px;
+    top: -80px;
+}
+
+.circle2 {
+    width: 350px;
+    height: 350px;
+    background: #10B981;
+    right: -100px;
+    bottom: -120px;
+}
+
+.circle3 {
+    width: 220px;
+    height: 220px;
+    background: #5EEAD4;
+    top: 45%;
+    left: 60%;
+}
+
+
+/* ===========================================
+   LOGIN CARD
+=========================================== */
+
+.login-card {
+    width: 100%;
+    max-width: 520px;
+    padding: 45px;
+    border-radius: 30px;
+    background: #FFFFFF;
+    border: 1px solid #D9E7E5;
+    box-shadow: 0 25px 60px rgba(15, 118, 110, 0.12), 0 5px 18px rgba(15, 118, 110, 0.06);
+    position: relative;
+    z-index: 10;
+    animation: cardFade .8s ease;
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+    .login-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 30px 70px rgba(15, 118, 110, 0.16), 0 8px 25px rgba(15, 118, 110, 0.08);
+    }
+
+
+/* ===========================================
+   LOGO SECTION
+=========================================== */
+
+.logo-section {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.logo-circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 34px;
+    font-weight: 700;
+    color: #FFFFFF;
+    background: linear-gradient( 135deg, #0F766E, #14B8A6 );
+    box-shadow: 0 10px 35px rgba(15, 118, 110, .25);
+}
+
+.logo-section h2 {
+    color: #0F5F5A;
+    margin-top: 18px;
+    font-size: 34px;
+    font-weight: 800;
+}
+
+.logo-section p {
+    margin-top: 10px;
+    color: #68817E;
+    line-height: 1.7;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+/* ===========================================
+   HEADING
+=========================================== */
+
+.heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+    .heading h1 {
+        color: #124E4A;
+        font-size: 38px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        letter-spacing: -0.4px;
+    }
+
+    .heading p {
+        color: #68817E;
+        font-size: 15px;
+        line-height: 1.8;
+        font-weight: 500;
+    }
+
+
+/* ===========================================
+   FORM
+=========================================== */
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+    .form-group label {
+        display: block;
+        color: #245B57;
+        margin-bottom: 10px;
+        font-size: 15px;
+        font-weight: 650;
+    }
+
+
+/* ===========================================
+   INPUT BOX
+=========================================== */
+
+.input-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #F8FCFB;
+    border: 1.5px solid #DCEFEB;
+    border-radius: 16px;
+    padding: 0 18px;
+    box-shadow: 0 4px 12px rgba(15, 118, 110, 0.03);
+    transition: border-color .25s ease, background .25s ease, box-shadow .25s ease;
+}
+
+    .input-box:hover {
+        background: #FFFFFF;
+        border-color: #7DD3C7;
+    }
+
+    .input-box:focus-within {
+        background: #FFFFFF;
+        border-color: #0F766E;
+        box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.10), 0 8px 20px rgba(15, 118, 110, 0.08);
+    }
+
+
+    /* ===========================================
+   INPUT ICON
+=========================================== */
+
+    .input-box i {
+        color: #0F766E;
+        font-size: 18px;
+        flex-shrink: 0;
+        transition: color .25s ease, transform .25s ease;
+    }
+
+    .input-box:focus-within i {
+        color: #0A5C57;
+        transform: scale(1.08);
+    }
+
+
+    /* ===========================================
+   INPUT TEXT
+=========================================== */
+
+    .input-box input {
+        width: 100%;
+        flex: 1;
+        min-width: 0;
+        border: none;
+        outline: none;
+        background: transparent !important;
+        color: #173F3B !important;
+        padding: 18px 0;
+        font-size: 15px;
+        font-weight: 500;
+        caret-color: #0F766E;
+    }
+
+        .input-box input:focus {
+            color: #173F3B !important;
+        }
+
+        .input-box input::placeholder {
+            color: #8AA3A0 !important;
+            opacity: 1;
+        }
+
+
+        /* ===========================================
+   AUTOFILL FIX
+   IMPORTANT
+=========================================== */
+
+        .input-box input:-webkit-autofill,
+        .input-box input:-webkit-autofill:hover,
+        .input-box input:-webkit-autofill:focus,
+        .input-box input:-webkit-autofill:active {
+            -webkit-text-fill-color: #173F3B !important;
+            color: #173F3B !important;
+            caret-color: #173F3B !important;
+            -webkit-box-shadow: 0 0 0 1000px #F8FCFB inset !important;
+            box-shadow: 0 0 0 1000px #F8FCFB inset !important;
+            transition: background-color 9999s ease-in-out 0s;
+        }
+
+
+/* ===========================================
+   LOGIN OPTIONS
+=========================================== */
+
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 0;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #607A77;
+    font-size: 14px;
+}
+
+    .remember-me input {
+        accent-color: #0F766E;
+        cursor: pointer;
+    }
+
+.login-options a {
+    color: #0F766E;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 650;
+    transition: .25s ease;
+}
+
+    .login-options a:hover {
+        color: #0A5C57;
+    }
+
+
+/* ===========================================
+   LOGIN BUTTON
+=========================================== */
+
+.login-btn {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 18px;
+    border-radius: 18px;
+    background: linear-gradient( 135deg, #0F766E, #14B8A6 );
+    color: #FFFFFF !important;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: transform .25s ease, box-shadow .25s ease;
+    box-shadow: 0 12px 30px rgba(15, 118, 110, .22);
+}
+
+    .login-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 20px 40px rgba(15, 118, 110, .30);
+    }
+
+    .login-btn:active {
+        transform: scale(.98);
+    }
+
+    .login-btn i {
+        color: #FFFFFF;
+    }
+
+
+/* ===========================================
+   SUCCESS MESSAGE
+=========================================== */
+
+.success-message {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #ECFDF5;
+    border: 1px solid #A7F3D0;
+    color: #047857;
+    padding: 13px 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+    .success-message i {
+        color: #059669;
+        font-size: 17px;
+    }
+
+
+/* ===========================================
+   ERROR MESSAGE
+=========================================== */
+
+.error-message {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #FEF2F2;
+    border: 1px solid #FECACA;
+    color: #B91C1C;
+    padding: 13px 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+    .error-message i {
+        color: #DC2626;
+        font-size: 17px;
+        flex-shrink: 0;
+    }
+
+
+/* ===========================================
+   DIVIDER
+=========================================== */
+
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 35px 0 25px;
+}
+
+    .divider::before,
+    .divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #DCEAE7;
+    }
+
+    .divider span {
+        color: #8AA3A0;
+        font-size: 13px;
+        letter-spacing: 2px;
+        font-weight: 600;
+    }
+
+
+/* ===========================================
+   REGISTER LINK
+=========================================== */
+
+.register-link {
+    text-align: center;
+    color: #607A77;
+    font-size: 15px;
+}
+
+    .register-link a {
+        color: #0F766E;
+        text-decoration: none;
+        font-weight: 700;
+        margin-left: 5px;
+        transition: .25s ease;
+    }
+
+        .register-link a:hover {
+            color: #0A5C57;
+        }
+
+
+/* ===========================================
+   CARD ANIMATION
+=========================================== */
+
+@keyframes cardFade {
+
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ===========================================
+   FLOATING BACKGROUND ANIMATION
+=========================================== */
+
+.bg-circle {
+    animation: floatGlow 8s ease-in-out infinite;
+}
+
+@keyframes floatGlow {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-25px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+/* ===========================================
+   RESPONSIVE - TABLET
+=========================================== */
+
+@media (max-width: 992px) {
+
+    .login-page {
+        padding: 30px;
+    }
+
+    .login-card {
+        max-width: 500px;
+        padding: 40px;
+    }
+}
+
+
+/* ===========================================
+   RESPONSIVE - MOBILE
+=========================================== */
+
+@media (max-width: 768px) {
+
+    .login-page {
+        padding: 20px;
+    }
+
+    .login-card {
+        padding: 35px 28px;
+        border-radius: 25px;
+    }
+
+    .logo-circle {
+        width: 75px;
+        height: 75px;
+        font-size: 28px;
+    }
+
+    .logo-section h2 {
+        font-size: 28px;
+    }
+
+    .logo-section p {
+        font-size: 14px;
+    }
+
+    .heading h1 {
+        font-size: 30px;
+    }
+
+    .heading p {
+        font-size: 14px;
+    }
+
+    .login-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+
+
+/* ===========================================
+   RESPONSIVE - SMALL MOBILE
+=========================================== */
+
+@media (max-width: 480px) {
+
+    .login-card {
+        padding: 28px 22px;
+    }
+
+    .heading h1 {
+        font-size: 26px;
+    }
+
+    .logo-section h2 {
+        font-size: 24px;
+    }
+
+    .input-box {
+        padding: 0 15px;
+    }
+
+        .input-box input {
+            font-size: 14px;
+        }
+
+    .login-btn {
+        padding: 16px;
+        font-size: 16px;
+    }
+}
+
+
+/* ===========================================
+   CUSTOM SCROLLBAR
+=========================================== */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F0FDFA;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #0F766E;
+    border-radius: 10px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #14B8A6;
+    }
+
+
+/* ===========================================
+   TEXT SELECTION
+=========================================== */
+
+::selection {
+    background: #14B8A6;
+    color: #FFFFFF;
+}
+
+
+/* ===========================================
+   END OF LOGIN CSS
+=========================================== */

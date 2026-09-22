@@ -1,0 +1,866 @@
+﻿@page
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<style>
+
+    /* =========================================================
+           SKILLBRIDGE - CONTACT PAGE
+           PROFESSIONAL TEAL + MINT DESIGN
+        ========================================================= */
+
+    .contact-page {
+        min-height: calc(100vh - 80px);
+        padding: 55px 5% 75px;
+        background: radial-gradient(circle at 90% 10%, rgba(20,184,166,.10), transparent 25%), linear-gradient(180deg, #f4fbf9 0%, #ffffff 55%, #f7fcfb 100%);
+        color: #18312f;
+    }
+
+
+    .contact-container {
+        width: 100%;
+        max-width: 1250px;
+        margin: 0 auto;
+    }
+
+
+    /* =========================================================
+           HERO
+        ========================================================= */
+
+    .contact-hero {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+        padding: 45px 50px;
+        border-radius: 28px;
+        background: radial-gradient(circle at 90% 20%, rgba(94,234,212,.16), transparent 28%), linear-gradient(135deg, #123c3a, #0f766e);
+        box-shadow: 0 18px 45px rgba(15,118,110,.16);
+        margin-bottom: 30px;
+    }
+
+
+        .contact-hero::after {
+            content: "";
+            position: absolute;
+            width: 230px;
+            height: 230px;
+            right: -90px;
+            bottom: -110px;
+            border-radius: 50%;
+            background: rgba(204,251,241,.08);
+        }
+
+
+    .contact-hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+    }
+
+
+    .contact-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        margin-bottom: 18px;
+        border-radius: 999px;
+        background: rgba(204,251,241,.13);
+        border: 1px solid rgba(204,251,241,.20);
+        color: #ccfbf1;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+    }
+
+
+    .contact-hero h1 {
+        margin: 0 0 14px;
+        color: #ffffff;
+        font-size: clamp(34px, 4vw, 49px);
+        line-height: 1.12;
+        font-weight: 800;
+        letter-spacing: -1px;
+    }
+
+
+        .contact-hero h1 span {
+            color: #5eead4;
+        }
+
+
+    .contact-hero p {
+        margin: 0;
+        color: #c9e5e1;
+        font-size: 15px;
+        line-height: 1.8;
+        max-width: 720px;
+    }
+
+
+    .contact-hero-icon {
+        position: relative;
+        z-index: 2;
+        width: 105px;
+        height: 105px;
+        min-width: 105px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 28px;
+        background: rgba(255,255,255,.10);
+        border: 1px solid rgba(204,251,241,.20);
+        color: #ccfbf1;
+        font-size: 44px;
+    }
+
+
+    /* =========================================================
+           MAIN GRID
+        ========================================================= */
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.35fr;
+        gap: 28px;
+    }
+
+
+    .contact-card {
+        background: #ffffff;
+        border: 1px solid #d9eeeb;
+        border-radius: 24px;
+        padding: 32px;
+        box-shadow: 0 10px 30px rgba(24,49,47,.055);
+    }
+
+
+    /* =========================================================
+           CARD HEADER
+        ========================================================= */
+
+    .contact-card-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 25px;
+    }
+
+
+    .contact-card-icon {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 14px;
+        background: #e5f8f4;
+        color: #0f766e;
+        font-size: 21px;
+    }
+
+
+    .contact-card-header h2 {
+        margin: 0;
+        color: #18312f;
+        font-size: 21px;
+        font-weight: 800;
+    }
+
+
+    .contact-card-header p {
+        margin: 3px 0 0;
+        color: #78908c;
+        font-size: 12px;
+    }
+
+
+    /* =========================================================
+           CONTACT DETAILS
+        ========================================================= */
+
+    .contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+
+    .contact-detail {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 17px;
+        border-radius: 16px;
+        background: #f7fcfb;
+        border: 1px solid #e1f0ed;
+        transition: all .25s ease;
+    }
+
+
+        .contact-detail:hover {
+            transform: translateY(-2px);
+            border-color: #b8e4dd;
+            box-shadow: 0 8px 20px rgba(15,118,110,.07);
+        }
+
+
+    .contact-detail-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: #ccfbf1;
+        color: #0f766e;
+        font-size: 17px;
+    }
+
+
+    .contact-detail-label {
+        display: block;
+        margin-bottom: 3px;
+        color: #78908c;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 1.1px;
+        text-transform: uppercase;
+    }
+
+
+    .contact-detail-value {
+        color: #18312f;
+        font-size: 14px;
+        font-weight: 700;
+        word-break: break-word;
+    }
+
+
+        .contact-detail-value a {
+            color: #18312f;
+            text-decoration: none;
+        }
+
+
+            .contact-detail-value a:hover {
+                color: #0f766e;
+            }
+
+
+    /* =========================================================
+           CONTACT PERSON
+        ========================================================= */
+
+    .contact-person {
+        margin-top: 20px;
+        padding: 21px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #123c3a, #0f766e);
+        color: #ffffff;
+    }
+
+
+    .contact-person-label {
+        display: block;
+        margin-bottom: 6px;
+        color: #5eead4;
+        font-size: 9px;
+        font-weight: 850;
+        letter-spacing: 1.5px;
+    }
+
+
+    .contact-person h3 {
+        margin: 0 0 5px;
+        color: #ffffff;
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+
+    .contact-person p {
+        margin: 0;
+        color: #c4e2de;
+        font-size: 11.5px;
+        line-height: 1.6;
+    }
+
+
+    /* =========================================================
+           HOW WE CAN HELP
+        ========================================================= */
+
+    .help-intro {
+        margin: -8px 0 24px;
+        color: #6a8580;
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+
+    .help-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+
+    .help-item {
+        padding: 20px;
+        border-radius: 17px;
+        background: #f8fcfb;
+        border: 1px solid #e2f0ed;
+        transition: all .25s ease;
+    }
+
+
+        .help-item:hover {
+            transform: translateY(-3px);
+            border-color: #b9e5de;
+            box-shadow: 0 10px 24px rgba(15,118,110,.07);
+        }
+
+
+    .help-item-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 13px;
+        border-radius: 12px;
+        background: #e5f8f4;
+        color: #0f766e;
+        font-size: 17px;
+    }
+
+
+    .help-item h3 {
+        margin: 0 0 7px;
+        color: #21413e;
+        font-size: 14px;
+        font-weight: 800;
+    }
+
+
+    .help-item p {
+        margin: 0;
+        color: #718983;
+        font-size: 11.5px;
+        line-height: 1.65;
+    }
+
+
+    /* =========================================================
+           FEEDBACK
+        ========================================================= */
+
+    .feedback-note {
+        display: flex;
+        align-items: flex-start;
+        gap: 13px;
+        margin-top: 20px;
+        padding: 19px 20px;
+        border-radius: 16px;
+        background: #effcf9;
+        border: 1px solid #ccebe6;
+    }
+
+
+        .feedback-note i {
+            margin-top: 2px;
+            color: #0f766e;
+            font-size: 19px;
+        }
+
+
+        .feedback-note strong {
+            display: block;
+            margin-bottom: 4px;
+            color: #18312f;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+
+        .feedback-note span {
+            color: #6c8580;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+
+    /* =========================================================
+           BOTTOM
+        ========================================================= */
+
+    .contact-bottom {
+        margin-top: 30px;
+    }
+
+
+    .contact-home-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 13px 21px;
+        border-radius: 13px;
+        background: #ffffff;
+        border: 1px solid #cfe8e3;
+        color: #173b3a;
+        text-decoration: none !important;
+        font-size: 13px;
+        font-weight: 800;
+        box-shadow: 0 7px 20px rgba(23,59,58,.05);
+        transition: all .25s ease;
+    }
+
+
+        .contact-home-btn i {
+            color: #0f766e;
+            font-size: 15px;
+        }
+
+
+        .contact-home-btn:hover {
+            transform: translateY(-3px);
+            border-color: #9edbd3;
+            color: #0f766e;
+            box-shadow: 0 12px 27px rgba(23,59,58,.09);
+        }
+
+
+    /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+    @@media (max-width: 900px) {
+
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .contact-hero {
+            padding: 38px;
+        }
+    }
+
+
+    @@media (max-width: 650px) {
+
+        .contact-page {
+            padding: 35px 18px 55px;
+        }
+
+        .contact-hero {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 30px 25px;
+            border-radius: 22px;
+        }
+
+        .contact-hero-icon {
+            width: 75px;
+            height: 75px;
+            min-width: 75px;
+            border-radius: 20px;
+            font-size: 31px;
+        }
+
+        .contact-card {
+            padding: 25px 20px;
+        }
+
+        .help-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+
+
+<div class="contact-page">
+
+    <div class="contact-container">
+
+
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
+
+        <section class="contact-hero">
+
+            <div class="contact-hero-content">
+
+                <span class="contact-badge">
+
+                    <i class="bi bi-chat-dots-fill"></i>
+
+                    SKILLBRIDGE CONTACT
+
+                </span>
+
+
+                <h1>
+                    Let's connect with
+                    <span>SkillBridge.</span>
+                </h1>
+
+
+                <p>
+                    Have a question about SkillBridge or need help
+                    understanding the platform? You can contact us
+                    using the details below.
+                </p>
+
+            </div>
+
+
+            <div class="contact-hero-icon">
+
+                <i class="bi bi-headset"></i>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             MAIN CONTENT
+        ====================================================== -->
+
+        <div class="contact-grid">
+
+
+            <!-- =================================================
+                 CONTACT DETAILS
+            ================================================== -->
+
+            <section class="contact-card">
+
+                <div class="contact-card-header">
+
+                    <div class="contact-card-icon">
+
+                        <i class="bi bi-person-lines-fill"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            Contact Details
+                        </h2>
+
+                        <p>
+                            Get in touch with the SkillBridge team.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-details">
+
+
+                    <!-- NAME -->
+
+                    <div class="contact-detail">
+
+                        <div class="contact-detail-icon">
+
+                            <i class="bi bi-person-fill"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <span class="contact-detail-label">
+                                Name
+                            </span>
+
+                            <div class="contact-detail-value">
+                                Shveta Potbhare
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="contact-detail">
+
+                        <div class="contact-detail-icon">
+
+                            <i class="bi bi-envelope-fill"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <span class="contact-detail-label">
+                                Email
+                            </span>
+
+                            <div class="contact-detail-value">
+
+                                <a href="mailto:shvetapotbhare07@gmail.com">
+                                    shvetapotbhare07@gmail.com
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PHONE -->
+
+                    <div class="contact-detail">
+
+                        <div class="contact-detail-icon">
+
+                            <i class="bi bi-telephone-fill"></i>
+
+                        </div>
+
+
+                        <div>
+
+                            <span class="contact-detail-label">
+                                Phone
+                            </span>
+
+                            <div class="contact-detail-value">
+
+                                <a href="tel:9270363512">
+                                    9270363512
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CONTACT PERSON -->
+
+                <div class="contact-person">
+
+                    <span class="contact-person-label">
+                        SKILLBRIDGE CONTACT PERSON
+                    </span>
+
+                    <h3>
+                        Shveta Potbhare
+                    </h3>
+
+                    <p>
+                        For questions, suggestions or general information
+                        related to the SkillBridge platform, feel free to
+                        get in touch using the contact details above.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 HOW SKILLBRIDGE CAN HELP
+            ================================================== -->
+
+            <section class="contact-card">
+
+                <div class="contact-card-header">
+
+                    <div class="contact-card-icon">
+
+                        <i class="bi bi-life-preserver"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h2>
+                            How SkillBridge Can Help
+                        </h2>
+
+                        <p>
+                            Find the right part of the platform for your need.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <p class="help-intro">
+
+                    SkillBridge connects your resume information with
+                    career-focused recommendations to help you understand
+                    your skills and explore suitable opportunities.
+
+                </p>
+
+
+                <div class="help-grid">
+
+
+                    <!-- Resume -->
+
+                    <div class="help-item">
+
+                        <div class="help-item-icon">
+
+                            <i class="bi bi-file-earmark-check-fill"></i>
+
+                        </div>
+
+                        <h3>
+                            Resume Analysis
+                        </h3>
+
+                        <p>
+                            Analyze your resume, identify skills,
+                            view your ATS score and receive suggestions
+                            for improvement.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Skill Gap -->
+
+                    <div class="help-item">
+
+                        <div class="help-item-icon">
+
+                            <i class="bi bi-bar-chart-fill"></i>
+
+                        </div>
+
+                        <h3>
+                            Skill Gap Analysis
+                        </h3>
+
+                        <p>
+                            Understand which skills can strengthen
+                            your profile for your career direction.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Career Path -->
+
+                    <div class="help-item">
+
+                        <div class="help-item-icon">
+
+                            <i class="bi bi-signpost-2-fill"></i>
+
+                        </div>
+
+                        <h3>
+                            Career Path
+                        </h3>
+
+                        <p>
+                            Explore a personalized career progression
+                            based on your resume skills.
+                        </p>
+
+                    </div>
+
+
+                    <!-- Opportunities -->
+
+                    <div class="help-item">
+
+                        <div class="help-item-icon">
+
+                            <i class="bi bi-briefcase-fill"></i>
+
+                        </div>
+
+                        <h3>
+                            Career Opportunities
+                        </h3>
+
+                        <p>
+                            Discover recommended jobs and external
+                            learning resources related to your skills.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FEEDBACK -->
+
+                <div class="feedback-note">
+
+                    <i class="bi bi-stars"></i>
+
+                    <div>
+
+                        <strong>
+                            Your feedback matters
+                        </strong>
+
+                        <span>
+                            Suggestions and feedback can help improve
+                            the SkillBridge experience. A dedicated
+                            feedback section can be added later.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- =====================================================
+             BACK TO HOME
+        ====================================================== -->
+
+        <div class="contact-bottom">
+
+            <a asp-page="/Index" class="contact-home-btn">
+
+                <i class="bi bi-arrow-left"></i>
+
+                Back to Home
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>

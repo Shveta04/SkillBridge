@@ -1,0 +1,716 @@
+﻿@page
+@model SkillBridge.Pages.Admin.ProfileModel
+
+@{
+    Layout = "/Pages/Admin/_AdminLayout.cshtml";
+    ViewData["Title"] = "Admin Profile";
+
+    var isEditing = Request.Query["edit"] == "true";
+    var updated = Request.Query["updated"] == "true";
+}
+
+<style>
+    .admin-profile-page {
+        padding: 36px 44px;
+        background: #f2faf8;
+        min-height: calc(100vh - 80px);
+    }
+
+    /* =========================
+               HEADER
+               ========================= */
+
+    .profile-header {
+        background: #ffffff;
+        border: 1px solid #d6eeea;
+        border-radius: 24px;
+        padding: 34px 42px;
+        margin-bottom: 28px;
+    }
+
+    .profile-label {
+        color: #10b3a3;
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+
+    .profile-header h1 {
+        margin: 0;
+        color: #123b36;
+        font-size: 42px;
+        font-weight: 800;
+    }
+
+    .profile-header p {
+        margin: 10px 0 0;
+        color: #64817d;
+        font-size: 17px;
+    }
+
+    /* =========================
+               HEADER BUTTONS
+               ========================= */
+
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .dashboard-btn,
+    .edit-profile-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border-radius: 12px;
+        padding: 11px 20px;
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+        transition: 0.2s ease;
+    }
+
+    .dashboard-btn {
+        background: #ffffff;
+        color: #008d83;
+        border: 1px solid #bfe5e0;
+    }
+
+        .dashboard-btn:hover {
+            background: #e9f8f6;
+            color: #00776f;
+            border-color: #10b3a3;
+        }
+
+    .edit-profile-btn {
+        background: #10b3a3;
+        color: #ffffff;
+        border: 1px solid #10b3a3;
+    }
+
+        .edit-profile-btn:hover {
+            background: #0b9689;
+            border-color: #0b9689;
+            color: #ffffff;
+        }
+
+    /* =========================
+               ALERT
+               ========================= */
+
+    .profile-alert {
+        border-radius: 14px;
+        padding: 14px 18px;
+        margin-bottom: 22px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+        .profile-alert.success {
+            background: #e8f8f5;
+            border: 1px solid #bfe5df;
+            color: #087f73;
+        }
+
+        .profile-alert.error {
+            background: #fff5f5;
+            border: 1px solid #f1cccc;
+            color: #a33a3a;
+        }
+
+    /* =========================
+               PROFILE CARD
+               ========================= */
+
+    .profile-card {
+        background: #ffffff;
+        border: 1px solid #d6eeea;
+        border-radius: 24px;
+        padding: 42px;
+        box-shadow: 0 8px 24px rgba(16, 179, 163, 0.06);
+    }
+
+    /* =========================
+               PROFILE SUMMARY
+               ========================= */
+
+    .profile-summary {
+        background: #f4fbf9;
+        border: 1px solid #dcefeb;
+        border-radius: 20px;
+        padding: 30px 24px;
+        text-align: center;
+        height: 100%;
+    }
+
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 18px;
+        border-radius: 50%;
+        background: #e9f8f6;
+        border: 2px solid #c9ece7;
+        color: #10b3a3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 42px;
+        font-weight: 800;
+    }
+
+    .profile-summary h2 {
+        margin: 0 0 10px;
+        color: #123b36;
+        font-size: 23px;
+        font-weight: 800;
+    }
+
+    .admin-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: #e9f8f6;
+        color: #008d83;
+        border: 1px solid #c9ece7;
+        border-radius: 999px;
+        padding: 8px 15px;
+        font-size: 12px;
+        font-weight: 800;
+    }
+
+    .admin-badge-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #10b3a3;
+    }
+
+    /* =========================
+               INFORMATION
+               ========================= */
+
+    .profile-info {
+        padding-left: 12px;
+    }
+
+    .profile-info-title {
+        margin-bottom: 22px;
+    }
+
+        .profile-info-title h2 {
+            margin: 0;
+            color: #123b36;
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .profile-info-title p {
+            margin: 6px 0 0;
+            color: #64817d;
+            font-size: 14px;
+        }
+
+    .info-item {
+        margin-bottom: 18px;
+    }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+    .info-label {
+        display: block;
+        color: #52716c;
+        font-size: 13px;
+        font-weight: 800;
+        margin-bottom: 7px;
+    }
+
+    .info-value {
+        min-height: 46px;
+        display: flex;
+        align-items: center;
+        background: #f8fcfb;
+        border: 1px solid #dcefeb;
+        border-radius: 12px;
+        padding: 11px 15px;
+        color: #315f59;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    /* =========================
+               EDIT INPUTS
+               ========================= */
+
+    .profile-input {
+        width: 100%;
+        min-height: 46px;
+        background: #ffffff;
+        border: 1px solid #cfe7e3;
+        border-radius: 12px;
+        padding: 11px 15px;
+        color: #315f59;
+        font-size: 14px;
+        font-weight: 600;
+        outline: none;
+        transition: 0.2s ease;
+    }
+
+        .profile-input:focus {
+            border-color: #10b3a3;
+            box-shadow: 0 0 0 3px rgba(16, 179, 163, 0.10);
+        }
+
+        .profile-input::placeholder {
+            color: #9aafab;
+            font-weight: 500;
+        }
+
+    /* =========================
+               EDIT ACTIONS
+               ========================= */
+
+    .edit-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 26px;
+    }
+
+    .save-btn,
+    .cancel-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-height: 44px;
+        padding: 10px 20px;
+        border-radius: 11px;
+        font-size: 14px;
+        font-weight: 800;
+        text-decoration: none;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+
+    .save-btn {
+        background: #10b3a3;
+        color: #ffffff;
+        border: 1px solid #10b3a3;
+    }
+
+        .save-btn:hover {
+            background: #0b9689;
+            border-color: #0b9689;
+        }
+
+    .cancel-btn {
+        background: #ffffff;
+        color: #52716c;
+        border: 1px solid #cfe7e3;
+    }
+
+        .cancel-btn:hover {
+            background: #f1faf8;
+            color: #087f73;
+            border-color: #10b3a3;
+        }
+
+    /* =========================
+               ACCOUNT STATUS
+               ========================= */
+
+    .profile-status {
+        margin-top: 28px;
+        padding: 18px 20px;
+        background: #f4fbf9;
+        border: 1px solid #dcefeb;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .status-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        background: #e9f8f6;
+        color: #10b3a3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+    .status-text strong {
+        display: block;
+        color: #123b36;
+        font-size: 14px;
+        margin-bottom: 3px;
+    }
+
+    .status-text span {
+        color: #64817d;
+        font-size: 12px;
+    }
+
+    /* =========================
+               RESPONSIVE
+               ========================= */
+
+    @@media (max-width: 900px) {
+
+        .admin-profile-page {
+            padding: 28px 24px;
+        }
+
+        .profile-card {
+            padding: 30px;
+        }
+
+        .profile-info {
+            padding-left: 0;
+            margin-top: 28px;
+        }
+    }
+
+    @@media (max-width: 700px) {
+
+        .admin-profile-page {
+            padding: 24px 18px;
+        }
+
+        .profile-header {
+            padding: 26px 22px;
+        }
+
+            .profile-header h1 {
+                font-size: 32px;
+            }
+
+            .profile-header .d-flex {
+                flex-direction: column;
+                align-items: flex-start !important;
+                gap: 18px;
+            }
+
+        .header-actions {
+            flex-wrap: wrap;
+        }
+
+        .profile-card {
+            padding: 22px;
+        }
+
+        .edit-actions {
+            flex-direction: column;
+            align-items: stretch;
+        }
+    }
+</style>
+
+
+<div class="admin-profile-page">
+
+    <!-- =========================
+         HEADER
+         ========================= -->
+
+    <div class="profile-header">
+
+        <div class="d-flex justify-content-between align-items-center">
+
+            <div>
+
+                <div class="profile-label">
+                    ADMINISTRATION
+                </div>
+
+                <h1>
+                    Admin Profile
+                </h1>
+
+                <p>
+                    Manage and view your administrator account information.
+                </p>
+
+            </div>
+
+            <div class="header-actions">
+
+                @if (!isEditing)
+                {
+                    <a asp-page="/Admin/Profile"
+                       asp-route-edit="true"
+                       class="edit-profile-btn">
+                        ✎ Edit Profile
+                    </a>
+                }
+
+                <a asp-page="/Admin/Dashboard"
+                   class="dashboard-btn">
+                    ← Dashboard
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    @if (updated)
+    {
+        <div class="profile-alert success">
+            ✓ Profile updated successfully.
+        </div>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+    {
+        <div class="profile-alert error">
+            @Model.ErrorMessage
+        </div>
+    }
+
+
+    <!-- =========================
+         PROFILE CARD
+         ========================= -->
+    @if (Model.Admin != null)
+    {
+        <div class="profile-card">
+
+            <div class="row g-4">
+
+                <!-- PROFILE SUMMARY -->
+
+                <div class="col-lg-4">
+
+                    <div class="profile-summary">
+
+                        <div class="profile-avatar">
+
+                            @{
+                                var nameParts = Model.Admin.FullName?
+                                    .Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+                                var initials = nameParts != null &&
+                                               nameParts.Length >= 2
+                                    ? $"{nameParts[0][0]}{nameParts[^1][0]}"
+                                    : Model.Admin.FullName?.Substring(0, 1).ToUpper();
+                            }
+
+                            @initials?.ToUpper()
+
+                        </div>
+
+                        <h2>
+                            @Model.Admin.FullName
+                        </h2>
+
+                        <span class="admin-badge">
+
+                            <span class="admin-badge-dot"></span>
+
+                            Administrator
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PROFILE INFORMATION -->
+
+                <div class="col-lg-8">
+
+                    <div class="profile-info">
+
+                        <div class="profile-info-title">
+
+                            <h2>
+                                Account Information
+                            </h2>
+
+                            <p>
+                                @(isEditing
+                                    ? "Update the information associated with your administrator account."
+                                    : "Details associated with your administrator account.")
+                            </p>
+
+                        </div>
+
+
+                        @if (isEditing)
+                        {
+                            <form method="post"
+                                  asp-page-handler="Save">
+
+                                <div class="info-item">
+
+                                    <label class="info-label"
+                                           asp-for="FullName">
+                                        Full Name
+                                    </label>
+
+                                    <input asp-for="FullName"
+                                           class="profile-input"
+                                           placeholder="Enter your full name" />
+
+                                </div>
+
+
+                                <div class="info-item">
+
+                                    <label class="info-label"
+                                           asp-for="Email">
+                                        Email Address
+                                    </label>
+
+                                    <input asp-for="Email"
+                                           type="email"
+                                           class="profile-input"
+                                           placeholder="Enter your email address" />
+
+                                </div>
+
+
+                                <div class="info-item">
+
+                                    <label class="info-label"
+                                           asp-for="Phone">
+                                        Contact Number
+                                    </label>
+
+                                    <input asp-for="Phone"
+                                           class="profile-input"
+                                           placeholder="Enter your contact number" />
+
+                                </div>
+
+
+                                <div class="info-item">
+
+                                    <span class="info-label">
+                                        Account Role
+                                    </span>
+
+                                    <div class="info-value">
+                                        @Model.Admin.Role
+                                    </div>
+
+                                </div>
+
+
+                                <div class="edit-actions">
+
+                                    <button type="submit"
+                                            class="save-btn">
+                                        ✓ Save Changes
+                                    </button>
+
+                                    <a asp-page="/Admin/Profile"
+                                       class="cancel-btn">
+                                        Cancel
+                                    </a>
+
+                                </div>
+
+                            </form>
+                        }
+                        else
+                        {
+                            <div class="info-item">
+
+                                <span class="info-label">
+                                    Full Name
+                                </span>
+
+                                <div class="info-value">
+                                    @Model.Admin.FullName
+                                </div>
+
+                            </div>
+
+
+                            <div class="info-item">
+
+                                <span class="info-label">
+                                    Email Address
+                                </span>
+
+                                <div class="info-value">
+                                    @Model.Admin.Email
+                                </div>
+
+                            </div>
+
+
+                            <div class="info-item">
+
+                                <span class="info-label">
+                                    Contact Number
+                                </span>
+
+                                <div class="info-value">
+                                    @(string.IsNullOrWhiteSpace(Model.Admin.Phone)
+                                        ? "Not provided"
+                                        : Model.Admin.Phone)
+                                </div>
+
+                            </div>
+
+
+                            <div class="info-item">
+
+                                <span class="info-label">
+                                    Account Role
+                                </span>
+
+                                <div class="info-value">
+                                    @Model.Admin.Role
+                                </div>
+
+                            </div>
+
+                        }
+
+
+                        <div class="profile-status">
+
+                            <div class="status-icon">
+                                ✓
+                            </div>
+
+                            <div class="status-text">
+
+                                <strong>
+                                    Account Active
+                                </strong>
+
+                                <span>
+                                    Administrator access is currently enabled.
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+</div>

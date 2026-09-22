@@ -1,0 +1,882 @@
+/*==========================================================
+  SKILLBRIDGE - GLOBAL STYLES
+==========================================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #3B82F6;
+    --primary-dark: #2563EB;
+    --secondary: #06B6D4;
+    --background: #0F172A;
+    --card: #1E293B;
+    --card-hover: #273549;
+    --text: #F8FAFC;
+    --text-light: #CBD5E1;
+    --border: rgba(255,255,255,.08);
+}
+
+/*==========================================================
+  RESET
+==========================================================*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--background);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+/*==========================================================
+  NAVBAR
+==========================================================*/
+
+.custom-navbar {
+    background: rgba(15,23,42,.96);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 0;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+/*=========================
+  LOGO
+=========================*/
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.brand-text {
+    margin-left: 15px;
+}
+
+.logo-title {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1;
+}
+
+/* Skill */
+.skill-text {
+    color: #FFFFFF !important;
+}
+
+/* Bridge */
+.bridge-text {
+    background: linear-gradient(90deg, #5EEAD4, #10B981);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.logo-subtitle {
+    margin-top: 6px;
+    color: #94A3B8;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+/*=========================
+  MENU
+=========================*/
+
+.navbar-nav .nav-link {
+    color: var(--text-light) !important;
+    margin: 0 16px;
+    font-size: 17px;
+    font-weight: 600;
+    transition: .3s;
+    position: relative;
+}
+
+    .navbar-nav .nav-link:hover {
+        color: #ffffff !important;
+    }
+
+    .navbar-nav .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 0;
+        height: 2px;
+        background: var(--secondary);
+        transition: .3s;
+    }
+
+    .navbar-nav .nav-link:hover::after {
+        width: 100%;
+    }
+/*==========================================================
+  BUTTONS
+==========================================================*/
+
+.btn {
+    border-radius: 12px;
+    padding: 12px 28px;
+    font-weight: 600;
+    transition: .35s ease;
+}
+
+.btn-login {
+    color: #ffffff;
+    border: 1px solid rgba(255,255,255,.15);
+    background: transparent;
+}
+
+    .btn-login:hover {
+        background: #ffffff;
+        color: #111827;
+        transform: translateY(-3px);
+    }
+
+.btn-register {
+    background: linear-gradient(135deg,#3B82F6,#06B6D4);
+    color: #ffffff;
+    border: none;
+}
+
+    .btn-register:hover {
+        color: #ffffff;
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(59,130,246,.35);
+    }
+
+/*==========================================================
+  FOOTER
+==========================================================*/
+
+.footer {
+    margin-top: 100px;
+    background: #020617;
+    padding: 70px 0 30px;
+    border-top: 1px solid var(--border);
+}
+
+.footer-title {
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.footer p {
+    color: #94A3B8;
+    line-height: 1.8;
+}
+
+.footer h5 {
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+    .footer-links li {
+        margin-bottom: 12px;
+    }
+
+    .footer-links a {
+        color: #94A3B8;
+        transition: .3s;
+    }
+
+        .footer-links a:hover {
+            color: #ffffff;
+            padding-left: 5px;
+        }
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+    .social-icons a {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #1E293B;
+        color: #ffffff;
+        font-size: 18px;
+        transition: .3s;
+    }
+
+        .social-icons a:hover {
+            background: #3B82F6;
+            transform: translateY(-5px);
+        }
+
+.footer-line {
+    margin: 40px 0 20px;
+    border-color: rgba(255,255,255,.08);
+}
+
+/*==========================================================
+  CARD
+==========================================================*/
+
+.card {
+    background: #1E293B;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 20px;
+}
+
+/*==========================================================
+  SCROLLBAR
+==========================================================*/
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #111827;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3B82F6;
+    border-radius: 20px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #06B6D4;
+    }
+
+/*==========================================================
+  RESPONSIVE
+==========================================================*/
+
+@media(max-width:991px) {
+
+    .logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .logo-title {
+        font-size: 30px;
+    }
+
+    .logo-subtitle {
+        font-size: 11px;
+        letter-spacing: 2px;
+    }
+
+    .navbar-nav {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+        .navbar-nav .nav-link {
+            margin: 12px 0;
+        }
+
+    .btn-login,
+    .btn-register {
+        width: 100%;
+        margin-top: 15px;
+    }
+}
+/*=========================================================
+        SKILLBRIDGE GLOBAL WHITE + TEAL THEME
+=========================================================*/
+
+/* NAVBAR */
+
+.custom-navbar {
+    background: #123C3A !important;
+    border-bottom: 1px solid #D9E7E5;
+    box-shadow: 0 4px 20px rgba(15, 118, 110, 0.08);
+}
+
+    .custom-navbar .nav-link {
+        color: #E6FFFB !important;
+    }
+
+        .custom-navbar .nav-link:hover {
+            color: #5EEAD4 !important;
+        }
+
+    .custom-navbar .navbar-brand {
+        color: #FFFFFF;
+    }
+
+
+/* LOGIN BUTTON */
+
+.btn-login {
+    color: #E6FFFB !important;
+    border: 1px solid rgba(255,255,255,.25);
+    background: transparent;
+}
+
+    .btn-login:hover {
+        background: rgba(255,255,255,.10);
+        color: #FFFFFF !important;
+    }
+
+
+/* GET STARTED BUTTON */
+
+.btn-register {
+    background: linear-gradient(135deg, #0F766E, #14B8A6) !important;
+    color: #FFFFFF !important;
+    border: none;
+    box-shadow: 0 8px 20px rgba(20,184,166,.25);
+}
+
+    .btn-register:hover {
+        background: linear-gradient(135deg, #115E59, #0F766E) !important;
+        color: #FFFFFF !important;
+        transform: translateY(-2px);
+    }
+
+
+/* FOOTER */
+
+.footer {
+    background: #123C3A !important;
+    color: #E6FFFB !important;
+}
+
+    .footer h4,
+    .footer h5,
+    .footer-title {
+        color: #FFFFFF !important;
+    }
+
+    .footer p {
+        color: #B8D8D4 !important;
+    }
+
+.footer-links a {
+    color: #B8D8D4 !important;
+}
+
+    .footer-links a:hover {
+        color: #5EEAD4 !important;
+    }
+
+.footer-line {
+    border-color: rgba(255,255,255,.12) !important;
+}
+
+.social-icons a {
+    background: #1F514D !important;
+    color: #FFFFFF !important;
+}
+
+    .social-icons a:hover {
+        background: #14B8A6 !important;
+        color: #FFFFFF !important;
+    }
+/* Fix text visibility inside Login and Register input boxes */
+input,
+textarea,
+select {
+    color: #212529 !important;
+    background-color: #ffffff !important;
+}
+
+    input::placeholder,
+    textarea::placeholder {
+        color: #6c757d !important;
+        opacity: 1;
+    }
+.profile-menu {
+    position: relative;
+    margin-left: 15px;
+}
+
+.profile-icon-btn {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 29px;
+    padding: 3px 6px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+    .profile-icon-btn:hover {
+        color: #10b3a3;
+    }
+
+.profile-popup {
+    display: none;
+    position: absolute;
+    top: 48px;
+    right: 0;
+    width: 310px;
+    background: #ffffff;
+    border: 1px solid #d6eeea;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(18, 59, 54, 0.15);
+    overflow: hidden;
+    z-index: 1000;
+}
+
+    .profile-popup.show {
+        display: block;
+    }
+
+.profile-popup-header {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 20px;
+    background: #f2faf8;
+    border-bottom: 1px solid #d6eeea;
+}
+
+.profile-avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #e9f8f6;
+    color: #10b3a3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.profile-popup-header h5 {
+    margin: 0;
+    color: #123b36;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.profile-popup-header span {
+    color: #64817d;
+    font-size: 12px;
+}
+
+.profile-info {
+    padding: 16px 20px;
+}
+
+.profile-info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    margin-bottom: 16px;
+}
+
+    .profile-info-row:last-child {
+        margin-bottom: 0;
+    }
+
+    .profile-info-row > i {
+        color: #10b3a3;
+        font-size: 18px;
+        margin-top: 3px;
+    }
+
+    .profile-info-row small {
+        display: block;
+        color: #78928e;
+        font-size: 11px;
+        font-weight: 600;
+        margin-bottom: 2px;
+    }
+
+    .profile-info-row p {
+        margin: 0;
+        color: #315f59;
+        font-size: 13px;
+        font-weight: 600;
+        word-break: break-word;
+    }
+
+.profile-popup-footer {
+    padding: 14px 20px;
+    border-top: 1px solid #e1f0ed;
+}
+
+    .profile-popup-footer form {
+        margin: 0;
+    }
+
+.logout-btn {
+    width: 100%;
+    background: #fff1f0;
+    color: #d9534f;
+    border: 1px solid #f0c7c5;
+    border-radius: 9px;
+    padding: 9px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+    .logout-btn:hover {
+        background: #d9534f;
+        color: #ffffff;
+    }
+/* ================= USER PROFILE ================= */
+
+.profile-container {
+    position: relative;
+}
+
+.profile-icon-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: #ffffff;
+    color: #10b3a3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 12px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: 0.2s ease;
+}
+
+    .profile-icon-btn i {
+        font-size: 25px;
+    }
+
+    .profile-icon-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    }
+
+
+/* ================= PROFILE POPUP ================= */
+
+.profile-popup {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 290px;
+    background: #ffffff;
+    border: 1px solid #d6eeea;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+    display: none;
+    z-index: 9999;
+}
+
+    .profile-popup.show {
+        display: block;
+    }
+
+
+/* ================= PROFILE HEADER ================= */
+
+.profile-popup-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e6f2f0;
+    margin-bottom: 15px;
+}
+
+.profile-popup-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #e9f8f6;
+    color: #10b3a3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .profile-popup-icon i {
+        font-size: 23px;
+    }
+
+.profile-popup-header h6 {
+    margin: 0;
+    color: #123b36;
+    font-weight: 700;
+}
+
+.profile-popup-header small {
+    color: #7a9692;
+}
+
+
+/* ================= PROFILE INFORMATION ================= */
+
+.profile-info {
+    margin-bottom: 15px;
+}
+
+.profile-info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    color: #315f59;
+    font-size: 13px;
+}
+
+    .profile-info-item i {
+        width: 20px;
+        color: #10b3a3;
+        font-size: 16px;
+    }
+
+
+/* ================= LOGOUT BUTTON ================= */
+
+.profile-logout-btn {
+    width: 100%;
+    border: none;
+    border-radius: 9px;
+    padding: 10px;
+    background: #fff1f0;
+    color: #d9534f;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+    .profile-logout-btn:hover {
+        background: #ffe0de;
+        color: #c9302c;
+    }
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 991px) {
+
+    .profile-popup {
+        position: fixed;
+        top: 75px;
+        right: 20px;
+    }
+
+    .profile-icon-btn {
+        margin-left: 8px;
+    }
+}
+/* =========================================================
+   SKILLBRIDGE USER PROFILE
+   ========================================================= */
+
+.profile-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* White circular user icon */
+.profile-icon-btn {
+    width: 44px;
+    height: 44px;
+    margin-left: 12px;
+    border: none;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #10b3a3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    transition: all 0.2s ease;
+}
+
+    .profile-icon-btn i {
+        font-size: 23px;
+    }
+
+    .profile-icon-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(16, 179, 163, 0.25);
+    }
+
+        .profile-icon-btn:hover i {
+            color: #008d83;
+        }
+
+
+/* =========================================================
+   PROFILE POPUP
+   ========================================================= */
+
+.profile-popup {
+    position: absolute;
+    top: 55px;
+    right: 0;
+    width: 300px;
+    background: #ffffff;
+    border: 1px solid #d6eeea;
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(18, 59, 54, 0.16);
+    overflow: hidden;
+    display: none;
+    z-index: 9999;
+}
+
+    .profile-popup.show {
+        display: block;
+    }
+
+
+/* =========================================================
+   PROFILE POPUP HEADER
+   ========================================================= */
+
+.profile-popup-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 20px;
+    background: #f2faf8;
+    border-bottom: 1px solid #dcefeb;
+}
+
+.profile-popup-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #10b3a3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+    .profile-popup-icon i {
+        font-size: 22px;
+    }
+
+.profile-popup-header h6 {
+    margin: 0;
+    color: #123b36;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.profile-popup-header small {
+    color: #6f8985;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   PROFILE INFORMATION
+   ========================================================= */
+
+.profile-info {
+    padding: 17px 20px 8px;
+}
+
+.profile-info-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    color: #315f59;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+    .profile-info-item i {
+        width: 20px;
+        color: #10b3a3;
+        font-size: 16px;
+        text-align: center;
+    }
+
+
+/* =========================================================
+   LOGOUT AREA
+   ========================================================= */
+
+.profile-popup form {
+    margin: 0;
+}
+
+.profile-logout-btn {
+    width: calc(100% - 40px);
+    margin: 5px 20px 18px;
+    padding: 10px 14px;
+    border: 1px solid #f0c7c5;
+    border-radius: 9px;
+    background: #fff1f0;
+    color: #d9534f;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+    .profile-logout-btn:hover {
+        background: #d9534f;
+        color: #ffffff;
+        border-color: #d9534f;
+    }
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 991px) {
+
+    .profile-container {
+        margin-left: 5px;
+    }
+
+    .profile-icon-btn {
+        width: 42px;
+        height: 42px;
+        margin-left: 8px;
+    }
+
+    .profile-popup {
+        position: fixed;
+        top: 75px;
+        right: 18px;
+        width: 290px;
+        max-width: calc(100vw - 36px);
+    }
+}

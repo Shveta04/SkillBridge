@@ -1,0 +1,78 @@
+﻿/* ================================
+   SkillBridge Global Theme
+================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #2563eb;
+    --secondary: #06b6d4;
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --bg: #0b1220;
+    --card: #111827;
+    --card-light: #1f2937;
+    --text: #ffffff;
+    --text-light: #cbd5e1;
+    --border: rgba(255,255,255,.08);
+    --radius: 18px;
+    --shadow: 0 20px 45px rgba(0,0,0,.35);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: linear-gradient(135deg,#081120,#101827);
+    color: var(--text);
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+.container {
+    width: 90%;
+    max-width: 1300px;
+    margin: auto;
+}
+
+/* ================= BUTTON ================= */
+
+.primary-btn {
+    border: none;
+    background: linear-gradient( 135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 15px 32px;
+    border-radius: 14px;
+    font-weight: 600;
+    transition: .35s;
+}
+
+    .primary-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(37,99,235,.35);
+    }
+
+/* ================= CARD ================= */
+
+.glass-card {
+    background: rgba(255,255,255,.05);
+    backdrop-filter: blur(18px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}

@@ -1,0 +1,564 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<link rel="stylesheet"
+      href="~/css/home.css"
+      asp-append-version="true" />
+
+<!-- ======================================================
+                    HERO SECTION
+====================================================== -->
+
+<section class="hero-section">
+
+    <div class="home-container">
+
+        <div class="hero-grid">
+
+            <!-- LEFT -->
+            <div class="hero-left">
+
+                <span class="hero-badge">
+                    <i class="bi bi-stars"></i>
+                    AI-POWERED CAREER PLATFORM
+                </span>
+
+                <h1>
+                    Bridge Your Skills
+                    <span>To Your Career</span>
+                </h1>
+
+                <p class="hero-description">
+                    SkillBridge helps you understand your resume,
+                    identify your skills and skill gaps, discover
+                    suitable career paths, and explore relevant
+                    jobs and courses.
+                </p>
+
+                <div class="hero-highlights">
+
+                    <div>
+                        <i class="bi bi-file-earmark-check"></i>
+                        Resume Analysis
+                    </div>
+
+                    <div>
+                        <i class="bi bi-bullseye"></i>
+                        Skill Gap Analysis
+                    </div>
+
+                    <div>
+                        <i class="bi bi-signpost-2"></i>
+                        Career Path
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT -->
+            <div class="hero-right">
+
+                <div class="dashboard-preview">
+
+                    <div class="dashboard-header">
+
+                        <span class="circle red"></span>
+                        <span class="circle yellow"></span>
+                        <span class="circle green"></span>
+
+                        <span class="preview-window-title">
+                            SkillBridge
+                        </span>
+
+                    </div>
+
+
+                    <!-- MAIN PREVIEW -->
+                    <div class="career-preview-card">
+
+                        <div class="career-preview-content">
+
+                            <div>
+
+                                <span class="preview-label">
+                                    PERSONALIZED CAREER
+                                </span>
+
+                                <h2>
+                                    Your Career Journey
+                                </h2>
+
+                                <p>
+                                    Analyze your resume and discover
+                                    a career direction based on your
+                                    skills and profile.
+                                </p>
+
+                            </div>
+
+                            <div class="career-preview-icon">
+
+                                <i class="bi bi-signpost-2"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PREVIEW CARDS -->
+                    <div class="mini-grid">
+
+                        <!-- Resume -->
+                        <div class="mini-card">
+
+                            <div class="mini-card-icon resume-icon">
+                                <i class="bi bi-file-earmark-text"></i>
+                            </div>
+
+                            <div class="mini-card-content">
+
+                                <h5>
+                                    Resume Analysis
+                                </h5>
+
+                                <p>
+                                    Understand your resume
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Skill Gap -->
+                        <div class="mini-card">
+
+                            <div class="mini-card-icon gap-icon">
+                                <i class="bi bi-lightbulb"></i>
+                            </div>
+
+                            <div class="mini-card-content">
+
+                                <h5>
+                                    Skill Gap
+                                </h5>
+
+                                <p>
+                                    Find skills to improve
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Jobs -->
+                        <div class="mini-card">
+
+                            <div class="mini-card-icon job-icon">
+                                <i class="bi bi-briefcase-fill"></i>
+                            </div>
+
+                            <div class="mini-card-content">
+
+                                <h5>
+                                    Job Matches
+                                </h5>
+
+                                <p>
+                                    Discover suitable jobs
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Courses -->
+                        <div class="mini-card">
+
+                            <div class="mini-card-icon course-icon">
+                                <i class="bi bi-book-fill"></i>
+                            </div>
+
+                            <div class="mini-card-content">
+
+                                <h5>
+                                    Courses
+                                </h5>
+
+                                <p>
+                                    Improve your skills
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+                HOW SKILLBRIDGE WORKS
+====================================================== -->
+
+<section class="how-section">
+
+    <div class="home-container">
+
+        <div class="section-heading">
+
+            <span>
+                SIMPLE PROCESS
+            </span>
+
+            <h2>
+                How SkillBridge Works
+            </h2>
+
+            <p>
+                A simple journey from your resume to your career opportunities.
+            </p>
+
+        </div>
+
+
+        <div class="steps-row">
+
+            <!-- STEP 01 -->
+            <div class="step-item">
+
+                <div class="step-number">
+                    01
+                </div>
+
+                <div class="step-content">
+
+                    <h3>
+                        Upload Resume
+                    </h3>
+
+                    <p>
+                        Upload your resume to begin.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP 02 -->
+            <div class="step-item">
+
+                <div class="step-number">
+                    02
+                </div>
+
+                <div class="step-content">
+
+                    <h3>
+                        Resume Analysis
+                    </h3>
+
+                    <p>
+                        Identify skills from your resume.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP 03 -->
+            <div class="step-item">
+
+                <div class="step-number">
+                    03
+                </div>
+
+                <div class="step-content">
+
+                    <h3>
+                        Skill Gap Analysis
+                    </h3>
+
+                    <p>
+                        Discover skills you can improve.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP 04 -->
+            <div class="step-item">
+
+                <div class="step-number">
+                    04
+                </div>
+
+                <div class="step-content">
+
+                    <h3>
+                        Career Path
+                    </h3>
+
+                    <p>
+                        Get a suitable career direction.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP 05 -->
+            <div class="step-item">
+
+                <div class="step-number">
+                    05
+                </div>
+
+                <div class="step-content">
+
+                    <h3>
+                        Recommended Jobs
+                    </h3>
+
+                    <p>
+                        Explore jobs matching your skills.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- STEP 06 -->
+            <div class="step-item">
+
+                <div class="step-number">
+                    06
+                </div>
+
+                <div class="step-content">
+
+                    <h3>
+                        Recommended Courses
+                    </h3>
+
+                    <p>
+                        Find courses to improve your skills.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+                    EXPLORE FEATURES
+====================================================== -->
+
+<section class="features-section">
+
+    <div class="home-container">
+
+        <div class="section-heading">
+
+            <span>
+                EXPLORE SKILLBRIDGE
+            </span>
+
+            <h2>
+                Everything You Need
+            </h2>
+
+            <p>
+                Tools designed to help you understand your skills
+                and plan your career.
+            </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+            <!-- RESUME -->
+            <div class="feature-card">
+
+                <div class="feature-icon resume-feature">
+                    <i class="bi bi-file-earmark-text"></i>
+                </div>
+
+                <h3>
+                    Resume Analysis
+                </h3>
+
+                <p>
+                    Analyze your resume and identify the skills
+                    present in your profile.
+                </p>
+
+            </div>
+
+
+            <!-- SKILL GAP -->
+            <div class="feature-card">
+
+                <div class="feature-icon gap-feature">
+                    <i class="bi bi-lightbulb"></i>
+                </div>
+
+                <h3>
+                    Skill Gap Analysis
+                </h3>
+
+                <p>
+                    Understand which skills can strengthen your
+                    career readiness.
+                </p>
+
+            </div>
+
+
+            <!-- CAREER PATH -->
+            <div class="feature-card">
+
+                <div class="feature-icon career-feature">
+                    <i class="bi bi-signpost-2"></i>
+                </div>
+
+                <h3>
+                    Career Path
+                </h3>
+
+                <p>
+                    Discover a personalized career direction
+                    based on your skills.
+                </p>
+
+            </div>
+
+
+            <!-- JOBS -->
+            <div class="feature-card">
+
+                <div class="feature-icon job-feature">
+                    <i class="bi bi-briefcase"></i>
+                </div>
+
+                <h3>
+                    Job Recommendations
+                </h3>
+
+                <p>
+                    Find job opportunities that match your
+                    skills and career direction.
+                </p>
+
+            </div>
+
+
+            <!-- COURSES -->
+            <div class="feature-card">
+
+                <div class="feature-icon course-feature">
+                    <i class="bi bi-book"></i>
+                </div>
+
+                <h3>
+                    Course Recommendations
+                </h3>
+
+                <p>
+                    Discover learning opportunities that can
+                    help improve your skill gaps.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ======================================================
+                    BOTTOM CTA
+====================================================== -->
+
+<section class="cta-section">
+
+    <div class="home-container">
+
+        <div class="cta-box">
+
+            <div class="cta-content">
+
+                <span>
+                    START YOUR JOURNEY
+                </span>
+
+                <h2>
+                    Ready to Build Your Career?
+                </h2>
+
+                <p>
+                    Create your SkillBridge account and start
+                    your personalized career journey.
+                </p>
+
+            </div>
+
+
+            <div class="cta-buttons">
+
+                <a asp-page="/Account/Register"
+                   class="cta-primary">
+
+                    Get Started
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
+
+                <a asp-page="/Account/Login"
+                   class="cta-secondary">
+
+                    Login
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

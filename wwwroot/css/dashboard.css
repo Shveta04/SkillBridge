@@ -1,0 +1,821 @@
+﻿/* =========================================================
+   SKILLBRIDGE DASHBOARD
+   FINAL PROFESSIONAL DESIGN
+   WHITE + MINT + TEAL THEME
+========================================================= */
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.dashboard-page {
+    min-height: calc(100vh - 80px);
+    width: 100%;
+    background: radial-gradient( circle at 92% 5%, rgba(20, 184, 166, 0.12), transparent 25% ), radial-gradient( circle at 4% 72%, rgba(204, 251, 241, 0.48), transparent 30% ), #f8fbfa;
+    padding: 48px 5% 65px;
+    font-family: 'Poppins', sans-serif;
+    color: #18312f;
+}
+
+
+/* Full available width */
+
+.dashboard-container {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   WELCOME SECTION
+========================================================= */
+
+.dashboard-welcome {
+    margin-bottom: 31px;
+}
+
+
+/* Small dashboard label */
+
+.dashboard-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 9px;
+    color: #0f766e;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    line-height: 1.3;
+}
+
+    .dashboard-label i {
+        font-size: 16px;
+    }
+
+
+/* Main heading */
+
+.dashboard-welcome h1 {
+    margin: 0 0 8px;
+    color: #18312f;
+    font-size: clamp(36px, 3.2vw, 46px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1px;
+}
+
+
+/* Welcome description */
+
+.dashboard-welcome p {
+    margin: 0;
+    color: #66807b;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   MAIN RESUME ANALYZER CARD
+========================================================= */
+
+.resume-main-card {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-height: 285px;
+    padding: 42px 48px;
+    border-radius: 25px;
+    background: linear-gradient( 135deg, #087f78 0%, #0d9488 48%, #14b8a6 100% );
+    color: #ffffff;
+    box-shadow: 0 20px 45px rgba(8, 127, 120, 0.18);
+    margin-bottom: 43px;
+}
+
+
+    /* Soft inner border */
+
+    .resume-main-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border: 1px solid rgba(255,255,255,0.15);
+        border-radius: 25px;
+        pointer-events: none;
+    }
+
+
+/* =========================================================
+   RESUME CONTENT
+========================================================= */
+
+.resume-content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+    width: 100%;
+    max-width: 1100px;
+}
+
+
+/* =========================================================
+   RESUME ICON
+========================================================= */
+
+.resume-icon {
+    width: 66px;
+    height: 66px;
+    flex-shrink: 0;
+    border-radius: 17px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(7px);
+}
+
+    .resume-icon i {
+        font-size: 30px;
+    }
+
+
+/* =========================================================
+   RESUME TEXT
+========================================================= */
+
+.resume-text {
+    flex: 1;
+}
+
+
+/* Start badge */
+
+.resume-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 13px;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.95);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+}
+
+
+/* Resume heading */
+
+.resume-main-card h2 {
+    margin: 0 0 10px;
+    color: #ffffff;
+    font-size: clamp(28px, 2.5vw, 35px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+}
+
+
+/* Resume description */
+
+.resume-main-card p {
+    max-width: 920px;
+    margin: 0 0 23px;
+    color: rgba(255,255,255,0.89);
+    font-size: 15.5px;
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   ANALYZE BUTTON
+========================================================= */
+
+.analyze-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 13px 24px;
+    border-radius: 11px;
+    background: #ffffff;
+    color: #087f78;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+    .analyze-btn:hover {
+        background: #f1fffc;
+        color: #087f78;
+        transform: translateY(-3px);
+        box-shadow: 0 13px 28px rgba(0,0,0,0.17);
+    }
+
+    .analyze-btn i {
+        font-size: 16px;
+        transition: transform 0.2s ease;
+    }
+
+    .analyze-btn:hover i {
+        transform: translateX(5px);
+    }
+
+
+/* =========================================================
+   RESUME CARD DECORATIONS
+========================================================= */
+
+.resume-decoration {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.decoration-one {
+    width: 300px;
+    height: 300px;
+    right: -85px;
+    top: -125px;
+    background: rgba(255,255,255,0.07);
+}
+
+.decoration-two {
+    width: 210px;
+    height: 210px;
+    right: 120px;
+    bottom: -145px;
+    background: rgba(255,255,255,0.045);
+}
+
+
+/* =========================================================
+   FEATURE SECTION HEADING
+========================================================= */
+
+.dashboard-section-title {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+    .dashboard-section-title h3 {
+        margin: 0 0 6px;
+        color: #18312f;
+        font-size: 26px;
+        font-weight: 800;
+        line-height: 1.25;
+        letter-spacing: -0.4px;
+    }
+
+    .dashboard-section-title p {
+        margin: 0;
+        color: #6a817c;
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 1.6;
+    }
+
+
+/* =========================================================
+   FEATURE CARD GRID
+========================================================= */
+
+.dashboard-container .row {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+/* =========================================================
+   FEATURE CARDS
+========================================================= */
+
+.feature-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 235px;
+    display: flex;
+    flex-direction: column;
+    padding: 27px 29px;
+    background: #ffffff;
+    border: 1px solid #d9ebe7;
+    border-radius: 20px;
+    text-decoration: none;
+    box-shadow: 0 7px 24px rgba(24,49,47,0.055);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+
+    /* Hover */
+
+    .feature-card:hover {
+        transform: translateY(-7px);
+        border-color: #98d8cf;
+        box-shadow: 0 18px 38px rgba(24,49,47,0.11);
+    }
+
+
+/* =========================================================
+   CARD TOP
+========================================================= */
+
+.feature-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 21px;
+}
+
+
+/* =========================================================
+   FEATURE ICONS
+========================================================= */
+
+.feature-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(15,118,110,0.08);
+    transition: transform 0.2s ease;
+}
+
+    .feature-icon i {
+        font-size: 23px;
+    }
+
+
+/* =========================================================
+   CAREER PATH ICON
+========================================================= */
+
+.career-icon {
+    background: #e1f8f3;
+    color: #0f766e;
+}
+
+
+/* =========================================================
+   SKILL GAP ICON
+========================================================= */
+
+.skillgap-icon {
+    background: #dff7f2;
+    color: #0f766e;
+}
+
+
+/* =========================================================
+   JOB ICON
+========================================================= */
+
+.job-icon {
+    background: #e7f8f5;
+    color: #11877d;
+}
+
+
+/* =========================================================
+   COURSE ICON
+========================================================= */
+
+.course-icon {
+    background: #edf9f7;
+    color: #15988c;
+}
+
+
+/* Icon hover */
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.05);
+}
+
+
+/* =========================================================
+   TOP RIGHT ARROW
+========================================================= */
+
+.feature-arrow {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    background: #f2f8f7;
+    color: #708782;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+    .feature-arrow i {
+        font-size: 15px;
+    }
+
+.feature-card:hover .feature-arrow {
+    background: #e0f7f3;
+    color: #0f766e;
+    transform: translate(2px, -2px);
+}
+
+
+/* =========================================================
+   FEATURE CONTENT
+========================================================= */
+
+.feature-content {
+    flex: 1;
+}
+
+
+/* Card heading */
+
+.feature-card h4 {
+    margin: 0 0 9px;
+    color: #183f3a;
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: -0.2px;
+}
+
+
+/* Card description */
+
+.feature-card p {
+    margin: 0;
+    color: #70847f;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   CARD BOTTOM LINK
+========================================================= */
+
+.feature-link {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 18px;
+    color: #0f766e;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+    .feature-link i {
+        font-size: 13px;
+        transition: transform 0.2s ease;
+    }
+
+.feature-card:hover .feature-link i {
+    transform: translateX(5px);
+}
+
+
+/* =========================================================
+   HOW SKILLBRIDGE WORKS
+========================================================= */
+
+.how-it-works {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 21px;
+    width: 100%;
+    margin-top: 34px;
+    padding: 25px 30px;
+    background: linear-gradient( 135deg, #123f3a 0%, #0f766e 55%, #0d9488 100% );
+    border: 1px solid rgba(20,184,166,0.35);
+    border-radius: 20px;
+    box-shadow: 0 13px 32px rgba(15,118,110,0.18);
+}
+
+
+    /* Decorative circle */
+
+    .how-it-works::after {
+        content: "";
+        position: absolute;
+        width: 190px;
+        height: 190px;
+        right: -75px;
+        top: -95px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.06);
+        pointer-events: none;
+    }
+
+
+/* =========================================================
+   HOW ICON
+========================================================= */
+
+.how-icon {
+    position: relative;
+    z-index: 2;
+    width: 55px;
+    height: 55px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #0f766e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+    .how-icon i {
+        font-size: 23px;
+    }
+
+
+/* =========================================================
+   HOW CONTENT
+========================================================= */
+
+.how-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+}
+
+
+    /* Heading */
+
+    .how-content h4 {
+        margin: 0 0 7px;
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 800;
+        line-height: 1.3;
+    }
+
+
+    /* Description */
+
+    .how-content p {
+        margin: 0;
+        color: rgba(255,255,255,0.89);
+        font-size: 15.5px;
+        font-weight: 500;
+        line-height: 1.7;
+    }
+
+
+        /* Arrows */
+
+        .how-content p span {
+            color: #99f6e4;
+            font-size: 17px;
+            font-weight: 800;
+            padding: 0 7px;
+        }
+
+
+/* =========================================================
+   LARGE SCREENS
+========================================================= */
+
+@media (min-width: 1400px) {
+
+    .dashboard-page {
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+    .resume-main-card {
+        min-height: 295px;
+        padding: 46px 52px;
+    }
+
+    .feature-card {
+        min-height: 240px;
+        padding: 29px 31px;
+    }
+
+        .feature-card h4 {
+            font-size: 22px;
+        }
+
+        .feature-card p {
+            font-size: 15px;
+        }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .dashboard-page {
+        padding: 42px 5% 60px;
+    }
+
+    .dashboard-welcome h1 {
+        font-size: 38px;
+    }
+
+    .resume-main-card {
+        padding: 35px;
+    }
+
+        .resume-main-card h2 {
+            font-size: 29px;
+        }
+
+    .feature-card {
+        min-height: 225px;
+    }
+
+        .feature-card h4 {
+            font-size: 20px;
+        }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .dashboard-page {
+        padding: 34px 20px 55px;
+    }
+
+    .dashboard-welcome {
+        margin-bottom: 25px;
+    }
+
+        .dashboard-welcome h1 {
+            font-size: 31px;
+        }
+
+        .dashboard-welcome p {
+            font-size: 14px;
+        }
+
+    .resume-main-card {
+        padding: 29px 24px;
+        border-radius: 21px;
+    }
+
+    .resume-content {
+        gap: 17px;
+    }
+
+    .resume-icon {
+        width: 53px;
+        height: 53px;
+        border-radius: 15px;
+    }
+
+        .resume-icon i {
+            font-size: 24px;
+        }
+
+    .resume-main-card h2 {
+        font-size: 25px;
+    }
+
+    .resume-main-card p {
+        font-size: 14px;
+        line-height: 1.65;
+    }
+
+    .dashboard-section-title h3 {
+        font-size: 21px;
+    }
+
+    .dashboard-section-title p {
+        font-size: 13.5px;
+    }
+
+    .feature-card {
+        min-height: 220px;
+    }
+
+        .feature-card h4 {
+            font-size: 19px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+        }
+
+    .how-it-works {
+        gap: 16px;
+        padding: 21px;
+    }
+
+    .how-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+        .how-icon i {
+            font-size: 20px;
+        }
+
+    .how-content h4 {
+        font-size: 18px;
+    }
+
+    .how-content p {
+        font-size: 14px;
+        line-height: 1.65;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 520px) {
+
+    .dashboard-page {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .dashboard-welcome h1 {
+        font-size: 28px;
+    }
+
+    .resume-content {
+        display: block;
+    }
+
+    .resume-icon {
+        margin-bottom: 16px;
+    }
+
+    .resume-main-card h2 {
+        font-size: 22px;
+    }
+
+    .analyze-btn {
+        width: 100%;
+    }
+
+    .feature-card {
+        min-height: 210px;
+        padding: 21px;
+    }
+
+        .feature-card h4 {
+            font-size: 18px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+        }
+
+    .how-it-works {
+        align-items: flex-start;
+        padding: 19px;
+    }
+
+    .how-icon {
+        width: 45px;
+        height: 45px;
+    }
+
+    .how-content h4 {
+        font-size: 17px;
+    }
+
+    .how-content p {
+        font-size: 13.5px;
+    }
+
+        .how-content p span {
+            padding: 0 4px;
+        }
+}

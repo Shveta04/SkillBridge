@@ -1,0 +1,516 @@
+﻿@page
+@model SkillBridge.Pages.Admin.UsersModel
+
+@{
+    Layout = "/Pages/Admin/_AdminLayout.cshtml";
+    ViewData["Title"] = "Manage Users";
+}
+
+<style>
+    .users-page {
+        padding: 10px 5px 40px;
+        color: #163b38;
+    }
+
+    /* PAGE HEADER */
+
+    .users-header {
+        background: #ffffff;
+        border: 1px solid #dcefeb;
+        border-radius: 22px;
+        padding: 32px 36px;
+        margin-bottom: 24px;
+        box-shadow: 0 10px 28px rgba(22, 59, 56, 0.05);
+    }
+
+    .users-header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .users-label {
+        display: inline-block;
+        color: #10b5a4;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 1.8px;
+        margin-bottom: 7px;
+    }
+
+    .users-header h1 {
+        margin: 0;
+        color: #163b38;
+        font-size: 34px;
+        font-weight: 800;
+    }
+
+    .users-header p {
+        margin: 7px 0 0;
+        color: #688783;
+        font-size: 15px;
+    }
+
+
+    /* DASHBOARD BUTTON */
+
+    .dashboard-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        text-decoration: none;
+        background: #ffffff;
+        color: #087f73;
+        border: 1px solid #bfe6df;
+        padding: 11px 17px;
+        border-radius: 11px;
+        font-weight: 700;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+    }
+
+        .dashboard-btn:hover {
+            background: #e8f8f5;
+            color: #087f73;
+            border-color: #10b5a4;
+            transform: translateY(-1px);
+        }
+
+
+    /* USERS CARD */
+
+    .users-card {
+        background: #ffffff;
+        border: 1px solid #dcefeb;
+        border-radius: 22px;
+        padding: 28px;
+        box-shadow: 0 10px 28px rgba(22, 59, 56, 0.05);
+    }
+
+    .users-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 22px;
+    }
+
+        .users-card-header h2 {
+            margin: 0;
+            color: #163b38;
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .users-card-header p {
+            margin: 5px 0 0;
+            color: #78928f;
+            font-size: 13px;
+        }
+
+    .user-count {
+        background: #e8f8f5;
+        color: #087f73;
+        border: 1px solid #c7eee8;
+        padding: 8px 14px;
+        border-radius: 30px;
+        font-size: 13px;
+        font-weight: 800;
+        white-space: nowrap;
+    }
+
+
+    /* TABLE */
+
+    .users-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        overflow: hidden;
+    }
+
+        .users-table thead th {
+            background: #f1faf8;
+            color: #35645f;
+            padding: 15px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            border-top: 1px solid #dcefeb;
+            border-bottom: 1px solid #dcefeb;
+            white-space: nowrap;
+        }
+
+            .users-table thead th:first-child {
+                border-left: 1px solid #dcefeb;
+                border-radius: 12px 0 0 12px;
+            }
+
+            .users-table thead th:last-child {
+                border-right: 1px solid #dcefeb;
+                border-radius: 0 12px 12px 0;
+            }
+
+        .users-table tbody td {
+            padding: 17px 15px;
+            border-bottom: 1px solid #edf5f3;
+            color: #58736f;
+            vertical-align: middle;
+            font-size: 14px;
+        }
+
+        .users-table tbody tr {
+            transition: background 0.2s ease;
+        }
+
+            .users-table tbody tr:hover {
+                background: #f8fcfb;
+            }
+
+    .user-id {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 42px;
+        padding: 5px 8px;
+        border-radius: 8px;
+        background: #f1faf8;
+        color: #087f73;
+        font-size: 12px;
+        font-weight: 800;
+    }
+
+    .user-name {
+        color: #163b38;
+        font-weight: 700;
+    }
+
+    .user-email {
+        color: #63817e;
+    }
+
+
+    /* ROLE BADGES */
+
+    .role-admin,
+    .role-user {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 11px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.6px;
+    }
+
+    .role-admin {
+        background: #e8f8f5;
+        color: #087f73;
+        border: 1px solid #bfe6df;
+    }
+
+    .role-user {
+        background: #f1faf8;
+        color: #4c7771;
+        border: 1px solid #d7eeea;
+    }
+
+
+    /* EDIT BUTTON */
+
+    .edit-user-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #10b5a4;
+        color: #ffffff;
+        text-decoration: none;
+        padding: 8px 13px;
+        border-radius: 9px;
+        font-size: 12px;
+        font-weight: 700;
+        border: 1px solid #10b5a4;
+        transition: all 0.2s ease;
+    }
+
+        .edit-user-btn:hover {
+            background: #07998c;
+            border-color: #07998c;
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+
+    /* EMPTY STATE */
+
+    .empty-state {
+        text-align: center;
+        padding: 65px 20px;
+        background: #f8fcfb;
+        border: 1px dashed #cce8e3;
+        border-radius: 18px;
+    }
+
+    .empty-icon {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 18px;
+        background: #e8f8f5;
+        color: #10b5a4;
+        font-size: 28px;
+    }
+
+    .empty-state h3 {
+        margin: 0;
+        color: #163b38;
+        font-size: 21px;
+        font-weight: 800;
+    }
+
+    .empty-state p {
+        margin: 7px 0 0;
+        color: #78928f;
+    }
+
+
+    /* RESPONSIVE */
+
+    @@media (max-width: 900px) {
+
+        .users-header-content {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .dashboard-btn {
+            width: fit-content;
+        }
+
+        .users-table {
+            min-width: 850px;
+        }
+    }
+
+    @@media (max-width: 600px) {
+
+        .users-page {
+            padding: 5px 0 30px;
+        }
+
+        .users-header {
+            padding: 25px;
+        }
+
+            .users-header h1 {
+                font-size: 28px;
+            }
+
+        .users-card {
+            padding: 20px;
+        }
+
+        .users-card-header {
+            align-items: flex-start;
+            gap: 15px;
+        }
+    }
+</style>
+
+
+<div class="users-page">
+
+    <!-- PAGE HEADER -->
+
+    <section class="users-header">
+
+        <div class="users-header-content">
+
+            <div>
+
+                <span class="users-label">
+                    USER MANAGEMENT
+                </span>
+
+                <h1>Manage Users</h1>
+
+                <p>
+                    View and manage registered SkillBridge users
+                    and their account information.
+                </p>
+
+            </div>
+
+            <a asp-page="/Admin/Dashboard"
+               class="dashboard-btn">
+                ← Dashboard
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- USERS TABLE -->
+
+    <section class="users-card">
+
+        <div class="users-card-header">
+
+            <div>
+
+                <h2>Registered Users</h2>
+
+                <p>
+                    Users currently registered on SkillBridge.
+                </p>
+
+            </div>
+
+            <span class="user-count">
+                @Model.Users.Count
+                @(Model.Users.Count == 1 ? "User" : "Users")
+            </span>
+
+        </div>
+
+
+        @if (Model.Users.Count > 0)
+        {
+            <div class="table-responsive">
+
+                <table class="users-table">
+
+                    <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>User</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Role</th>
+                            <th>Actions</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var user in Model.Users)
+                        {
+                            <tr>
+
+                                <td>
+                                    <span class="user-id">
+                                        #@user.UserID
+                                    </span>
+                                </td>
+
+
+                                <td>
+                                    <span class="user-name">
+                                        @user.FullName
+                                    </span>
+                                </td>
+
+
+                                <td>
+                                    <span class="user-email">
+                                        @user.Email
+                                    </span>
+                                </td>
+
+
+                                <td>
+                                    @(string.IsNullOrWhiteSpace(user.Phone)
+                                        ? "Not provided"
+                                        : user.Phone)
+                                </td>
+
+
+                                <td>
+
+                                    @if (string.Equals(
+                                        user.Role,
+                                        "Admin",
+                                        StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        <span class="role-admin">
+                                            ADMIN
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="role-user">
+                                            USER
+                                        </span>
+                                    }
+
+                                </td>
+
+
+                                <td>
+
+                                    <a asp-page="/Admin/EditUser"
+                                       asp-route-id="@user.UserID"
+                                       class="edit-user-btn">
+                                        Edit
+                                        <span>→</span>
+                                    </a>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        }
+        else
+        {
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    <svg viewBox="0 0 24 24"
+                         width="30"
+                         height="30"
+                         fill="none">
+
+                        <circle cx="9"
+                                cy="8"
+                                r="3"
+                                stroke="currentColor"
+                                stroke-width="1.8" />
+
+                        <circle cx="17"
+                                cy="9"
+                                r="2.5"
+                                stroke="currentColor"
+                                stroke-width="1.8" />
+
+                        <path d="M3.5 19c0-3 2.4-5 5.5-5s5.5 2 5.5 5"
+                              stroke="currentColor"
+                              stroke-width="1.8"
+                              stroke-linecap="round" />
+
+                    </svg>
+                </div>
+
+                <h3>No Users Found</h3>
+
+                <p>
+                    There are currently no registered users.
+                </p>
+
+            </div>
+        }
+
+    </section>
+
+</div>

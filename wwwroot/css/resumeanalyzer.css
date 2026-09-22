@@ -1,0 +1,1078 @@
+﻿/* =========================================================
+   SKILLBRIDGE — RESUME ANALYZER
+   MODERN PREMIUM REDESIGN
+========================================================= */
+
+.resume-page {
+    --primary: #0f9f91;
+    --primary-dark: #087b71;
+    --primary-light: #dff8f4;
+    --accent: #56c7bb;
+    --dark: #173b3a;
+    --text: #526b7a;
+    --muted: #8295a1;
+    --border: #dcefeb;
+    --surface: #ffffff;
+    --surface-soft: #f5fbfa;
+    width: 100%;
+    min-height: 100vh;
+    padding: 70px 6% 100px;
+    color: var(--dark);
+    box-sizing: border-box;
+    background: radial-gradient( circle at 8% 8%, rgba(86, 199, 187, 0.18), transparent 25% ), radial-gradient( circle at 92% 12%, rgba(15, 159, 145, 0.12), transparent 25% ), linear-gradient( 180deg, #f2fcfa 0%, #f8fdfc 38%, #ffffff 100% );
+}
+
+    .resume-page *,
+    .resume-page *::before,
+    .resume-page *::after {
+        box-sizing: border-box;
+    }
+
+
+    /* =========================================================
+   HERO
+========================================================= */
+
+    .resume-page .hero-section {
+        max-width: 1250px;
+        margin: 0 auto 55px;
+        padding: 25px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 60px;
+    }
+
+    .resume-page .hero-left {
+        flex: 1;
+    }
+
+    .resume-page .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 10px 17px;
+        border: 1px solid #bdece5;
+        border-radius: 50px;
+        background: rgba(223, 248, 244, 0.9);
+        color: var(--primary-dark);
+        font-size: 13px;
+        font-weight: 750;
+        letter-spacing: 0.2px;
+        box-shadow: 0 6px 18px rgba(15, 159, 145, 0.07);
+    }
+
+        .resume-page .hero-badge i {
+            font-size: 15px;
+        }
+
+    .resume-page .hero-left h1 {
+        margin: 20px 0 14px;
+        font-size: clamp(42px, 5vw, 62px);
+        line-height: 1.02;
+        font-weight: 850;
+        letter-spacing: -2px;
+        color: var(--dark);
+    }
+
+        .resume-page .hero-left h1::after {
+            content: "";
+            display: block;
+            width: 72px;
+            height: 5px;
+            margin-top: 15px;
+            border-radius: 20px;
+            background: linear-gradient( 90deg, var(--primary), var(--accent) );
+        }
+
+    .resume-page .hero-left p {
+        max-width: 700px;
+        margin: 22px 0 0;
+        color: var(--text);
+        font-size: 17px;
+        line-height: 1.75;
+    }
+
+
+    /* =========================================================
+   HERO ICON
+========================================================= */
+
+    .resume-page .hero-right {
+        width: 230px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .resume-page .hero-card {
+        width: 165px;
+        height: 165px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 38px;
+        background: linear-gradient( 145deg, #078d83, #16b8a9 );
+        color: white;
+        box-shadow: 0 25px 55px rgba(15, 159, 145, 0.25), inset 0 1px 0 rgba(255,255,255,0.25);
+        transform: rotate(2deg);
+    }
+
+        .resume-page .hero-card::before {
+            content: "";
+            position: absolute;
+            inset: 10px;
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 30px;
+        }
+
+        .resume-page .hero-card > i {
+            position: relative;
+            z-index: 2;
+            margin: 0;
+            font-size: 58px;
+            transform: rotate(-2deg);
+        }
+
+        .resume-page .hero-card h3,
+        .resume-page .hero-card p {
+            display: none !important;
+        }
+
+
+    /* =========================================================
+   GENERAL CARDS
+========================================================= */
+
+    .resume-page .card,
+    .resume-page .section-card,
+    .resume-page .resume-card {
+        background: rgba(255,255,255,0.94);
+        border: 1px solid var(--border);
+        border-radius: 26px;
+        box-shadow: 0 15px 45px rgba(23, 59, 58, 0.055);
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+        .resume-page .card:hover,
+        .resume-page .section-card:hover {
+            border-color: #c7e8e2;
+            box-shadow: 0 20px 55px rgba(23, 59, 58, 0.08);
+        }
+
+
+    /* =========================================================
+   UPLOAD CARD
+========================================================= */
+
+    .resume-page .upload-card {
+        max-width: 1250px;
+        margin: 0 auto 32px;
+        padding: 32px;
+    }
+
+
+    /* =========================================================
+   CARD HEADER
+========================================================= */
+
+    .resume-page .card-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 25px;
+    }
+
+        .resume-page .card-header > i {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-size: 21px;
+            box-shadow: inset 0 0 0 1px rgba(15,159,145,0.08);
+        }
+
+        .resume-page .card-header h3 {
+            margin: 0;
+            font-size: 21px;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+
+    /* =========================================================
+   UPLOAD AREA
+========================================================= */
+
+    .resume-page .upload-area {
+        min-height: 355px;
+        padding: 45px 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        border: 2px dashed #b9e4de;
+        border-radius: 22px;
+        background: radial-gradient( circle at center, rgba(223,248,244,0.8), rgba(248,253,252,0.75) );
+        transition: all 0.25s ease;
+    }
+
+        .resume-page .upload-area:hover {
+            border-color: var(--primary);
+            background: radial-gradient( circle at center, rgba(223,248,244,1), rgba(248,253,252,0.85) );
+        }
+
+
+    /* =========================================================
+   UPLOAD ICON
+========================================================= */
+
+    .resume-page .upload-icon {
+        width: 82px;
+        height: 82px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 24px;
+        background: linear-gradient( 145deg, #d5f8f2, #bdf0e9 );
+        color: var(--primary-dark);
+        font-size: 34px;
+        box-shadow: 0 12px 30px rgba(15,159,145,0.10);
+    }
+
+    .resume-page .upload-area h4 {
+        margin: 0 0 8px;
+        font-size: 24px;
+        font-weight: 800;
+        color: var(--dark);
+    }
+
+    .resume-page .upload-area p {
+        max-width: 500px;
+        margin: 0 0 24px;
+        color: var(--text);
+        font-size: 15px;
+        line-height: 1.65;
+    }
+
+
+    /* =========================================================
+   FILE INPUT
+========================================================= */
+
+    .resume-page #resumeFile {
+        display: none !important;
+    }
+
+
+    /* =========================================================
+   UPLOAD BUTTON
+========================================================= */
+
+    .resume-page .upload-button {
+        min-width: 230px;
+        min-height: 52px;
+        padding: 0 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border: 1px solid #8bd8cf;
+        border-radius: 14px;
+        background: white;
+        color: var(--primary-dark);
+        font-size: 14px;
+        font-weight: 750;
+        cursor: pointer;
+        transition: all 0.25s ease;
+        box-shadow: 0 7px 18px rgba(23,59,58,0.05);
+    }
+
+        .resume-page .upload-button:hover {
+            color: white;
+            border-color: var(--primary);
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(15,159,145,0.18);
+        }
+
+        .resume-page .upload-button i {
+            font-size: 18px;
+        }
+
+        .resume-page .upload-button span {
+            max-width: 220px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+    .resume-page .upload-area small {
+        margin-top: 15px;
+        color: var(--muted);
+        font-size: 12px;
+    }
+
+
+    /* =========================================================
+   ANALYZE BUTTON
+========================================================= */
+
+    .resume-page .analyze-btn {
+        min-width: 230px;
+        min-height: 52px;
+        margin-top: 15px;
+        padding: 0 25px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        border: none;
+        border-radius: 14px;
+        background: linear-gradient( 135deg, #078d83, #16b8a9 );
+        color: white;
+        font-size: 14px;
+        font-weight: 750;
+        cursor: pointer;
+        box-shadow: 0 12px 25px rgba(15,159,145,0.20);
+        transition: all 0.25s ease;
+    }
+
+        .resume-page .analyze-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 17px 32px rgba(15,159,145,0.27);
+        }
+
+
+    /* =========================================================
+   MESSAGES
+========================================================= */
+
+    .resume-page .success-message,
+    .resume-page .error-message {
+        max-width: 1250px;
+        margin: 0 auto 25px;
+        padding: 15px 18px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-radius: 15px;
+        font-size: 14px;
+        font-weight: 650;
+    }
+
+    .resume-page .success-message {
+        border: 1px solid #b9e9df;
+        background: #ecfaf7;
+        color: #087d70;
+    }
+
+    .resume-page .error-message {
+        border: 1px solid #f1caca;
+        background: #fff5f5;
+        color: #b34b4b;
+    }
+
+
+    /* =========================================================
+   ANALYSIS TOP GRID
+========================================================= */
+
+    .resume-page .top-grid {
+        max-width: 1250px;
+        margin: 0 auto 28px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+    }
+
+        .resume-page .top-grid > .card {
+            padding: 30px;
+        }
+
+
+    /* =========================================================
+   SCORE SECTION
+========================================================= */
+
+    .resume-page .score-section {
+        min-height: 230px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+    }
+
+
+    /* =========================================================
+   SCORE CIRCLE
+========================================================= */
+
+    .resume-page .score-circle {
+        width: 170px;
+        height: 170px;
+        flex-shrink: 0;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: radial-gradient( circle, #ffffff 55%, #edfaf7 56%, #edfaf7 68%, transparent 69% );
+        border: 10px solid #d9f2ee;
+        box-shadow: 0 12px 35px rgba(15,159,145,0.10);
+    }
+
+        .resume-page .score-circle::before {
+            content: "";
+            position: absolute;
+            inset: -10px;
+            border-radius: 50%;
+            border: 10px solid transparent;
+            border-top-color: var(--primary);
+            border-right-color: var(--primary);
+            border-bottom-color: #7dd7cc;
+            transform: rotate(20deg);
+        }
+
+        .resume-page .score-circle strong {
+            position: relative;
+            font-size: 37px;
+            font-weight: 850;
+            color: var(--dark);
+        }
+
+        .resume-page .score-circle span {
+            position: relative;
+            margin-top: 4px;
+            color: var(--primary-dark);
+            font-size: 13px;
+            font-weight: 750;
+        }
+
+
+    /* =========================================================
+   SCORE DESCRIPTION
+========================================================= */
+
+    .resume-page .score-section > p {
+        max-width: 240px;
+        margin: 0;
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    /* =========================================================
+   UPLOADED FILE
+========================================================= */
+
+    .resume-page .uploaded-file {
+        min-height: 230px;
+        padding: 25px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        border-radius: 20px;
+        background: linear-gradient( 135deg, #f4fcfa, #ffffff );
+        border: 1px solid #e0efec;
+    }
+
+        .resume-page .uploaded-file > i {
+            width: 70px;
+            height: 70px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 19px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-size: 31px;
+        }
+
+        .resume-page .uploaded-file strong {
+            display: block;
+            max-width: 280px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: var(--dark);
+            font-size: 16px;
+        }
+
+        .resume-page .uploaded-file span {
+            display: block;
+            margin-top: 7px;
+            color: #0c9b89;
+            font-size: 13px;
+            font-weight: 650;
+        }
+
+
+    /* =========================================================
+   SECTION CARDS
+========================================================= */
+
+    .resume-page .section-card {
+        max-width: 1250px;
+        margin: 28px auto;
+        padding: 32px;
+    }
+
+        .resume-page .section-card .card-header {
+            margin-bottom: 10px;
+        }
+
+    .resume-page .card-description {
+        margin: 0 0 25px;
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    /* =========================================================
+   SKILLS
+========================================================= */
+
+    .resume-page .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+        .resume-page .tags span {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 15px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+
+    .resume-page .skill-tag {
+        background: #e5f8f4;
+        border: 1px solid #c3ebe4;
+        color: #087f75;
+    }
+
+        .resume-page .skill-tag:hover {
+            transform: translateY(-2px);
+            background: #d4f4ee;
+        }
+
+    .resume-page .missing-tag {
+        background: #fff6e8;
+        border: 1px solid #f5dfb8;
+        color: #a36a20;
+    }
+
+        .resume-page .missing-tag:hover {
+            transform: translateY(-2px);
+            background: #ffefd4;
+        }
+
+
+    /* =========================================================
+   AI SUGGESTIONS
+========================================================= */
+
+    .resume-page .suggestion-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .resume-page .suggestion-item {
+        min-height: 70px;
+        padding: 16px 18px;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        border: 1px solid #e0efec;
+        border-radius: 16px;
+        background: #f7fcfb;
+        color: var(--text);
+        font-size: 14px;
+        line-height: 1.55;
+        transition: all 0.2s ease;
+    }
+
+        .resume-page .suggestion-item:hover {
+            transform: translateY(-2px);
+            border-color: #bfe5df;
+            background: white;
+            box-shadow: 0 8px 20px rgba(23,59,58,0.05);
+        }
+
+        .resume-page .suggestion-item i {
+            margin-top: 2px;
+            flex-shrink: 0;
+            color: var(--primary);
+            font-size: 17px;
+        }
+
+
+    /* =========================================================
+   NEXT STEPS
+========================================================= */
+
+    .resume-page .next-step-card {
+        margin-bottom: 0;
+    }
+
+        .resume-page .next-step-card > p {
+            max-width: 850px;
+            margin: 10px 0 25px;
+            color: var(--text);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+    .resume-page .next-step-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .resume-page .next-btn {
+        min-height: 48px;
+        padding: 0 20px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        border-radius: 13px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 750;
+        transition: all 0.25s ease;
+    }
+
+        .resume-page .next-btn:nth-child(1) {
+            background: #e5f8f4;
+            border: 1px solid #c5ebe5;
+            color: #087f75;
+        }
+
+        .resume-page .next-btn:nth-child(2) {
+            background: #edf5ff;
+            border: 1px solid #cfdef2;
+            color: #326a9f;
+        }
+
+        .resume-page .next-btn:nth-child(3) {
+            background: #fff5e7;
+            border: 1px solid #f0dfbd;
+            color: #a16a24;
+        }
+
+        .resume-page .next-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 9px 22px rgba(23,59,58,0.08);
+        }
+
+
+    /* =========================================================
+   SUBTLE SECTION SEPARATION
+========================================================= */
+
+    .resume-page > section:not(.hero-section) {
+        position: relative;
+    }
+
+        .resume-page > section:not(.hero-section)::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: -14px;
+            width: 45px;
+            height: 3px;
+            border-radius: 10px;
+            background: #d9efeb;
+            transform: translateX(-50%);
+        }
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .resume-page {
+        padding: 50px 5% 80px;
+    }
+
+        .resume-page .hero-section {
+            gap: 30px;
+        }
+
+        .resume-page .hero-left h1 {
+            font-size: 48px;
+        }
+
+        .resume-page .hero-right {
+            width: 190px;
+        }
+
+        .resume-page .hero-card {
+            width: 145px;
+            height: 145px;
+        }
+
+        .resume-page .score-section {
+            gap: 20px;
+        }
+
+        .resume-page .score-circle {
+            width: 145px;
+            height: 145px;
+        }
+
+            .resume-page .score-circle strong {
+                font-size: 31px;
+            }
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+========================================================= */
+
+@media (max-width: 750px) {
+
+    .resume-page {
+        padding: 35px 5% 65px;
+    }
+
+        .resume-page .hero-section {
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 35px;
+            padding: 10px 0;
+        }
+
+        .resume-page .hero-left h1 {
+            font-size: 40px;
+            letter-spacing: -1.2px;
+        }
+
+        .resume-page .hero-left p {
+            font-size: 15px;
+        }
+
+        .resume-page .hero-right {
+            width: 100%;
+            justify-content: flex-start;
+        }
+
+        .resume-page .hero-card {
+            width: 120px;
+            height: 120px;
+            border-radius: 28px;
+        }
+
+            .resume-page .hero-card > i {
+                font-size: 42px;
+            }
+
+        .resume-page .upload-card,
+        .resume-page .section-card,
+        .resume-page .top-grid > .card {
+            padding: 22px;
+        }
+
+        .resume-page .upload-area {
+            min-height: 320px;
+            padding: 30px 18px;
+        }
+
+            .resume-page .upload-area h4 {
+                font-size: 21px;
+            }
+
+        .resume-page .top-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .resume-page .score-section {
+            flex-direction: column;
+            text-align: center;
+            padding: 10px 0 20px;
+        }
+
+            .resume-page .score-section > p {
+                max-width: 350px;
+            }
+
+        .resume-page .uploaded-file {
+            min-height: 180px;
+        }
+
+        .resume-page .suggestion-list {
+            grid-template-columns: 1fr;
+        }
+
+        .resume-page .next-step-buttons {
+            flex-direction: column;
+        }
+
+        .resume-page .next-btn {
+            width: 100%;
+        }
+}
+
+
+/* =========================================================
+   EXTRA SMALL DEVICES
+========================================================= */
+
+@media (max-width: 450px) {
+
+    .resume-page .hero-left h1 {
+        font-size: 48px !important;
+        line-height: 1.1 !important;
+    }
+
+
+    .resume-page .hero-badge {
+        font-size: 12px;
+        padding: 9px 13px;
+    }
+
+    .resume-page .card-header h3 {
+        font-size: 18px;
+    }
+
+    .resume-page .upload-button,
+    .resume-page .analyze-btn {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .resume-page .uploaded-file {
+        padding: 18px;
+    }
+
+        .resume-page .uploaded-file > i {
+            width: 55px;
+            height: 55px;
+            font-size: 24px;
+        }
+
+        .resume-page .uploaded-file strong {
+            max-width: 180px;
+        }
+}
+/* =========================================================
+   RESUME ANALYZER - FULL WIDTH FIX
+========================================================= */
+
+.resume-page {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding-left: 3.5% !important;
+    padding-right: 3.5% !important;
+}
+
+    /* Make main sections use the available screen width */
+    .resume-page .hero-section,
+    .resume-page .top-grid,
+    .resume-page .section-card,
+    .resume-page .two-column,
+    .resume-page .resume-section,
+    .resume-page .download-section {
+        width: 100% !important;
+        max-width: none !important;
+    }
+
+    /* Keep the content nicely spaced from screen edges */
+    .resume-page .hero-section {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .resume-page .top-grid,
+    .resume-page .two-column {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .resume-page .hero-left h1 {
+        font-size: 48px !important;
+        line-height: 1.1 !important;
+    }
+    /* =========================================================
+   RESUME ANALYZER - FINAL HERO BOX FIX
+========================================================= */
+
+    .resume-page .hero-section {
+        width: 100% !important;
+        max-width: none !important;
+        min-height: 330px !important;
+        /* Rounded corners */
+        border-radius: 30px !important;
+        /* Space between box edge and text */
+        padding: 45px 55px !important;
+        /* White box */
+        background: #ffffff !important;
+        /* Border */
+        border: 1px solid #d9eeeb !important;
+        /* Soft shadow */
+        box-shadow: 0 15px 40px rgba(18, 92, 88, 0.07) !important;
+        /* Keep rounded corners visible */
+        overflow: hidden !important;
+        /* Important */
+        box-sizing: border-box !important;
+        margin: 0 0 30px 0 !important;
+    }
+
+
+    /* Move all hero text safely inside the box */
+    .resume-page .hero-left {
+        padding-left: 5px !important;
+    }
+
+
+        /* Heading - slightly smaller */
+        .resume-page .hero-left h1 {
+            font-size: 50px !important;
+            line-height: 1.1 !important;
+            margin: 20px 0 16px !important;
+            padding: 0 !important;
+        }
+
+
+        /* Description */
+        .resume-page .hero-left p {
+            margin-left: 0 !important;
+        }
+
+
+    /* Badge */
+    .resume-page .hero-badge {
+        margin-left: 0 !important;
+    }
+
+
+    /* Icon stays comfortably inside */
+    .resume-page .hero-right {
+        padding-right: 10px !important;
+    }
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 750px) {
+
+    .resume-page .hero-section {
+        padding: 35px 30px !important;
+        border-radius: 24px !important;
+    }
+
+    .resume-page .hero-left {
+        padding-left: 0 !important;
+    }
+
+        .resume-page .hero-left h1 {
+            font-size: 40px !important;
+        }
+}
+
+/* =========================================================
+   PREVIOUS / NEXT PAGE BUTTONS
+========================================================= */
+
+.resume-page .next-step-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 25px;
+}
+
+    /* Common button */
+    .resume-page .next-step-buttons .next-btn {
+        min-height: 56px !important;
+        padding: 0 26px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 11px !important;
+        border-radius: 14px !important;
+        text-decoration: none !important;
+        font-size: 15px !important;
+        font-weight: 800 !important;
+        transition: all 0.25s ease !important;
+    }
+
+    /* Previous - Dashboard */
+    .resume-page .next-step-buttons .previous-btn {
+        background: #0f8278 !important;
+        border: 1px solid #0f8278 !important;
+        color: #ffffff !important;
+        box-shadow: 0 10px 25px rgba(15, 130, 120, 0.18) !important;
+    }
+
+        .resume-page .next-step-buttons .previous-btn:hover {
+            background: #08736a !important;
+            border-color: #08736a !important;
+            color: #ffffff !important;
+            transform: translateX(-3px) !important;
+            box-shadow: 0 14px 30px rgba(15, 130, 120, 0.25) !important;
+        }
+
+    /* Next - Skill Gap */
+    .resume-page .next-step-buttons .next-btn-primary {
+        background: #0f8278 !important;
+        border: 1px solid #0f8278 !important;
+        color: #ffffff !important;
+        box-shadow: 0 10px 25px rgba(15, 130, 120, 0.18) !important;
+    }
+
+        .resume-page .next-step-buttons .next-btn-primary:hover {
+            background: #08736a !important;
+            border-color: #08736a !important;
+            color: #ffffff !important;
+            transform: translateX(3px) !important;
+            box-shadow: 0 14px 30px rgba(15, 130, 120, 0.25) !important;
+        }
+
+    /* Arrows */
+    .resume-page .next-step-buttons .next-btn i {
+        font-size: 18px !important;
+        font-weight: 700 !important;
+    }
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 750px) {
+
+    .resume-page .next-step-buttons {
+        flex-direction: column;
+        gap: 14px;
+        align-items: stretch;
+    }
+
+        .resume-page .next-step-buttons .next-btn {
+            width: 100% !important;
+        }
+}
