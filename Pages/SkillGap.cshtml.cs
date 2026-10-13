@@ -18,10 +18,10 @@ namespace SkillBridge.Pages
         // PAGE DATA
         // =========================================================
 
-        public string CareerGoal { get; set; } = "Software Developer";
+        public string CareerGoal { get; set; } = "";
 
         public string CareerDescription { get; set; } =
-            "Skills that can strengthen your readiness for your recommended career path.";
+            "Analyze your resume to receive a personalized skill gap analysis.";
 
         public List<string> CurrentSkills { get; set; } = new();
 
@@ -70,21 +70,56 @@ namespace SkillBridge.Pages
 
 
             // -----------------------------------------------------
-            // CHECK RESUME DATA
+            // CHECK FOR ACTUAL RESUME ANALYSIS
             // -----------------------------------------------------
 
-            if (string.IsNullOrWhiteSpace(currentUser.Skills))
+            bool hasResume =
+                !string.IsNullOrWhiteSpace(currentUser.ResumePath);
+
+            bool hasSkills =
+                !string.IsNullOrWhiteSpace(currentUser.Skills);
+
+            bool hasResumeAnalysis = false;
+
+            if (hasResume)
+            {
+                hasResumeAnalysis =
+                    await _context.ResumeAnalysis
+                        .AnyAsync(analysis =>
+                            _context.Resumes.Any(resume =>
+                                resume.ResumeID == analysis.ResumeID &&
+                                resume.UserID == currentUser.UserID));
+            }
+
+
+            // -----------------------------------------------------
+            // NO RESUME ANALYSIS
+            // -----------------------------------------------------
+
+            if (!hasResume ||
+                !hasSkills ||
+                !hasResumeAnalysis)
             {
                 HasResumeData = false;
 
-                CareerGoal = "Software Developer";
+                CareerGoal = "";
 
                 CareerDescription =
-                    "Upload and analyze your resume to receive a personalized skill gap analysis.";
+                    "Analyze your resume first to receive a personalized skill gap analysis.";
+
+                CurrentSkills.Clear();
+                SkillGaps.Clear();
+
+                CurrentSkillCount = 0;
+                SkillGapCount = 0;
 
                 return Page();
             }
 
+
+            // -----------------------------------------------------
+            // RESUME ANALYSIS EXISTS
+            // -----------------------------------------------------
 
             HasResumeData = true;
 
@@ -94,11 +129,13 @@ namespace SkillBridge.Pages
             // -----------------------------------------------------
 
             CurrentSkills =
-                currentUser.Skills
+                currentUser.Skills!
                     .Split(
                         ',',
                         StringSplitOptions.RemoveEmptyEntries)
                     .Select(skill => skill.Trim())
+                    .Where(skill => !string.IsNullOrWhiteSpace(skill))
+                    .Distinct(StringComparer.OrdinalIgnoreCase)
                     .ToList();
 
 
@@ -123,7 +160,7 @@ namespace SkillBridge.Pages
 
 
             // -----------------------------------------------------
-            // GENERATE SKILL GAPS
+            // GENERATE PERSONALIZED SKILL GAPS
             // -----------------------------------------------------
 
             GenerateSkillGaps(
@@ -508,7 +545,7 @@ namespace SkillBridge.Pages
 
 
         // =========================================================
-        // DEFAULT
+        // DEFAULT CAREER
         // =========================================================
 
         private CareerDefinition CreateDefaultCareer()
@@ -518,7 +555,7 @@ namespace SkillBridge.Pages
                 Name = "Software Developer",
 
                 Description =
-                    "Build a strong foundation in programming, web development and practical software development skills.",
+                    "Your resume contains software development related skills. These additional skills can strengthen your preparation for software development roles.",
 
                 RequiredSkills = new List<string>
                 {

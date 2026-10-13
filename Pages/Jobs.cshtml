@@ -5,7 +5,9 @@
     ViewData["Title"] = "Recommended Jobs";
 }
 
-<link rel="stylesheet" href="~/css/jobs.css" />
+<link rel="stylesheet"
+      href="~/css/jobs.css"
+      asp-append-version="true" />
 
 <div class="jobs-page">
 
@@ -52,318 +54,366 @@
     </section>
 
 
-    <!-- ================= INFORMATION BAR ================= -->
+    @if (!Model.HasResumeData)
+    {
+        <!-- ==========================================
+             RESUME REQUIRED
+        =========================================== -->
 
-    <section class="recommendation-info">
+        <section class="no-jobs-card">
 
-        <div class="info-item">
-
-            <div class="info-icon">
-                <i class="bi bi-file-earmark-check-fill"></i>
+            <div class="no-jobs-icon">
+                <i class="bi bi-file-earmark-arrow-up-fill"></i>
             </div>
 
-            <div>
-                <strong>Resume Based</strong>
-                <span>Recommendations use your detected skills</span>
-            </div>
-
-        </div>
-
-
-        <div class="info-item">
-
-            <div class="info-icon">
-                <i class="bi bi-graph-up-arrow"></i>
-            </div>
-
-            <div>
-                <strong>Match Percentage</strong>
-                <span>See how closely each role matches you</span>
-            </div>
-
-        </div>
-
-
-        <div class="info-item">
-
-            <div class="info-icon">
-                <i class="bi bi-lightbulb-fill"></i>
-            </div>
-
-            <div>
-                <strong>Know What to Improve</strong>
-                <span>View useful details before applying</span>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= PAGE HEADING ================= -->
-
-    <section class="jobs-heading">
-
-        <div>
-            <span class="section-label">
-                YOUR RECOMMENDATIONS
-            </span>
-
-            <h2>
-                Recommended Jobs
-            </h2>
+            <h3>
+                Analyze Your Resume First
+            </h3>
 
             <p>
-                These opportunities were selected according to
-                your resume skills and profile.
+                Upload and analyze your resume to receive personalized
+                job recommendations based on the skills identified
+                from your resume.
             </p>
-        </div>
 
-        <div class="job-total">
+            <a asp-page="/ResumeAnalyzer"
+               class="analyze-resume-btn">
 
-            <i class="bi bi-briefcase"></i>
+                <i class="bi bi-stars"></i>
 
-            @Model.RecommendedJobs.Count Jobs Found
+                Analyze Resume
 
-        </div>
+                <i class="bi bi-arrow-right"></i>
 
-    </section>
+            </a>
 
+        </section>
+    }
+    else
+    {
+        <!-- ================= INFORMATION BAR ================= -->
 
-    <!-- ================= JOBS ================= -->
+        <section class="recommendation-info">
 
-    <section class="jobs-grid">
+            <div class="info-item">
 
-        @if (Model.RecommendedJobs != null &&
-             Model.RecommendedJobs.Count > 0)
-        {
-            @foreach (var job in Model.RecommendedJobs)
-            {
-                <article class="job-card">
-
-                    <!-- JOB TOP -->
-
-                    <div class="job-card-top">
-
-                        <div class="company-logo">
-                            <i class="bi bi-building-fill"></i>
-                        </div>
-
-                        <div class="job-title-area">
-
-                            <h3>
-                                @job.Title
-                            </h3>
-
-                            <h4>
-                                @job.Company
-                            </h4>
-
-                        </div>
-
-                        <div class="match-badge">
-
-                            <strong>
-                                @job.MatchPercentage%
-                            </strong>
-
-                            <span>
-                                MATCH
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- JOB DETAILS -->
-
-                    <div class="job-details">
-
-                        <span>
-                            <i class="bi bi-geo-alt-fill"></i>
-                            @job.Location
-                        </span>
-
-                        <span>
-                            <i class="bi bi-clock-fill"></i>
-                            @job.JobType
-                        </span>
-
-                        <span>
-                            <i class="bi bi-person-check-fill"></i>
-                            Resume Matched
-                        </span>
-
-                    </div>
-
-
-                    <!-- MATCH MESSAGE -->
-
-                    <div class="match-message">
-
-                        <i class="bi bi-stars"></i>
-
-                        <div>
-
-                            <strong>
-                                Why this job matches you
-                            </strong>
-
-                            <p>
-                                This role was recommended because
-                                your resume contains skills relevant
-                                to this position.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- SKILLS -->
-
-                    <div class="skills-section">
-
-                        <div class="skills-title">
-
-                            <i class="bi bi-code-square"></i>
-
-                            Skills Relevant to This Role
-
-                        </div>
-
-                        <div class="job-skills">
-
-                            @foreach (var skill in job.Skills)
-                            {
-                                <span>
-                                    @skill
-                                </span>
-                            }
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- ACTION -->
-
-                    <div class="job-card-footer">
-
-                        <div class="recommended-label">
-
-                            <i class="bi bi-check-circle-fill"></i>
-
-                            Recommended for your profile
-
-                        </div>
-
-
-                        <a asp-page="/JobDetails"
-                           asp-route-id="@job.Id"
-                           class="job-details-btn">
-
-                            View Job Details
-
-                            <i class="bi bi-arrow-right"></i>
-
-                        </a>
-
-                    </div>
-
-                </article>
-            }
-        }
-        else
-        {
-            <!-- ================= NO JOBS ================= -->
-
-            <div class="no-jobs-card">
-
-                <div class="no-jobs-icon">
-
-                    <i class="bi bi-search"></i>
-
+                <div class="info-icon">
+                    <i class="bi bi-file-earmark-check-fill"></i>
                 </div>
 
-                <h3>
-                    No Recommended Jobs Yet
-                </h3>
-
-                <p>
-                    Analyze your resume first to receive
-                    personalized job recommendations based
-                    on your skills.
-                </p>
-
-                <a asp-page="/ResumeAnalyzer"
-                   class="analyze-resume-btn">
-
-                    <i class="bi bi-stars"></i>
-
-                    Analyze Resume
-
-                </a>
+                <div>
+                    <strong>Resume Based</strong>
+                    <span>
+                        Recommendations use your detected skills
+                    </span>
+                </div>
 
             </div>
-        }
-
-    </section>
 
 
-    <!-- ================= BOTTOM NOTE ================= -->
-    @if (Model.RecommendedJobs != null &&
-             Model.RecommendedJobs.Count > 0)
-    {
-        <section class="jobs-bottom-note">
+            <div class="info-item">
 
-            <i class="bi bi-info-circle-fill"></i>
+                <div class="info-icon">
+                    <i class="bi bi-graph-up-arrow"></i>
+                </div>
 
-            <div>
+                <div>
+                    <strong>Match Percentage</strong>
+                    <span>
+                        See how closely each role matches you
+                    </span>
+                </div>
 
-                <strong>
-                    Your recommendations are resume-based
-                </strong>
+            </div>
 
-                <p>
-                    Job recommendations can change when you
-                    update your resume or add new skills.
-                </p>
+
+            <div class="info-item">
+
+                <div class="info-icon">
+                    <i class="bi bi-lightbulb-fill"></i>
+                </div>
+
+                <div>
+                    <strong>Know What to Improve</strong>
+                    <span>
+                        View useful details before applying
+                    </span>
+                </div>
 
             </div>
 
         </section>
+
+
+        <!-- ================= PAGE HEADING ================= -->
+
+        <section class="jobs-heading">
+
+            <div>
+
+                <span class="section-label">
+                    YOUR RECOMMENDATIONS
+                </span>
+
+                <h2>
+                    Recommended Jobs
+                </h2>
+
+                <p>
+                    These opportunities were selected according to
+                    your resume skills and profile.
+                </p>
+
+            </div>
+
+            <div class="job-total">
+
+                <i class="bi bi-briefcase"></i>
+
+                @Model.RecommendedJobs.Count Jobs Found
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= JOBS ================= -->
+
+        <section class="jobs-grid">
+
+            @if (Model.RecommendedJobs != null &&
+                 Model.RecommendedJobs.Count > 0)
+            {
+                @foreach (var job in Model.RecommendedJobs)
+                {
+                    <article class="job-card">
+
+                        <!-- JOB TOP -->
+
+                        <div class="job-card-top">
+
+                            <div class="company-logo">
+                                <i class="bi bi-building-fill"></i>
+                            </div>
+
+                            <div class="job-title-area">
+
+                                <h3>
+                                    @job.Title
+                                </h3>
+
+                                <h4>
+                                    @job.Company
+                                </h4>
+
+                            </div>
+
+                            <div class="match-badge">
+
+                                <strong>
+                                    @job.MatchPercentage%
+                                </strong>
+
+                                <span>
+                                    MATCH
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- JOB DETAILS -->
+
+                        <div class="job-details">
+
+                            <span>
+                                <i class="bi bi-geo-alt-fill"></i>
+                                @job.Location
+                            </span>
+
+                            <span>
+                                <i class="bi bi-clock-fill"></i>
+                                @job.JobType
+                            </span>
+
+                            <span>
+                                <i class="bi bi-person-check-fill"></i>
+                                Resume Matched
+                            </span>
+
+                        </div>
+
+
+                        <!-- MATCH MESSAGE -->
+
+                        <div class="match-message">
+
+                            <i class="bi bi-stars"></i>
+
+                            <div>
+
+                                <strong>
+                                    Why this job matches you
+                                </strong>
+
+                                <p>
+                                    This role was recommended because
+                                    your resume contains skills relevant
+                                    to this position.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- SKILLS -->
+
+                        <div class="skills-section">
+
+                            <div class="skills-title">
+
+                                <i class="bi bi-code-square"></i>
+
+                                Skills Relevant to This Role
+
+                            </div>
+
+                            <div class="job-skills">
+
+                                @foreach (var skill in job.Skills)
+                                {
+                                    <span>
+                                        @skill
+                                    </span>
+                                }
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ACTION -->
+
+                        <div class="job-card-footer">
+
+                            <div class="recommended-label">
+
+                                <i class="bi bi-check-circle-fill"></i>
+
+                                Recommended for your profile
+
+                            </div>
+
+
+                            <a asp-page="/JobDetails"
+                               asp-route-id="@job.Id"
+                               class="job-details-btn">
+
+                                View Job Details
+
+                                <i class="bi bi-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+                }
+            }
+            else
+            {
+                <!-- ================= NO MATCHING JOBS ================= -->
+
+                <div class="no-jobs-card">
+
+                    <div class="no-jobs-icon">
+
+                        <i class="bi bi-search"></i>
+
+                    </div>
+
+                    <h3>
+                        No Matching Jobs Available
+                    </h3>
+
+                    <p>
+                        Your resume has been analyzed, but no matching
+                        jobs are currently available in the database.
+                    </p>
+
+                    <a asp-page="/ResumeAnalyzer"
+                       class="analyze-resume-btn">
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        Update Resume
+
+                    </a>
+
+                </div>
+            }
+
+        </section>
+
+
+        <!-- ================= BOTTOM NOTE ================= -->
+        @if (Model.RecommendedJobs != null &&
+                     Model.RecommendedJobs.Count > 0)
+        {
+            <section class="jobs-bottom-note">
+
+                <i class="bi bi-info-circle-fill"></i>
+
+                <div>
+
+                    <strong>
+                        Your recommendations are resume-based
+                    </strong>
+
+                    <p>
+                        Job recommendations can change when you
+                        update your resume or add new skills.
+                    </p>
+
+                </div>
+
+            </section>
+        }
+
+
+        <!-- ================= PAGE NAVIGATION ================= -->
+
+        <div class="jobs-page-navigation">
+
+            <a asp-page="/CareerPath"
+               class="jobs-nav-btn jobs-previous-btn">
+
+                <i class="bi bi-arrow-left"></i>
+
+                <span>
+                    <small>PREVIOUS</small>
+                    Career Path
+                </span>
+
+            </a>
+
+
+            <a asp-page="/Courses"
+               class="jobs-nav-btn jobs-next-btn">
+
+                <span>
+                    <small>NEXT</small>
+                    Recommended Courses
+                </span>
+
+                <i class="bi bi-arrow-right"></i>
+
+            </a>
+
+        </div>
+
     }
-    <!-- ================= PAGE NAVIGATION ================= -->
-
-    <div class="jobs-page-navigation">
-
-        <a asp-page="/CareerPath"
-           class="jobs-nav-btn jobs-previous-btn">
-
-            <i class="bi bi-arrow-left"></i>
-
-            <span>
-                <small>PREVIOUS</small>
-                Career Path
-            </span>
-
-        </a>
-
-
-        <a asp-page="/Courses"
-           class="jobs-nav-btn jobs-next-btn">
-
-            <span>
-                <small>NEXT</small>
-                Recommended Courses
-            </span>
-
-            <i class="bi bi-arrow-right"></i>
-
-        </a>
-
-    </div>
 
 </div>

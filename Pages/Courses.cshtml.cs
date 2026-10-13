@@ -1,5 +1,7 @@
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using SkillBridge.Data;
 using SkillBridge.Models;
 using System;
@@ -17,445 +19,328 @@ namespace SkillBridge.Pages
             _context = context;
         }
 
-        public string CareerGoal { get; set; } = "Software Developer";
+        public string CareerGoal { get; set; } = "";
 
         public string RecommendationMessage { get; set; } =
-            "Learning resources are selected based on the skills identified from your resume.";
+            "Analyze your resume first so SkillBridge can recommend learning resources.";
 
         public List<LearningRecommendation> Recommendations { get; set; }
-            = new List<LearningRecommendation>();
+            = new();
 
-        public void OnGet()
+        public bool HasResumeData { get; set; }
+
+        public IActionResult OnGet()
         {
-            // Check login
             string? email = HttpContext.Session.GetString("UserEmail");
 
-            if (string.IsNullOrEmpty(email))
-            {
-                Response.Redirect("/Account/Login");
-                return;
-            }
+            if (string.IsNullOrWhiteSpace(email))
+                return RedirectToPage("/Account/Login");
 
-            // Get current user
             User? currentUser = _context.Users
-                .FirstOrDefault(u => u.Email == email);
+                .AsNoTracking()
+                .FirstOrDefault(u =>
+                    u.Email.ToLower() == email.Trim().ToLower());
 
             if (currentUser == null)
+                return RedirectToPage("/Account/Login");
+
+            Resume? latestResume = _context.Resumes
+                .AsNoTracking()
+                .Where(r => r.UserID == currentUser.UserID)
+                .OrderByDescending(r => r.UploadDate)
+                .FirstOrDefault();
+
+            if (latestResume == null)
             {
-                Response.Redirect("/Account/Login");
-                return;
+                SetNoResumeMessage();
+                return Page();
             }
 
-            // If no resume skills are available
-            if (string.IsNullOrWhiteSpace(currentUser.Skills))
+            ResumeAnalysis? latestAnalysis = _context.ResumeAnalysis
+                .AsNoTracking()
+                .Where(a => a.ResumeID == latestResume.ResumeID)
+                .OrderByDescending(a => a.AnalysisDate)
+                .FirstOrDefault();
+
+            if (latestAnalysis == null)
             {
-                CareerGoal = "Software Developer";
-
-                RecommendationMessage =
-                    "Analyze your resume first so SkillBridge can recommend learning resources based on your skills.";
-
-                Recommendations = GetDefaultRecommendations();
-
-                return;
+                SetNoResumeMessage();
+                return Page();
             }
 
-            // Read skills saved by Resume Analyzer
-            List<string> userSkills = currentUser.Skills
-                .Split(',', StringSplitOptions.RemoveEmptyEntries)
-                .Select(s => s.Trim().ToLower())
-                .Distinct()
-                .ToList();
+            // Prefer skills saved in the latest analysis.
+            // Fall back to the user's stored skills if necessary.
+            string storedSkills =
+                !string.IsNullOrWhiteSpace(latestAnalysis.ExtractedSkills)
+                    ? latestAnalysis.ExtractedSkills
+                    : currentUser.Skills ?? "";
 
-            // Determine career direction
+            List<string> userSkills = SplitSkills(storedSkills);
+
+            HasResumeData = true;
+
             CareerGoal = DetermineCareerGoal(userSkills);
 
-            // Generate personalized recommendations from SQL
-            Recommendations = GetRecommendations(userSkills, CareerGoal);
+            List<string> analysisMissingSkills =
+                SplitSkills(latestAnalysis.MissingSkills ?? "");
 
-            RecommendationMessage =
-                $"These learning resources are recommended based on your resume skills and your {CareerGoal} career direction.";
+            Recommendations = GetRecommendations(
+                userSkills,
+                analysisMissingSkills,
+                CareerGoal);
+
+            if (Recommendations.Count > 0)
+            {
+                RecommendationMessage =
+                    $"These learning resources are selected using your resume analysis, skill gaps, and {CareerGoal} career direction.";
+            }
+            else
+            {
+                RecommendationMessage =
+                    "Your resume has been analyzed, but no relevant learning resources were found. Please check the available records in the Courses database.";
+            }
+
+            return Page();
         }
 
+        private void SetNoResumeMessage()
+        {
+            HasResumeData = false;
+            CareerGoal = "";
+            Recommendations.Clear();
 
-        // =========================================================
-        // DETERMINE CAREER GOAL
-        // =========================================================
+            RecommendationMessage =
+                "Analyze your latest resume first to receive personalized learning resources.";
+        }
+
+        private List<string> SplitSkills(string? value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                return new List<string>();
+
+            return value
+                .Split(
+                    new[] { ',', ';', '|', '\n', '\r' },
+                    StringSplitOptions.RemoveEmptyEntries)
+                .Select(NormalizeSkill)
+                .Where(s => !string.IsNullOrWhiteSpace(s))
+                .Distinct()
+                .ToList();
+        }
+
+        private string NormalizeSkill(string skill)
+        {
+            return skill.Trim()
+                .ToLowerInvariant()
+                .Replace("asp.net", "asp.net")
+                .Replace("machine-learning", "machine learning")
+                .Replace("data-analysis", "data analysis")
+                .Trim();
+        }
 
         private string DetermineCareerGoal(List<string> skills)
         {
-            int frontendScore = CountMatches(
-                skills,
-                "html",
-                "css",
-                "javascript",
-                "typescript",
-                "react",
-                "angular",
-                "vue"
-            );
-
-            int dotnetScore = CountMatches(
-                skills,
-                "c#",
-                "asp.net core",
-                "asp.net",
-                "entity framework",
-                "sql"
-            );
-
-            int backendScore = CountMatches(
-                skills,
-                "c#",
-                "java",
-                "python",
-                "sql",
-                "rest api",
-                "entity framework"
-            );
-
-            int dataScore = CountMatches(
-                skills,
-                "python",
-                "sql",
-                "data analysis",
-                "power bi",
-                "excel"
-            );
-
-            int aiScore = CountMatches(
-                skills,
-                "python",
-                "machine learning",
-                "ml",
-                "artificial intelligence",
-                "ai",
-                "data analysis"
-            );
-
-            int cloudScore = CountMatches(
-                skills,
-                "docker",
-                "kubernetes",
-                "azure",
-                "aws",
-                "gcp",
-                "ci/cd",
-                "linux"
-            );
-
             var scores = new Dictionary<string, int>
             {
-                { "Frontend Developer", frontendScore },
-                { ".NET Developer", dotnetScore },
-                { "Backend Developer", backendScore },
-                { "Data Analyst", dataScore },
-                { "AI/ML Developer", aiScore },
-                { "Cloud / DevOps Engineer", cloudScore }
+                ["Frontend Developer"] = CountMatches(
+                    skills, "html", "css", "javascript",
+                    "typescript", "react", "angular", "vue"),
+
+                [".NET Developer"] = CountMatches(
+                    skills, "c#", "asp.net core", "asp.net",
+                    "entity framework", "sql"),
+
+                ["Backend Developer"] = CountMatches(
+                    skills, "c#", "java", "python",
+                    "sql", "rest api", "entity framework"),
+
+                ["Data Analyst"] = CountMatches(
+                    skills, "python", "sql", "data analysis",
+                    "power bi", "excel"),
+
+                ["AI/ML Developer"] = CountMatches(
+                    skills, "python", "machine learning",
+                    "artificial intelligence", "data analysis"),
+
+                ["Cloud / DevOps Engineer"] = CountMatches(
+                    skills, "docker", "kubernetes", "azure",
+                    "aws", "gcp", "ci/cd", "linux")
             };
 
             return scores
                 .OrderByDescending(x => x.Value)
-                .First()
-                .Key;
+                .First().Key;
         }
 
-
-        // =========================================================
-        // GET PERSONALIZED RECOMMENDATIONS FROM SQL DATABASE
-        // =========================================================
-
         private List<LearningRecommendation> GetRecommendations(
-            List<string> skills,
+            List<string> userSkills,
+            List<string> analysisMissingSkills,
             string careerGoal)
         {
-            // Skills generally useful for each career direction
             var careerSkills = new Dictionary<string, List<string>>
             {
+                [".NET Developer"] = new()
                 {
-                    ".NET Developer",
-                    new List<string>
-                    {
-                        "c#",
-                        "asp.net core",
-                        "entity framework",
-                        "sql",
-                        "rest api",
-                        "git",
-                        "github",
-                        "azure"
-                    }
+                    "c#", "asp.net core", "entity framework",
+                    "sql", "rest api", "git", "github", "azure"
                 },
 
+                ["Frontend Developer"] = new()
                 {
-                    "Frontend Developer",
-                    new List<string>
-                    {
-                        "javascript",
-                        "react",
-                        "typescript",
-                        "html",
-                        "css",
-                        "git",
-                        "github",
-                        "rest api"
-                    }
+                    "javascript", "react", "typescript",
+                    "html", "css", "git", "github", "rest api"
                 },
 
+                ["Backend Developer"] = new()
                 {
-                    "Backend Developer",
-                    new List<string>
-                    {
-                        "c#",
-                        "java",
-                        "python",
-                        "sql",
-                        "rest api",
-                        "entity framework",
-                        "git",
-                        "github"
-                    }
+                    "c#", "java", "python", "sql",
+                    "rest api", "entity framework", "git", "github"
                 },
 
+                ["Data Analyst"] = new()
                 {
-                    "Data Analyst",
-                    new List<string>
-                    {
-                        "python",
-                        "sql",
-                        "data analysis",
-                        "power bi",
-                        "excel"
-                    }
+                    "python", "sql", "data analysis",
+                    "power bi", "excel"
                 },
 
+                ["AI/ML Developer"] = new()
                 {
-                    "AI/ML Developer",
-                    new List<string>
-                    {
-                        "python",
-                        "machine learning",
-                        "artificial intelligence",
-                        "data analysis",
-                        "git"
-                    }
+                    "python", "machine learning",
+                    "artificial intelligence", "data analysis", "git"
                 },
 
+                ["Cloud / DevOps Engineer"] = new()
                 {
-                    "Cloud / DevOps Engineer",
-                    new List<string>
-                    {
-                        "docker",
-                        "kubernetes",
-                        "azure",
-                        "aws",
-                        "gcp",
-                        "ci/cd",
-                        "linux",
-                        "git"
-                    }
+                    "docker", "kubernetes", "azure", "aws",
+                    "gcp", "ci/cd", "linux", "git"
                 }
             };
 
-            // Get required skills for selected career
-            List<string> requiredSkills;
+            List<string> targetSkills =
+                careerSkills.TryGetValue(careerGoal, out var selectedSkills)
+                    ? selectedSkills
+                    : new List<string>();
 
-            if (careerSkills.ContainsKey(careerGoal))
-            {
-                requiredSkills = careerSkills[careerGoal];
-            }
-            else
-            {
-                requiredSkills = new List<string>
-                {
-                    "c#",
-                    "sql",
-                    "rest api",
-                    "git",
-                    "github"
-                };
-            }
-
-            // Find missing skills
-            List<string> missingSkills = requiredSkills
+            // Calculate career skills not found in the user's skills.
+            List<string> careerGaps = targetSkills
                 .Where(required =>
-                    !skills.Any(userSkill =>
-                        userSkill.Contains(required.ToLower())))
+                    !userSkills.Any(userSkill =>
+                        SkillsMatch(userSkill, required)))
                 .ToList();
 
-            // Get courses from SQL Server
+            // Combine saved analysis gaps and career gaps.
+            List<string> missingSkills = analysisMissingSkills
+                .Concat(careerGaps)
+                .Distinct()
+                .ToList();
+
             List<Course> courses = _context.Courses
+                .AsNoTracking()
                 .ToList();
 
-            var matchedCourses = new List<(Course Course, int MatchCount)>();
+            var scoredCourses = new List<(Course Course, int GapScore, int CareerScore)>();
 
             foreach (Course course in courses)
             {
-                if (string.IsNullOrWhiteSpace(course.SkillsCovered))
-                {
+                List<string> coveredSkills =
+                    SplitSkills(course.SkillsCovered);
+
+                if (coveredSkills.Count == 0)
                     continue;
-                }
 
-                List<string> courseSkills = course.SkillsCovered
-                    .Split(',', StringSplitOptions.RemoveEmptyEntries)
-                    .Select(s => s.Trim().ToLower())
-                    .ToList();
+                int gapScore = coveredSkills
+                    .Distinct()
+                    .Count(covered =>
+                        missingSkills.Any(missing =>
+                            SkillsMatch(covered, missing)));
 
-                int matchCount = 0;
+                int careerScore = coveredSkills
+                    .Distinct()
+                    .Count(covered =>
+                        targetSkills.Any(target =>
+                            SkillsMatch(covered, target)));
 
-                foreach (string missingSkill in missingSkills)
+                // Only recommend resources relevant to a skill gap
+                // or to the user's recommended career direction.
+                if (gapScore > 0 || careerScore > 0)
                 {
-                    if (courseSkills.Any(courseSkill =>
-                        courseSkill.Contains(missingSkill) ||
-                        missingSkill.Contains(courseSkill)))
-                    {
-                        matchCount++;
-                    }
-                }
-
-                if (matchCount > 0)
-                {
-                    matchedCourses.Add((course, matchCount));
+                    scoredCourses.Add(
+                        (course, gapScore, careerScore));
                 }
             }
 
-            // Sort resources according to skill-gap matches
-            var orderedCourses = matchedCourses
-                .OrderByDescending(x => x.MatchCount)
+            return scoredCourses
+                .OrderByDescending(x => x.GapScore)
+                .ThenByDescending(x => x.CareerScore)
                 .ThenBy(x => x.Course.CourseID)
                 .Take(6)
+                .Select(item => new LearningRecommendation
+                {
+                    Provider = "External Learning Resource",
+                    Title = item.Course.CourseName,
+
+                    Description = item.GapScore > 0
+                        ? "This resource can help strengthen one or more skills identified as areas for improvement in your resume or career path."
+                        : $"This resource covers skills relevant to your {careerGoal} career direction.",
+
+                    RecommendedFor = item.GapScore > 0
+                        ? "Skills to improve: " +
+                          string.Join(", ",
+                              SplitSkills(item.Course.SkillsCovered)
+                                  .Where(covered =>
+                                      missingSkills.Any(missing =>
+                                          SkillsMatch(covered, missing))))
+                        : $"Career-related skills for {careerGoal}.",
+
+                    Priority = item.GapScore >= 2
+                        ? "HIGH"
+                        : item.GapScore == 1
+                            ? "RECOMMENDED"
+                            : "CAREER RELATED",
+
+                    Icon = "bi-book",
+                    ResourceLabel = "External Learning Resource",
+                    ResourceUrl = item.Course.CourseLink ?? ""
+                })
                 .ToList();
-
-            var recommendations = new List<LearningRecommendation>();
-
-            foreach (var item in orderedCourses)
-            {
-                Course course = item.Course;
-
-                recommendations.Add(
-                    new LearningRecommendation
-                    {
-                        Provider = "External Learning Resource",
-
-                        Title = course.CourseName,
-
-                        Description =
-                            $"This learning resource can help improve skills related to your {careerGoal} career direction.",
-
-                        RecommendedFor =
-                            $"Recommended to strengthen skills required for {careerGoal}.",
-
-                        Priority =
-                            item.MatchCount >= 2
-                                ? "HIGH"
-                                : "RECOMMENDED",
-
-                        Icon = "bi-book",
-
-                        ResourceLabel = "External Learning Resource",
-
-                        ResourceUrl = course.CourseLink ?? string.Empty
-                    }
-                );
-            }
-
-            // If no matching resources were found,
-            // show general resources from SQL.
-            if (recommendations.Count == 0)
-            {
-                recommendations = GetDefaultRecommendations();
-            }
-
-            return recommendations;
         }
 
-
-        // =========================================================
-        // DEFAULT RECOMMENDATIONS FROM SQL DATABASE
-        // =========================================================
-
-        private List<LearningRecommendation> GetDefaultRecommendations()
+        private bool SkillsMatch(string first, string second)
         {
-            List<Course> courses = _context.Courses
-                .OrderBy(c => c.CourseID)
-                .Take(4)
-                .ToList();
+            string a = NormalizeSkill(first);
+            string b = NormalizeSkill(second);
 
-            var recommendations = new List<LearningRecommendation>();
+            if (a == b)
+                return true;
 
-            foreach (Course course in courses)
-            {
-                recommendations.Add(
-                    new LearningRecommendation
-                    {
-                        Provider = "External Learning Resource",
+            // Avoid treating short skill names such as "AI"
+            // as matches inside unrelated words.
+            if (a.Length <= 2 || b.Length <= 2)
+                return false;
 
-                        Title = course.CourseName,
-
-                        Description =
-                            "This external learning resource can help you build and improve your technical skills.",
-
-                        RecommendedFor =
-                            "Software developers and learners building professional skills.",
-
-                        Priority = "RECOMMENDED",
-
-                        Icon = "bi-book",
-
-                        ResourceLabel = "External Learning Resource",
-
-                        ResourceUrl = course.CourseLink ?? string.Empty
-                    }
-                );
-            }
-
-            return recommendations;
+            return a.Contains(b) || b.Contains(a);
         }
-
-
-        // =========================================================
-        // COUNT SKILL MATCHES
-        // =========================================================
 
         private int CountMatches(
             List<string> skills,
             params string[] targetSkills)
         {
-            int count = 0;
-
-            foreach (string target in targetSkills)
-            {
-                if (skills.Any(skill =>
-                    skill.Contains(target.ToLower())))
-                {
-                    count++;
-                }
-            }
-
-            return count;
+            return targetSkills
+                .Count(target =>
+                    skills.Any(skill =>
+                        SkillsMatch(skill, target)));
         }
     }
 
-
-    // =============================================================
-    // LEARNING RECOMMENDATION MODEL
-    // =============================================================
-
     public class LearningRecommendation
     {
-        public string Provider { get; set; } = string.Empty;
-
-        public string Title { get; set; } = string.Empty;
-
-        public string Description { get; set; } = string.Empty;
-
-        public string RecommendedFor { get; set; } = string.Empty;
-
+        public string Provider { get; set; } = "";
+        public string Title { get; set; } = "";
+        public string Description { get; set; } = "";
+        public string RecommendedFor { get; set; } = "";
         public string Priority { get; set; } = "RECOMMENDED";
-
         public string Icon { get; set; } = "bi-book";
-
         public string ResourceLabel { get; set; } = "Learning Resource";
-
-        public string ResourceUrl { get; set; } = string.Empty;
+        public string ResourceUrl { get; set; } = "";
     }
 }

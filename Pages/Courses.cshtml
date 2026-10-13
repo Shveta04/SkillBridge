@@ -55,242 +55,31 @@
                 <i class="bi bi-book-half"></i>
             </div>
 
-            <div class="hero-visual-text">
-
-                <span>
-                    RECOMMENDED FOR
-                </span>
-
-                <strong>
-                    @Model.CareerGoal
-                </strong>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         CAREER DIRECTION
-    ====================================================== -->
-
-    <section class="career-learning-card">
-
-        <div class="career-learning-icon">
-            <i class="bi bi-compass-fill"></i>
-        </div>
-
-        <div class="career-learning-content">
-
-            <span>
-                YOUR CAREER DIRECTION
-            </span>
-
-            <h2>
-                @Model.CareerGoal
-            </h2>
-
-            <p>
-                These learning resources are selected to help
-                strengthen skills relevant to your career direction.
-            </p>
-
-        </div>
-
-        <div class="career-learning-arrow">
-            <i class="bi bi-arrow-up-right"></i>
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         RECOMMENDATION INSIGHT
-    ====================================================== -->
-
-    <section class="recommendation-insight">
-
-        <div class="insight-icon">
-            <i class="bi bi-lightbulb-fill"></i>
-        </div>
-
-        <div class="insight-content">
-
-            <span>
-                WHY THESE RESOURCES?
-            </span>
-
-            <h2>
-                Learning resources based on your resume
-            </h2>
-
-            <p>
-                @Model.RecommendationMessage
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         RECOMMENDED LEARNING
-    ====================================================== -->
-
-    <section class="recommended-section">
-
-        <div class="recommended-heading">
-
-            <div>
-
-                <span class="section-kicker">
-                    PERSONALIZED RESOURCES
-                </span>
-
-                <h2>
-                    Recommended Learning
-                </h2>
-
-                <p>
-                    Explore resources that can help strengthen
-                    the skills relevant to your recommended career.
-                </p>
-
-            </div>
-
-            <div class="recommendation-count">
-
-                <strong>
-                    @Model.Recommendations.Count
-                </strong>
-
-                <span>
-                    resources
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <!-- =================================================
-             COURSE GRID
-        ================================================== -->
-
-        <div class="course-grid">
-
-            @if (Model.Recommendations != null &&
-                 Model.Recommendations.Count > 0)
+            @if (Model.HasResumeData)
             {
-                @foreach (var recommendation in Model.Recommendations)
-                {
-                    <article class="course-card">
+                <div class="hero-visual-text">
 
-                        <!-- CARD TOP -->
+                    <span>
+                        RECOMMENDED FOR
+                    </span>
 
-                        <div class="course-card-top">
+                    <strong>
+                        @Model.CareerGoal
+                    </strong>
 
-                            <div class="course-icon">
-                                <i class="bi @recommendation.Icon"></i>
-                            </div>
-
-                            <span class="course-priority @recommendation.Priority.ToLower().Replace(" ", "-")">
-                                @recommendation.Priority
-                            </span>
-
-                        </div>
-
-
-                        <!-- RESOURCE TYPE -->
-
-                        <span class="course-provider">
-                            <i class="bi bi-box-arrow-up-right"></i>
-                            External Learning Resource
-                        </span>
-
-
-                        <!-- TITLE -->
-
-                        <h3>
-                            @recommendation.Title
-                        </h3>
-
-
-                        <!-- DESCRIPTION -->
-
-                        <p class="course-description">
-                            @recommendation.Description
-                        </p>
-
-
-                        <!-- RECOMMENDED FOR -->
-
-                        <div class="recommended-for">
-
-                            <i class="bi bi-person-check-fill"></i>
-
-                            <div>
-
-                                <span>
-                                    RECOMMENDED FOR
-                                </span>
-
-                                <p>
-                                    @recommendation.RecommendedFor
-                                </p>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- FOOTER -->
-
-                        <div class="course-footer">
-
-                            <span class="resource-label">
-                                <i class="bi bi-link-45deg"></i>
-                                External Resource
-                            </span>
-
-                            @if (!string.IsNullOrWhiteSpace(recommendation.ResourceUrl))
-                            {
-                                <a href="@recommendation.ResourceUrl"
-                                   target="_blank"
-                                   rel="noopener noreferrer"
-                                   class="course-btn">
-
-                                    View Resource
-
-                                    <i class="bi bi-arrow-up-right"></i>
-
-                                </a>
-                            }
-
-                        </div>
-
-                    </article>
-                }
+                </div>
             }
             else
             {
-                <div class="empty-courses">
+                <div class="hero-visual-text">
 
-                    <div class="empty-courses-icon">
-                        <i class="bi bi-book"></i>
-                    </div>
+                    <span>
+                        RESUME REQUIRED
+                    </span>
 
-                    <h3>
-                        No learning resources available
-                    </h3>
-
-                    <p>
-                        Analyze your resume first so SkillBridge
-                        can identify your skills and recommend
-                        relevant learning resources.
-                    </p>
+                    <strong>
+                        Analyze Resume
+                    </strong>
 
                 </div>
             }
@@ -300,61 +89,335 @@
     </section>
 
 
-    <!-- =====================================================
-         LEARNING TIP
-    ====================================================== -->
+    @if (!Model.HasResumeData)
+    {
+        <!-- =================================================
+             RESUME REQUIRED
+        ================================================== -->
 
-    <section class="learning-note">
+        <section class="empty-courses">
 
-        <div class="learning-note-icon">
-            <i class="bi bi-stars"></i>
-        </div>
-
-        <div class="learning-note-content">
-
-            <span>
-                SKILLBRIDGE LEARNING TIP
-            </span>
+            <div class="empty-courses-icon">
+                <i class="bi bi-file-earmark-arrow-up-fill"></i>
+            </div>
 
             <h3>
-                Focus on your skill gaps first
+                Analyze Your Resume First
             </h3>
 
             <p>
-                Start with the resources marked
-                <strong>HIGH</strong> priority. They target areas
-                that can strengthen your current profile and
-                support your recommended career direction.
+                Upload and analyze your resume to identify your
+                skills and receive personalized learning resources
+                based on your career direction.
             </p>
+
+            <a asp-page="/ResumeAnalyzer"
+               class="course-btn">
+
+                <i class="bi bi-stars"></i>
+
+                Analyze Resume
+
+                <i class="bi bi-arrow-right"></i>
+
+            </a>
+
+        </section>
+    }
+    else
+    {
+        <!-- =================================================
+             CAREER DIRECTION
+        ================================================== -->
+
+        <section class="career-learning-card">
+
+            <div class="career-learning-icon">
+                <i class="bi bi-compass-fill"></i>
+            </div>
+
+            <div class="career-learning-content">
+
+                <span>
+                    YOUR CAREER DIRECTION
+                </span>
+
+                <h2>
+                    @Model.CareerGoal
+                </h2>
+
+                <p>
+                    These learning resources are selected to help
+                    strengthen skills relevant to your career direction.
+                </p>
+
+            </div>
+
+            <div class="career-learning-arrow">
+                <i class="bi bi-arrow-up-right"></i>
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             RECOMMENDATION INSIGHT
+        ================================================== -->
+
+        <section class="recommendation-insight">
+
+            <div class="insight-icon">
+                <i class="bi bi-lightbulb-fill"></i>
+            </div>
+
+            <div class="insight-content">
+
+                <span>
+                    WHY THESE RESOURCES?
+                </span>
+
+                <h2>
+                    Learning resources based on your resume
+                </h2>
+
+                <p>
+                    @Model.RecommendationMessage
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             RECOMMENDED LEARNING
+        ================================================== -->
+
+        <section class="recommended-section">
+
+            <div class="recommended-heading">
+
+                <div>
+
+                    <span class="section-kicker">
+                        PERSONALIZED RESOURCES
+                    </span>
+
+                    <h2>
+                        Recommended Learning
+                    </h2>
+
+                    <p>
+                        Explore resources that can help strengthen
+                        the skills relevant to your recommended career.
+                    </p>
+
+                </div>
+
+                <div class="recommendation-count">
+
+                    <strong>
+                        @Model.Recommendations.Count
+                    </strong>
+
+                    <span>
+                        resources
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 COURSE GRID
+            ================================================== -->
+
+            <div class="course-grid">
+
+                @if (Model.Recommendations != null &&
+                     Model.Recommendations.Count > 0)
+                {
+                    @foreach (var recommendation in Model.Recommendations)
+                    {
+                        <article class="course-card">
+
+                            <!-- CARD TOP -->
+
+                            <div class="course-card-top">
+
+                                <div class="course-icon">
+                                    <i class="bi @recommendation.Icon"></i>
+                                </div>
+
+                                <span class="course-priority @recommendation.Priority.ToLower().Replace(" ", "-")">
+                                    @recommendation.Priority
+                                </span>
+
+                            </div>
+
+
+                            <!-- RESOURCE TYPE -->
+
+                            <span class="course-provider">
+
+                                <i class="bi bi-box-arrow-up-right"></i>
+
+                                External Learning Resource
+
+                            </span>
+
+
+                            <!-- TITLE -->
+
+                            <h3>
+                                @recommendation.Title
+                            </h3>
+
+
+                            <!-- DESCRIPTION -->
+
+                            <p class="course-description">
+                                @recommendation.Description
+                            </p>
+
+
+                            <!-- RECOMMENDED FOR -->
+
+                            <div class="recommended-for">
+
+                                <i class="bi bi-person-check-fill"></i>
+
+                                <div>
+
+                                    <span>
+                                        RECOMMENDED FOR
+                                    </span>
+
+                                    <p>
+                                        @recommendation.RecommendedFor
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- FOOTER -->
+
+                            <div class="course-footer">
+
+                                <span class="resource-label">
+
+                                    <i class="bi bi-link-45deg"></i>
+
+                                    External Resource
+
+                                </span>
+
+                                @if (!string.IsNullOrWhiteSpace(
+                                    recommendation.ResourceUrl))
+                                {
+                                    <a href="@recommendation.ResourceUrl"
+                                       target="_blank"
+                                       rel="noopener noreferrer"
+                                       class="course-btn">
+
+                                        View Resource
+
+                                        <i class="bi bi-arrow-up-right"></i>
+
+                                    </a>
+                                }
+
+                            </div>
+
+                        </article>
+                    }
+                }
+                else
+                {
+                    <div class="empty-courses">
+
+                        <div class="empty-courses-icon">
+                            <i class="bi bi-book"></i>
+                        </div>
+
+                        <h3>
+                            No Matching Learning Resources
+                        </h3>
+
+                        <p>
+                            Your resume has been analyzed, but no
+                            matching learning resources are currently
+                            available for your identified skill gaps.
+                        </p>
+
+                    </div>
+                }
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             LEARNING TIP
+        ================================================== -->
+
+        <section class="learning-note">
+
+            <div class="learning-note-icon">
+                <i class="bi bi-stars"></i>
+            </div>
+
+            <div class="learning-note-content">
+
+                <span>
+                    SKILLBRIDGE LEARNING TIP
+                </span>
+
+                <h3>
+                    Focus on your skill gaps first
+                </h3>
+
+                <p>
+                    Start with the resources marked
+                    <strong>HIGH</strong> priority. They target areas
+                    that can strengthen your current profile and
+                    support your recommended career direction.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PAGE NAVIGATION
+        ================================================== -->
+
+        <div class="page-navigation">
+
+            <a asp-page="/Jobs"
+               class="previous-page">
+
+                <i class="bi bi-arrow-left"></i>
+
+                <span>
+
+                    <small>
+                        PREVIOUS
+                    </small>
+
+                    Recommended Jobs
+
+                </span>
+
+            </a>
 
         </div>
 
-    </section>
-
-
-    <!-- =====================================================
-         PAGE NAVIGATION
-    ====================================================== -->
-
-    <div class="page-navigation">
-
-        <a asp-page="/Jobs"
-           class="previous-page">
-
-            <i class="bi bi-arrow-left"></i>
-
-            <span>
-
-                <small>
-                    PREVIOUS
-                </small>
-
-                Recommended Jobs
-
-            </span>
-
-        </a>
-
-    </div>
+    }
 
 </div>

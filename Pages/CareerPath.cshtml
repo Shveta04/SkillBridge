@@ -5,7 +5,9 @@
     ViewData["Title"] = "Career Path";
 }
 
-<link rel="stylesheet" href="~/css/careerpath.css" />
+<link rel="stylesheet"
+      href="~/css/careerpath.css"
+      asp-append-version="true" />
 
 <div class="career-page">
 
@@ -32,216 +34,227 @@
         </div>
 
         <div class="career-hero-icon">
-
             <i class="bi bi-signpost-2-fill"></i>
-
         </div>
 
     </section>
 
 
-    <!-- =========================
-         RESUME STATUS
-    ========================== -->
     @if (!Model.HasResumeData)
     {
+        <!-- =================================================
+             NO RESUME ANALYSIS STATE
+        ================================================== -->
+
         <section class="career-info-message">
 
             <div class="info-message-icon">
-                <i class="bi bi-info-circle-fill"></i>
+                <i class="bi bi-file-earmark-arrow-up-fill"></i>
             </div>
 
             <div>
-                <strong>Complete your resume analysis</strong>
+                <strong>Analyze your resume first</strong>
 
                 <p>
                     Upload and analyze your resume to receive a
-                    career path personalized to your skills.
+                    personalized career path based on your skills.
                 </p>
+
+                <a asp-page="/ResumeAnalyzer"
+                   class="career-nav-btn next-btn">
+
+                    <span>
+                        Analyze Resume
+                    </span>
+
+                    <i class="bi bi-arrow-right"></i>
+
+                </a>
             </div>
 
         </section>
     }
+    else
+    {
+        <!-- =================================================
+             PERSONALIZED CAREER PATH
+        ================================================== -->
+        <!-- =========================
+             CAREER GOAL
+        ========================== -->
 
+        <section class="career-goal-card">
 
-    <!-- =========================
-         CAREER GOAL
-    ========================== -->
+            <div class="goal-icon">
+                <i class="bi bi-bullseye"></i>
+            </div>
 
-    <section class="career-goal-card">
+            <div class="goal-content">
 
-        <div class="goal-icon">
-            <i class="bi bi-bullseye"></i>
-        </div>
+                <span class="goal-kicker">
+                    RECOMMENDED CAREER GOAL
+                </span>
 
-        <div class="goal-content">
+                <h2>
+                    @Model.CareerGoal
+                </h2>
 
-            <span class="goal-kicker">
-                RECOMMENDED CAREER GOAL
-            </span>
+                <p>
+                    @Model.CareerDescription
+                </p>
 
-            <h2>
-                @Model.CareerGoal
-            </h2>
+            </div>
 
-            <p>
-                @Model.CareerDescription
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         RECOMMENDED CAREER PATH
-    ========================== -->
-
-    <section class="roadmap-section">
-
-        <div class="roadmap-heading">
-
-            <span class="section-kicker">
-                RECOMMENDED CAREER PATH
-            </span>
-
-            <h2 class="section-title">
-                Your Recommended Progression
-            </h2>
-
-            <p class="section-description">
-                Follow the suggested sequence from building your
-                foundation to gaining practical experience for your
-                recommended career direction.
-            </p>
-
-        </div>
+        </section>
 
 
         <!-- =========================
-             ROADMAP
+             RECOMMENDED CAREER PATH
         ========================== -->
 
-        <div class="roadmap">
+        <section class="roadmap-section">
 
-            @for (int i = 0; i < Model.CareerSteps.Count; i++)
-            {
-                var step = Model.CareerSteps[i];
+            <div class="roadmap-heading">
 
-                <div class="roadmap-step">
+                <span class="section-kicker">
+                    RECOMMENDED CAREER PATH
+                </span>
 
-                    <!-- STEP NUMBER -->
+                <h2 class="section-title">
+                    Your Recommended Progression
+                </h2>
 
-                    <div class="step-number">
+                <p class="section-description">
+                    Follow the suggested sequence from building your
+                    foundation to gaining practical experience for your
+                    recommended career direction.
+                </p>
 
-                        @((i + 1).ToString("D2"))
+            </div>
+
+
+            <!-- =========================
+                 ROADMAP
+            ========================== -->
+
+            <div class="roadmap">
+
+                @for (int i = 0; i < Model.CareerSteps.Count; i++)
+                {
+                    var step = Model.CareerSteps[i];
+
+                    <div class="roadmap-step">
+
+                        <!-- STEP NUMBER -->
+
+                        <div class="step-number">
+                            @((i + 1).ToString("D2"))
+                        </div>
+
+
+                        <!-- STEP CARD -->
+
+                        <div class="step-card">
+
+                            <div class="step-icon">
+                                <i class="bi @step.Icon"></i>
+                            </div>
+
+
+                            <div class="step-content">
+
+                                <span class="step-label">
+                                    @step.Label
+                                </span>
+
+                                <h3>
+                                    @step.Title
+                                </h3>
+
+                                <p>
+                                    @step.Description
+                                </p>
+
+
+                                <!-- SKILLS -->
+                                @if (step.Skills != null &&
+                                                                     step.Skills.Count > 0)
+                                {
+                                    <div class="step-skills">
+
+                                        @foreach (var skill in step.Skills)
+                                        {
+                                            <span>
+                                                @skill
+                                            </span>
+                                        }
+
+                                    </div>
+                                }
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                }
+
+
+                <!-- =========================
+                     CAREER OUTCOME
+                ========================== -->
+
+                <div class="roadmap-step career-outcome-step">
+
+                    <div class="step-number outcome-number">
+
+                        <i class="bi bi-trophy-fill"></i>
 
                     </div>
 
 
-                    <!-- STEP CARD -->
+                    <div class="step-card outcome-card">
 
-                    <div class="step-card">
+                        <div class="step-icon outcome-icon">
 
-                        <div class="step-icon">
-
-                            <i class="bi @step.Icon"></i>
+                            <i class="bi bi-bullseye"></i>
 
                         </div>
 
 
                         <div class="step-content">
 
-                            <span class="step-label">
-                                @step.Label
+                            <span class="step-label outcome-label">
+                                CAREER OUTCOME
                             </span>
 
                             <h3>
-                                @step.Title
+                                @Model.CareerGoal
                             </h3>
 
                             <p>
-                                @step.Description
+                                By building the skills and practical
+                                experience outlined in this roadmap, you
+                                can work toward a career as a
+                                <strong>@Model.CareerGoal</strong>.
                             </p>
 
 
-                            <!-- SKILLS -->
-                            @if (step.Skills != null &&
-                                                            step.Skills.Count > 0)
-                            {
-                                <div class="step-skills">
+                            <div class="step-skills outcome-skills">
 
-                                    @foreach (var skill in step.Skills)
-                                    {
-                                        <span>
-                                            @skill
-                                        </span>
-                                    }
+                                <span>
+                                    @Model.CareerGoal
+                                </span>
 
-                                </div>
-                            }
+                                <span>
+                                    Technical Skills
+                                </span>
 
-                        </div>
+                                <span>
+                                    Practical Experience
+                                </span>
 
-                    </div>
-
-                </div>
-            }
-
-
-            <!-- =========================
-                 CAREER OUTCOME
-            ========================== -->
-
-            <div class="roadmap-step career-outcome-step">
-
-                <div class="step-number outcome-number">
-
-                    <i class="bi bi-trophy-fill"></i>
-
-                </div>
-
-
-                <div class="step-card outcome-card">
-
-                    <div class="step-icon outcome-icon">
-
-                        <i class="bi bi-bullseye"></i>
-
-                    </div>
-
-
-                    <div class="step-content">
-
-                        <span class="step-label outcome-label">
-                            CAREER OUTCOME
-                        </span>
-
-                        <h3>
-                            @Model.CareerGoal
-                        </h3>
-
-                        <p>
-                            By building the skills and practical
-                            experience outlined in this roadmap, you
-                            can work toward a career as a
-                            <strong>@Model.CareerGoal</strong>.
-                        </p>
-
-
-                        <div class="step-skills outcome-skills">
-
-                            <span>
-                                @Model.CareerGoal
-                            </span>
-
-                            <span>
-                                Technical Skills
-                            </span>
-
-                            <span>
-                                Practical Experience
-                            </span>
+                            </div>
 
                         </div>
 
@@ -251,33 +264,42 @@
 
             </div>
 
+        </section>
+
+
+        <!-- =========================
+             PAGE NAVIGATION
+        ========================== -->
+
+        <div class="career-page-navigation">
+
+            <a asp-page="/SkillGap"
+               class="career-nav-btn previous-btn">
+
+                <i class="bi bi-arrow-left"></i>
+
+                <span>
+                    <small>PREVIOUS</small>
+                    Skill Gap Analysis
+                </span>
+
+            </a>
+
+
+            <a asp-page="/Jobs"
+               class="career-nav-btn next-btn">
+
+                <span>
+                    <small>NEXT</small>
+                    Recommended Jobs
+                </span>
+
+                <i class="bi bi-arrow-right"></i>
+
+            </a>
+
         </div>
 
-    </section>
-
-    <!-- ================= PAGE NAVIGATION ================= -->
-
-    <div class="career-page-navigation">
-
-        <a asp-page="/SkillGap" class="career-nav-btn previous-btn">
-            <i class="bi bi-arrow-left"></i>
-
-            <span>
-                <small>PREVIOUS</small>
-                Skill Gap Analysis
-            </span>
-        </a>
-
-
-        <a asp-page="/Jobs" class="career-nav-btn next-btn">
-            <span>
-                <small>NEXT</small>
-                Recommended Jobs
-            </span>
-
-            <i class="bi bi-arrow-right"></i>
-        </a>
-
-    </div>
+    }
 
 </div>

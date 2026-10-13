@@ -18,10 +18,10 @@ namespace SkillBridge.Pages
         // CAREER PATH DATA
         // =========================================================
 
-        public string CareerGoal { get; set; } = "Software Developer";
+        public string CareerGoal { get; set; } = "";
 
         public string CareerDescription { get; set; } =
-            "A recommended career direction based on the skills identified in your resume.";
+            "Analyze your resume first to receive a personalized career path.";
 
         public List<CareerStep> CareerSteps { get; set; } = new();
 
@@ -37,10 +37,19 @@ namespace SkillBridge.Pages
             var userEmail =
                 HttpContext.Session.GetString("UserEmail");
 
+            // -----------------------------------------------------
+            // LOGIN CHECK
+            // -----------------------------------------------------
+
             if (string.IsNullOrWhiteSpace(userEmail))
             {
                 return RedirectToPage("/Account/Login");
             }
+
+
+            // -----------------------------------------------------
+            // FIND CURRENT USER
+            // -----------------------------------------------------
 
             var currentUser =
                 await _context.Users
@@ -53,44 +62,92 @@ namespace SkillBridge.Pages
                 return RedirectToPage("/Account/Login");
             }
 
+
             // -----------------------------------------------------
-            // CHECK WHETHER RESUME SKILLS EXIST
+            // CHECK FOR ACTUAL RESUME ANALYSIS
             // -----------------------------------------------------
 
-            if (string.IsNullOrWhiteSpace(currentUser.Skills))
+            bool hasResume =
+                !string.IsNullOrWhiteSpace(currentUser.ResumePath);
+
+            bool hasSkills =
+                !string.IsNullOrWhiteSpace(currentUser.Skills);
+
+            bool hasResumeAnalysis = false;
+
+            if (hasResume)
+            {
+                hasResumeAnalysis =
+                    await _context.ResumeAnalysis
+                        .AnyAsync(analysis =>
+                            _context.Resumes.Any(resume =>
+                                resume.ResumeID == analysis.ResumeID &&
+                                resume.UserID == currentUser.UserID));
+            }
+
+
+            // -----------------------------------------------------
+            // NO RESUME ANALYSIS
+            // -----------------------------------------------------
+
+            if (!hasResume ||
+                !hasSkills ||
+                !hasResumeAnalysis)
             {
                 HasResumeData = false;
 
-                CreateDefaultCareerPath();
+                CareerGoal = "";
+
+                CareerDescription =
+                    "Analyze your resume first to receive a personalized career path.";
+
+                CareerSteps.Clear();
 
                 return Page();
             }
 
+
+            // -----------------------------------------------------
+            // RESUME ANALYSIS EXISTS
+            // -----------------------------------------------------
+
             HasResumeData = true;
+
 
             // -----------------------------------------------------
             // GET STORED SKILLS
             // -----------------------------------------------------
 
             var detectedSkills =
-                currentUser.Skills
+                currentUser.Skills!
                     .Split(
                         ',',
                         StringSplitOptions.RemoveEmptyEntries)
                     .Select(skill => skill.Trim())
+                    .Where(skill => !string.IsNullOrWhiteSpace(skill))
+                    .Distinct(StringComparer.OrdinalIgnoreCase)
                     .ToList();
+
 
             // -----------------------------------------------------
             // DETERMINE BEST CAREER
             // -----------------------------------------------------
 
-            var career = DetermineCareer(detectedSkills);
+            var career =
+                DetermineCareer(detectedSkills);
 
-            CareerGoal = career.Name;
 
-            CareerDescription = career.Description;
+            CareerGoal =
+                career.Name;
 
-            CareerSteps = career.Steps;
+
+            CareerDescription =
+                career.Description;
+
+
+            CareerSteps =
+                career.Steps;
+
 
             return Page();
         }
@@ -103,41 +160,47 @@ namespace SkillBridge.Pages
         private CareerDefinition DetermineCareer(
             List<string> skills)
         {
-            var careers = new List<CareerDefinition>
-            {
-                CreateDotNetCareer(),
-                CreateFrontendCareer(),
-                CreateBackendCareer(),
-                CreateDataAnalystCareer(),
-                CreateAIMLCareer(),
-                CreateCloudDevOpsCareer()
-            };
+            var careers =
+                new List<CareerDefinition>
+                {
+                    CreateDotNetCareer(),
+                    CreateFrontendCareer(),
+                    CreateBackendCareer(),
+                    CreateDataAnalystCareer(),
+                    CreateAIMLCareer(),
+                    CreateCloudDevOpsCareer()
+                };
+
 
             CareerDefinition? bestCareer = null;
 
             int bestScore = 0;
+
 
             foreach (var career in careers)
             {
                 int score =
                     career.RequiredSkills.Count(
                         requiredSkill =>
-                            skills.Any(userSkill =>
-                                string.Equals(
-                                    userSkill,
-                                    requiredSkill,
-                                    StringComparison.OrdinalIgnoreCase)));
+                            skills.Any(
+                                userSkill =>
+                                    string.Equals(
+                                        userSkill,
+                                        requiredSkill,
+                                        StringComparison.OrdinalIgnoreCase
+                                    )
+                            )
+                    );
+
 
                 if (score > bestScore)
                 {
                     bestScore = score;
+
                     bestCareer = career;
                 }
             }
 
-            // -----------------------------------------------------
-            // FALLBACK
-            // -----------------------------------------------------
 
             return bestCareer ??
                    CreateDefaultCareer();
@@ -758,22 +821,6 @@ namespace SkillBridge.Pages
                     }
                 }
             };
-        }
-
-
-        // =========================================================
-        // DEFAULT PATH
-        // =========================================================
-
-        private void CreateDefaultCareerPath()
-        {
-            var career = CreateDefaultCareer();
-
-            CareerGoal = career.Name;
-
-            CareerDescription = career.Description;
-
-            CareerSteps = career.Steps;
         }
     }
 
